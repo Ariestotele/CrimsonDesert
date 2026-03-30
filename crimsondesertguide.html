@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crimson Desert — Complete Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #0e0d0b;
+  --bg2:     #141310;
+  --bg3:     #1a1915;
+  --surface: #201e19;
+  --sur2:    #282520;
+  --border:  #2e2b24;
+  --border2: #3d3930;
+  --gold:    #c9963e;
+  --gold-lt: #e8b86a;
+  --gold-dk: #7a5518;
+  --red:     #b84040;
+  --red-lt:  #e06060;
+  --green:   #4a8a4a;
+  --grn-lt:  #6db86d;
+  --amber:   #b87030;
+  --amb-lt:  #d4904a;
+  --blue:    #3a6a9a;
+  --blu-lt:  #5a90c0;
+  --muted:   #635e54;
+  --text:    #bfb9aa;
+  --text-ht: #ddd7c8;
+  --text-dm: #6e6860;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
+
+/* ── HEADER ── */
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:200}
+.logo{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+
+/* ── TAB BAR ── */
+.tab-bar{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:0 18px;height:52px;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;flex-shrink:0}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── HERO ── */
+.hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 85% 50%,rgba(201,150,62,.06) 0%,transparent 65%),radial-gradient(ellipse 40% 80% at 15% 50%,rgba(184,64,64,.04) 0%,transparent 65%);pointer-events:none}
+.hero-inner{max-width:860px;margin:0 auto;position:relative}
+.eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+.eyebrow::before,.eyebrow::after{content:'';height:1px;background:var(--gold-dk);flex:0 0 24px}
+h1{font-family:'Cinzel',serif;font-size:clamp(24px,4.5vw,40px);font-weight:700;color:var(--text-ht);line-height:1.15;margin-bottom:.75rem}
+h1 span{color:var(--gold)}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.25rem}
+.hero-pill{font-size:11px;color:var(--text-dm);display:flex;align-items:center;gap:5px}
+.hero-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-dk);flex-shrink:0}
+
+/* ── PANEL CONTAINER ── */
+.panel-wrap{max-width:860px;margin:0 auto;padding:2rem 2rem 4rem}
+.panel{display:none}
+.panel.active{display:block}
+
+/* ── SECTION WITHIN PANEL ── */
+.sec{margin-bottom:2.5rem}
+.sec-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+h2{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:var(--text-ht);margin-bottom:.75rem}
+h3{font-size:14px;font-weight:500;color:var(--text-ht);margin-bottom:4px}
+p{color:var(--text);margin-bottom:.6rem;font-size:14px}
+
+/* ── STAT ROW ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1.5rem}
+.stat{background:var(--surface);padding:14px;text-align:center}
+.stat-v{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:3px}
+.stat-l{font-size:11px;color:var(--text-dm);text-transform:uppercase;letter-spacing:.05em}
+
+/* ── CARDS ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;transition:border-color .18s}
+.card:hover{border-color:var(--border2)}
+.card.al{border-left:3px solid var(--gold-dk)}
+.card.ar{border-left:3px solid var(--red)}
+.card.ag{border-left:3px solid var(--green)}
+.card.ab{border-left:3px solid var(--blue)}
+.card.aa{border-left:3px solid var(--amber)}
+
+/* ── BADGES ── */
+.bdg{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-bottom:7px}
+.b-gold  {background:rgba(201,150,62,.14);color:var(--gold-lt);border:1px solid rgba(201,150,62,.22)}
+.b-silv  {background:rgba(160,155,145,.1);color:#a09585;border:1px solid rgba(160,155,145,.18)}
+.b-red   {background:rgba(184,64,64,.13);color:var(--red-lt);border:1px solid rgba(184,64,64,.22)}
+.b-grn   {background:rgba(74,138,74,.13);color:var(--grn-lt);border:1px solid rgba(74,138,74,.22)}
+.b-blue  {background:rgba(58,106,154,.13);color:var(--blu-lt);border:1px solid rgba(58,106,154,.22)}
+.b-amb   {background:rgba(184,112,48,.13);color:var(--amb-lt);border:1px solid rgba(184,112,48,.22)}
+
+/* ── TIP BOXES ── */
+.tip{display:flex;gap:10px;padding:11px 13px;border-radius:6px;font-size:13px;line-height:1.6;margin-bottom:9px}
+.tip-i{background:rgba(58,106,154,.1);border:1px solid rgba(58,106,154,.18);color:var(--blu-lt)}
+.tip-w{background:rgba(184,112,48,.1);border:1px solid rgba(184,112,48,.18);color:var(--amb-lt)}
+.tip-g{background:rgba(74,138,74,.1);border:1px solid rgba(74,138,74,.18);color:var(--grn-lt)}
+.tip-o{background:rgba(201,150,62,.08);border:1px solid rgba(201,150,62,.16);color:var(--gold-lt)}
+.tip-ico{font-size:13px;flex-shrink:0;margin-top:1px}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto;border-radius:6px;border:1px solid var(--border);margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bg3);font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dm);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .12s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+td{padding:9px 13px;vertical-align:top;color:var(--text);font-size:13px}
+td:first-child{color:var(--text-ht);font-weight:500}
+small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-top:3px}
+
+/* ── ACCORDION ── */
+.acc-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:8px;overflow:hidden}
+.acc-head{display:flex;align-items:center;gap:11px;padding:12px 15px;cursor:pointer;user-select:none;transition:background .15s}
+.acc-head:hover{background:rgba(255,255,255,.025)}
+.acc-icon{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ic-gold{background:rgba(201,150,62,.18)}
+.ic-grn {background:rgba(74,138,74,.18)}
+.ic-red {background:rgba(184,64,64,.18)}
+.ic-blue{background:rgba(58,106,154,.18)}
+.ic-amb {background:rgba(184,112,48,.18)}
+.acc-label{font-weight:500;font-size:14px;color:var(--text-ht);flex:1}
+.acc-verdict{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.v-keep{background:rgba(74,138,74,.18);color:var(--grn-lt)}
+.v-sell{background:rgba(184,64,64,.18);color:var(--red-lt)}
+.v-trd {background:rgba(201,150,62,.18);color:var(--gold-lt)}
+.v-ctx {background:rgba(58,106,154,.18);color:var(--blu-lt)}
+.acc-chev{color:var(--text-dm);font-size:10px;transition:transform .22s}
+.acc-body{display:none;border-top:1px solid var(--border)}
+.acc-body.open{display:block}
+.acc-head.exp .acc-chev{transform:rotate(180deg)}
+.itm{display:grid;grid-template-columns:1fr auto;gap:10px;padding:9px 15px;border-bottom:1px solid var(--border);font-size:13px;align-items:start}
+.itm:last-child{border-bottom:none}
+.iname{color:var(--text-ht);font-weight:500;margin-bottom:2px}
+.inote{color:var(--text-dm);font-size:12px;line-height:1.5}
+.itag{font-size:10px;white-space:nowrap;padding:2px 7px;border-radius:20px;height:fit-content;margin-top:1px}
+.t-k{background:rgba(74,138,74,.14);color:var(--grn-lt);border:1px solid rgba(74,138,74,.28)}
+.t-s{background:rgba(184,64,64,.11);color:var(--red-lt);border:1px solid rgba(184,64,64,.22)}
+.t-t{background:rgba(201,150,62,.11);color:var(--gold-lt);border:1px solid rgba(201,150,62,.22)}
+.t-c{background:rgba(58,106,154,.11);color:var(--blu-lt);border:1px solid rgba(58,106,154,.22)}
+
+/* ── DECISION GRID ── */
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.dec-col{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.dec-hd{padding:10px 15px;font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.dh-k{background:rgba(74,138,74,.1);color:var(--grn-lt);border-bottom:1px solid rgba(74,138,74,.18)}
+.dh-s{background:rgba(184,64,64,.1);color:var(--red-lt);border-bottom:1px solid rgba(184,64,64,.18)}
+.dec-itm{display:flex;align-items:flex-start;gap:9px;padding:9px 15px;border-bottom:1px solid var(--border);font-size:13px}
+.dec-itm:last-child{border-bottom:none}
+.di-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.d-g{background:var(--grn-lt)} .d-r{background:var(--red-lt)} .d-a{background:var(--amb-lt)}
+.di-lb{color:var(--text-ht);font-weight:500;margin-bottom:1px}
+.di-nt{color:var(--text-dm);font-size:12px}
+
+/* ── TRADING FLOW ── */
+.trade-flow{display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px}
+.t-step{flex:1;padding:13px 14px;border-right:1px solid var(--border)}
+.t-step:last-child{border-right:none}
+.t-num{font-family:'Cinzel',serif;font-size:10px;color:var(--gold-dk);letter-spacing:.1em;margin-bottom:3px}
+.t-title{font-size:13px;font-weight:500;color:var(--text-ht);margin-bottom:2px}
+.t-desc{font-size:12px;color:var(--text-dm);line-height:1.5}
+
+/* ── SEARCH ── */
+.search-wrap{margin-bottom:1.5rem;position:relative}
+#srch{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .2s}
+#srch:focus{border-color:var(--border2)}
+#srch::placeholder{color:var(--text-dm)}
+.srch-drop{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-top:4px;display:none;overflow:hidden;position:absolute;width:100%;z-index:100}
+.srch-itm{padding:9px 14px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .12s}
+.srch-itm:last-child{border-bottom:none}
+.srch-itm:hover{background:rgba(255,255,255,.03)}
+.srch-name{color:var(--text-ht);font-weight:500;flex:1}
+.srch-type{font-size:11px;color:var(--text-dm)}
+
+/* ── EARLY GAME CHECKLIST ── */
+.priority-list{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1rem}
+.pl-head{padding:11px 15px;background:rgba(201,150,62,.07);border-bottom:1px solid rgba(201,150,62,.15);font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-lt);display:flex;align-items:center;gap:8px}
+.priority-item{display:flex;align-items:flex-start;gap:11px;padding:10px 15px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
+.priority-item:last-child{border-bottom:none}
+.priority-item:hover{background:rgba(255,255,255,.02)}
+.pi-cb{width:16px;height:16px;border-radius:3px;border:1px solid var(--border2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .15s;color:transparent;background:transparent}
+.priority-item.done .pi-cb{background:var(--green);border-color:var(--green);color:#fff}
+.priority-item.done .pi-text{opacity:.4;text-decoration:line-through;text-decoration-color:var(--text-dm)}
+.pi-text{flex:1}
+.pi-label{font-size:14px;font-weight:500;color:var(--text-ht);margin-bottom:2px}
+.pi-note{font-size:12px;color:var(--text-dm);line-height:1.5}
+.pi-tag{display:inline-block;font-size:10px;padding:1px 7px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.pt-asap{background:rgba(184,64,64,.15);color:var(--red-lt);border:1px solid rgba(184,64,64,.25)}
+.pt-early{background:rgba(201,150,62,.12);color:var(--gold-lt);border:1px solid rgba(201,150,62,.2)}
+.pt-mid{background:rgba(58,106,154,.12);color:var(--blu-lt);border:1px solid rgba(58,106,154,.2)}
+
+/* ── TIP CARDS (early game tips) ── */
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:8px}
+.tip-card-hd{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.tip-num{font-family:'Cinzel',serif;font-size:10px;color:var(--gold-dk);letter-spacing:.08em}
+.tip-card-title{font-size:14px;font-weight:500;color:var(--text-ht)}
+.tip-card p{font-size:13px;margin-bottom:0;color:var(--text-dm);line-height:1.6}
+
+/* ── QUESTS ── */
+.chapter-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-bottom:8px;overflow:hidden}
+.chap-head{display:flex;align-items:center;gap:12px;padding:12px 15px;cursor:pointer;user-select:none;transition:background .12s}
+.chap-head:hover{background:rgba(255,255,255,.025)}
+.chap-num{font-family:'Cinzel',serif;font-size:10px;color:var(--gold-dk);letter-spacing:.1em;min-width:60px}
+.chap-title{font-size:14px;font-weight:500;color:var(--text-ht);flex:1}
+.chap-badges{display:flex;gap:6px;align-items:center}
+.chap-chev{color:var(--text-dm);font-size:10px;transition:transform .22s}
+.chap-head.exp .chap-chev{transform:rotate(180deg)}
+.chap-body{display:none;border-top:1px solid var(--border);padding:12px 15px}
+.chap-body.open{display:block}
+.quest-row{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)}
+.quest-row:last-child{border-bottom:none}
+.quest-dot{width:5px;height:5px;border-radius:50%;background:var(--border2);flex-shrink:0;margin-top:7px}
+.quest-name{font-size:13px;color:var(--text-ht);flex:1}
+.quest-note{font-size:12px;color:var(--text-dm)}
+.quest-tag{font-size:10px;padding:1px 7px;border-radius:20px;white-space:nowrap}
+.qt-main{background:rgba(201,150,62,.12);color:var(--gold-lt);border:1px solid rgba(201,150,62,.2)}
+.qt-bag{background:rgba(74,138,74,.12);color:var(--grn-lt);border:1px solid rgba(74,138,74,.2)}
+.qt-key{background:rgba(184,64,64,.12);color:var(--red-lt);border:1px solid rgba(184,64,64,.2)}
+.qt-side{background:rgba(110,100,90,.15);color:#9a9080;border:1px solid rgba(110,100,90,.2)}
+
+/* ── FACTION TABLE ── */
+.faction-row td.faction-name{font-weight:500;color:var(--text-ht)}
+.faction-row td.faction-loc{color:var(--text-dm);font-size:12px}
+.faction-row td.faction-qty{color:var(--amb-lt);font-weight:500;font-size:13px}
+
+/* ── PROGRESS BAR (quests panel header) ── */
+.quest-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1.5rem}
+.qs-cell{background:var(--surface);padding:13px;text-align:center}
+.qs-num{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--gold);line-height:1;margin-bottom:3px}
+.qs-label{font-size:11px;color:var(--text-dm);text-transform:uppercase;letter-spacing:.05em}
+
+/* ── QUEST LINKS ── */
+.quest-links{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle;flex-shrink:0}
+.ql-wiki,.ql-google{font-size:10px;font-weight:500;padding:1px 6px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .15s;line-height:1.6}
+.ql-wiki{background:rgba(201,150,62,.12);color:var(--gold-lt);border:1px solid rgba(201,150,62,.22)}
+.ql-wiki:hover{background:rgba(201,150,62,.22);opacity:1}
+.ql-google{background:rgba(58,106,154,.1);color:var(--blu-lt);border:1px solid rgba(58,106,154,.18)}
+.ql-google:hover{background:rgba(58,106,154,.2)}
+.quest-name{display:flex;align-items:center;flex-wrap:wrap;gap:2px;flex:1}
+
+/* ── QUEST GROUPS ── */
+.qgroup-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dk);padding:10px 0 4px;margin-top:6px;border-top:1px solid var(--border)}
+.quest-note{font-size:11px;color:var(--text-dm);margin-top:1px}
+.qtab-panel{}
+
+/* ── RESPONSIVE ── */
+@media(max-width:680px){
+  header{padding:0 1rem}
+  .tab-btn{padding:0 12px;font-size:11px}
+  .panel-wrap{padding:1.5rem 1rem 3rem}
+  .hero{padding:1.75rem 1rem 1.5rem}
+  .grid2,.grid3,.dec-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .quest-summary{grid-template-columns:1fr 1fr 1fr}
+  .trade-flow{flex-direction:column}
+  .t-step{border-right:none;border-bottom:1px solid var(--border)}
+  .t-step:last-child{border-bottom:none}
+  .chap-badges{display:none}
+}
+
+/* ── ANIMS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner{animation:fadeUp .45s ease both}
+.panel.active > *{animation:fadeUp .3s ease both}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Crimson Desert</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('inventory',this)">Inventory</button>
+    <button class="tab-btn" onclick="switchTab('items',this)">Items Guide</button>
+    <button class="tab-btn" onclick="switchTab('trading',this)">Trading</button>
+    <button class="tab-btn" onclick="switchTab('quests',this)">Quests</button>
+    <button class="tab-btn" onclick="switchTab('early',this)">Early Game</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Complete Guide</div>
+    <h1>Crimson Desert —<br><span>Pywel Field Manual</span></h1>
+    <p style="max-width:520px;color:var(--text-dm);font-size:13px">Inventory, items, trading, quests & early game. Use the tabs above to jump between sections.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">50 starting slots · slot-based only</div>
+      <div class="hero-pill">Stack cap 50 per slot</div>
+      <div class="hero-pill">442 total quests · 14 story chapters</div>
+      <div class="hero-pill">Patch 1.01 — March 29, 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════ TAB 1: INVENTORY ════════════════════════ -->
+<div class="panel-wrap">
+<div id="panel-inventory" class="panel active">
+
+  <div class="search-wrap">
+    <input id="srch" type="text" placeholder="Search any item, bag type, quest…" autocomplete="off">
+    <div id="srch-drop" class="srch-drop"></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">System overview</div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-v">50</div><div class="stat-l">Starting slots</div></div>
+      <div class="stat"><div class="stat-v">50</div><div class="stat-l">Stack cap / slot</div></div>
+      <div class="stat"><div class="stat-v">240</div><div class="stat-l">Private storage</div></div>
+      <div class="stat"><div class="stat-v">27</div><div class="stat-l">Commission bags</div></div>
+    </div>
+    <div class="grid2" style="margin-bottom:.75rem">
+      <div class="card al">
+        <span class="bdg b-gold">How it works</span>
+        <h3>Slot-based only</h3>
+        <small>Every item occupies exactly one slot regardless of size. No weight, no encumbrance — only slot count matters.</small>
+      </div>
+      <div class="card aa">
+        <span class="bdg b-amb">Stack overflow</span>
+        <h3>Cap is 50 per slot</h3>
+        <small>Mats, food and ammo stack to 50. Carrying 51+ of anything bleeds into a second slot. Craft often to consolidate.</small>
+      </div>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>The <strong>Group</strong> feature consolidates same-type items visually — it doesn't increase your slot count, but makes the inventory screen much cleaner to navigate.</div></div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Shared inventory across Kliff, Damiane and Oongka. You can park a secondary character near a vendor to sell without fast-travelling yourself.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Bag types</div>
+    <div class="grid3" style="margin-bottom:1rem">
+      <div class="card">
+        <span class="bdg b-silv">Small Bag</span>
+        <div style="font-family:'Cinzel',serif;font-size:18px;color:var(--gold);margin:4px 0">+1 slot</div>
+        <h3>50 Copper — buy every one</h3>
+        <small>Almost every vendor in Pywel sells one. Permanent upgrade. Never skip a merchant without checking. Some vendors share pools — buy immediately.</small>
+      </div>
+      <div class="card">
+        <span class="bdg b-grn">Medium Bag</span>
+        <div style="font-family:'Cinzel',serif;font-size:18px;color:var(--gold);margin:4px 0">+3 slots</div>
+        <h3>Quests only — not sold</h3>
+        <small>Best slot-per-effort in the game. Greymane Commissions (27 available → up to +81 slots), Faction Quests, Hernand requests. Prioritise these.</small>
+      </div>
+      <div class="card">
+        <span class="bdg b-gold">Large Bag</span>
+        <div style="font-family:'Cinzel',serif;font-size:18px;color:var(--gold);margin:4px 0">+5 – +9 slots</div>
+        <h3>Story milestones only</h3>
+        <small>Tied to unlocking characters. Damiane (Ch. 3) and Oongka (Ch. 7) each grant large bags automatically.</small>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Quest / Request</th><th>Location</th><th>Bag reward</th><th>How to access</th></tr></thead>
+        <tbody>
+          <tr><td>Renee's Request</td><td style="color:var(--text-dm)">Hernand</td><td><span class="bdg b-grn" style="margin:0">Medium Bag</span></td><td style="color:var(--text-dm)">Journal → Main Quests</td></tr>
+          <tr><td>Rhett's Request</td><td style="color:var(--text-dm)">Hernand</td><td><span class="bdg b-grn" style="margin:0">Medium Bag</span></td><td style="color:var(--text-dm)">Journal → Main Quests</td></tr>
+          <tr><td>Turnali's Request</td><td style="color:var(--text-dm)">Hernand</td><td><span class="bdg b-grn" style="margin:0">Medium Bag + Logging Axe</span></td><td style="color:var(--text-dm)">Hernand Commissions</td></tr>
+          <tr><td>Trial After Trial</td><td style="color:var(--text-dm)">Various</td><td><span class="bdg b-grn" style="margin:0">Medium Bag</span></td><td style="color:var(--text-dm)">Notice boards</td></tr>
+          <tr><td>Carl, Ronnie, Ross, Tranan, Brice, Ronald, Pierce</td><td style="color:var(--text-dm)">Greymane Camp</td><td><span class="bdg b-grn" style="margin:0">Medium Bag each</span></td><td style="color:var(--text-dm)">Journal → Faction → Greymane</td></tr>
+          <tr><td>All 27 Greymane Commissions</td><td style="color:var(--text-dm)">Howling Hill (Ch. 3+)</td><td><span class="bdg b-gold" style="margin:0">Up to +81 slots</span></td><td style="color:var(--text-dm)">Recruit survivors via Marius first</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Journal → Faction Quests → scroll to reward section. Bag icon = Medium Bag. Notice boards in every town surface these fast.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Storage locations</div>
+    <div class="grid2" style="margin-bottom:.75rem">
+      <div class="card ab">
+        <span class="bdg b-blue">Temporary</span>
+        <h3>Freesword Encampment Chest</h3>
+        <small>Inside your tent near Hernand Castle. Available from the very start. Use it immediately for items you don't need to carry.</small>
+      </div>
+      <div class="card al">
+        <span class="bdg b-gold">Private Storage · 240 slots</span>
+        <h3>Greymane Camp — behind Carl</h3>
+        <small>Added in Patch 1.00.03. Your main long-term stash at Howling Hill. Located behind Carl at the supply area. Unlocks when you establish camp in Ch. 3.</small>
+      </div>
+    </div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Housing storage furniture is confirmed for a future patch. Once live, slot pressure will drop significantly — but bag expansion stays your primary carry tool.</div></div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Donate unwanted items to <strong>Carl</strong> at Greymane Camp → Manage Provisions. Clears your slots and contributes to camp progression simultaneously.</div></div>
+  </div>
+
+</div><!-- /panel-inventory -->
+
+<!-- ════════════════════════ TAB 2: ITEMS ════════════════════════ -->
+<div id="panel-items" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Quick decision matrix</div>
+    <div class="dec-grid">
+      <div class="dec-col">
+        <div class="dec-hd dh-k">◎ Always keep</div>
+        <div class="dec-itm"><div class="di-dot d-g"></div><div><div class="di-lb">Unique Weapons</div><div class="di-nt">One-of-a-kind. Require exclusive refinement mats. Cannot be re-obtained.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-g"></div><div><div class="di-lb">Abyss Artifacts & Cores</div><div class="di-nt">Core progression. Never sell — keep for gear augmentation and skill resets.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-g"></div><div><div class="di-lb">Cooked food</div><div class="di-nt">Your only combat healing source. Keep a large supply at all times.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-g"></div><div><div class="di-lb">Gathering tools</div><div class="di-nt">Axe, pickaxe, fishing rod, Thieves Mask — each enables a core mechanic.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-a"></div><div><div class="di-lb">Current-tier craft mats</div><div class="di-nt">Only keep what your next Refinement level actually needs.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-g"></div><div><div class="di-lb">Palmar Pills</div><div class="di-nt">Revive with 30% HP during boss fights. Stockpile before any boss encounter.</div></div></div>
+      </div>
+      <div class="dec-col">
+        <div class="dec-hd dh-s">✕ Sell / discard immediately</div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Completed quest documents</div><div class="di-nt">Books, bounty posters, notes — dead weight the moment the quest is done.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Read recipes & manuals</div><div class="di-nt">Knowledge saves to journal. The item itself is useless after reading.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Damaged gear</div><div class="di-nt">Cannot be repaired. Zero value as equipment. Vendor it immediately.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Non-unique enemy drop weapons</div><div class="di-nt">Sell unless it's a direct stat upgrade over your current gear.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Past-tier craft mats (surplus)</div><div class="di-nt">Keep a small buffer (~10–20). Sell everything above that.</div></div></div>
+        <div class="dec-itm"><div class="di-dot d-r"></div><div><div class="di-lb">Completed bounty tokens</div><div class="di-nt">Sell for silver after completing a faction bounty. No reason to hold.</div></div></div>
+      </div>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>You can <strong>buy back recently sold items</strong> from vendors within a time window. Sell aggressively — you have a safety net for immediate regrets.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Full item breakdown — click to expand</div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">⚔</div>
+        <div class="acc-label">Weapons & Gear</div>
+        <div class="acc-verdict v-ctx">Situational</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Unique Weapons</div><div class="inote">Dungeon or quest-specific. Cannot be duplicated. Need exclusive refinement mats to upgrade.</div></div><span class="itag t-k">Always Keep</span></div>
+        <div class="itm"><div><div class="iname">Standard enemy drop weapons</div><div class="inote">Common loot. Only keep if it directly upgrades your equipped gear. Sell everything else.</div></div><span class="itag t-s">Sell</span></div>
+        <div class="itm"><div><div class="iname">Damaged weapons / armor</div><div class="inote">Cannot be repaired at all. Sell instantly for quick silver.</div></div><span class="itag t-s">Sell Now</span></div>
+        <div class="itm"><div><div class="iname">Replaced armor pieces</div><div class="inote">Once you've equipped something better, the old piece has no use. Sell it — no stash to park it in.</div></div><span class="itag t-s">Sell</span></div>
+        <div class="itm"><div><div class="iname">Tauria's Curved Sword / Sword of the Lord</div><div class="inote">Best early unique weapons. Looted from Crowcaller and Kailok bosses respectively. Never sell.</div></div><span class="itag t-k">Keep</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">◈</div>
+        <div class="acc-label">Abyss System (Artifacts, Cores, Fragments)</div>
+        <div class="acc-verdict v-keep">Never Sell</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Abyss Artifacts (Regular)</div><div class="inote">Boost skills and core stats. Also purchasable from vendors like Elowen the Witch north of Hernand. Embed in gear for build customization.</div></div><span class="itag t-k">Never Sell</span></div>
+        <div class="itm"><div><div class="iname">Faded Abyss Artifacts</div><div class="inote">Enables skill tree resets. Crucial for build experimentation — extremely valuable, especially early when you make mistakes.</div></div><span class="itag t-k">Never Sell</span></div>
+        <div class="itm"><div><div class="iname">Abyss Cores</div><div class="inote">Augment gear with extra stats and effects. Keep for build variety. Available from vendors but stockpile every free one you find.</div></div><span class="itag t-k">Keep</span></div>
+        <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint. Collect ASAP — challenge progress only counts after pickup, not retroactively. Check Journal → Challenges to track them.</div></div><span class="itag t-k">Collect ASAP</span></div>
+        <div class="itm"><div><div class="iname">Abyss Fragments</div><div class="inote">Earned from quests, boss kills, and exploration. Used to unlock the Artifact System. Never discard.</div></div><span class="itag t-k">Never Sell</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-grn">🍖</div>
+        <div class="acc-label">Food & Consumables</div>
+        <div class="acc-verdict v-keep">Keep Stocked</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Hearty Grilled Meat (early game best)</div><div class="inote">Buy meat from the Hernand butcher → cook at the bonfire/pot beside the stand. 200+ HP regen, cheapest to produce. Best early food option.</div></div><span class="itag t-k">Always Carry</span></div>
+        <div class="itm"><div><div class="iname">Cooked meals (general)</div><div class="iname">Primary combat healing. Cooked > raw for restoration. Eat every ~2 sec infinitely during combat.</div></div><span class="itag t-k">Always Carry</span></div>
+        <div class="itm"><div><div class="iname">Palmar Pills</div><div class="inote">Auto-revive at 30% HP. Essential for boss fights. Recipe found in Shadow's Whisper Cave north of Hernand — get it early. Save them for a boss's final phase.</div></div><span class="itag t-k">Stockpile</span></div>
+        <div class="itm"><div><div class="iname">Raw food / ingredients</div><div class="inote">Keep if you cook regularly. Sell surplus when low on slots, but maintain enough for a fresh batch. Farm Mountain Goats for Fine Meat — they die faster than deer.</div></div><span class="itag t-c">If Cooking</span></div>
+        <div class="itm"><div><div class="iname">Cooking recipes & blueprints</div><div class="inote">Read and learn immediately. Once unlocked in your craft menu, the item is dead weight. Sell — they're worth a surprisingly good amount.</div></div><span class="itag t-s">Sell After Reading</span></div>
+        <div class="itm"><div><div class="iname">Surplus food (51+ of same)</div><div class="inote">Stacks cap at 50. If you're carrying 51+ of the same food, it's eating a second slot. Eat down or sell the overflow.</div></div><span class="itag t-s">Trim to 50</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-amb">⚒</div>
+        <div class="acc-label">Crafting & Refinement Materials</div>
+        <div class="acc-verdict v-ctx">Tier-Dependent</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Current-tier upgrade materials</div><div class="inote">Ores, timbers, cloths, hides, bones needed for your next Refinement level. Check the recipe before hoarding — keep only what you need.</div></div><span class="itag t-k">Keep</span></div>
+        <div class="itm"><div><div class="iname">Boss/location-exclusive refinement mats</div><div class="inote">Hard to re-farm. Keep every single one regardless of tier.</div></div><span class="itag t-k">Keep All</span></div>
+        <div class="itm"><div><div class="iname">Past-tier materials (surplus)</div><div class="inote">Once you've passed those upgrades, keep a buffer of 10–20. Sell everything above that.</div></div><span class="itag t-s">Mostly Sell</span></div>
+        <div class="itm"><div><div class="iname">Excess plants, bugs, fish, flowers</div><div class="inote">Sell surplus common gathering materials you don't need for active recipes. Fish especially pile up fast and sell well.</div></div><span class="itag t-s">Sell Surplus</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-grn">🔧</div>
+        <div class="acc-label">Gathering Tools & Special Equipment</div>
+        <div class="acc-verdict v-keep">Always Keep</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Logging Axe</div><div class="inote">Required for timber gathering. Chop trees vertically for best output. Get one ASAP — wood is needed for gear refinement.</div></div><span class="itag t-k">Always Keep</span></div>
+        <div class="itm"><div><div class="iname">Pickaxe / Mining Tool</div><div class="inote">Required for ore extraction. Mining is essential for weapon refinement materials. Buy one from Hernand vendors at the start.</div></div><span class="itag t-k">Always Keep</span></div>
+        <div class="itm"><div><div class="iname">Fishing Rod</div><div class="inote">Enables fishing for food and sellable catch. Useful early when you can't afford meat — fish at Three Saints Falls. Stand at water's edge so hook doesn't snag ground.</div></div><span class="itag t-k">Always Keep</span></div>
+        <div class="itm"><div><div class="iname">Thieves Mask</div><div class="inote">Enables the stealing mechanic. Stolen items go to Back Alley Vendors or Black Markets only — not regular shops. Stealing reduces Contribution Points whether caught or not.</div></div><span class="itag t-k">Keep</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">📜</div>
+        <div class="acc-label">Documents, Books & Quest Items</div>
+        <div class="acc-verdict v-sell">Sell After Use</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Active quest key items</div><div class="inote">Keep until the quest is done. Check item description — if it says "Knowledge acquired" in grey text, the info is already saved to your journal and you can sell.</div></div><span class="itag t-c">During Quest Only</span></div>
+        <div class="itm"><div><div class="iname">Completed quest documents</div><div class="inote">Books, notes, missives — once the quest is done, these are vendor fodder. Sell immediately.</div></div><span class="itag t-s">Sell</span></div>
+        <div class="itm"><div><div class="iname">Bounty tokens</div><div class="inote">Sell after completing a faction bounty for silver. No reason to hold them.</div></div><span class="itag t-s">Sell After Completion</span></div>
+        <div class="itm"><div><div class="iname">Skill manuals & books</div><div class="inote">Read immediately. Sell right after — they're worth a surprising amount of copper.</div></div><span class="itag t-s">Sell After Reading</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">🪙</div>
+        <div class="acc-label">Trade Goods (Blue Items)</div>
+        <div class="acc-verdict v-trd">Trade Route</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Calligraphic Paintings, Ceramics, Red Ginseng, Tobacco</div><div class="inote">High-value trade goods. Found in chests, tables, cabinets. Don't sell to regular vendors — use Trading Posts (see Trading tab) for maximum profit.</div></div><span class="itag t-t">Trade Route</span></div>
+        <div class="itm"><div><div class="iname">Unpackaged Trade Goods (under 25 qty)</div><div class="inote">Below the bulk-sell minimum. Black Markets take them at lower rates — better than sitting on them if you're tight on slots.</div></div><span class="itag t-t">Black Market</span></div>
+        <div class="itm"><div><div class="iname">Stolen goods</div><div class="inote">Cannot be sold at regular vendors. Back Alley Vendors or Trade Goods Black Markets only. Stolen livestock goes to the Livestock Fencer west of Muckroot Ranch.</div></div><span class="itag t-t">Black Market Only</span></div>
+        <div class="itm"><div><div class="iname">Collectibles (paintings, pots, bowls)</div><div class="inote">Can be gifted to NPCs to build favor, or sold for decent silver. If not actively gifting to a specific NPC, sell — slots cost more than the holding benefit.</div></div><span class="itag t-s">Sell Unless Gifting</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-items -->
+
+<!-- ════════════════════════ TAB 3: TRADING ════════════════════════ -->
+<div id="panel-trading" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Trading system overview</div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Traders only buy in bulk — you need <strong>at least 25 of a specific item</strong> per sale at Trading Posts. Single items go to Black Markets at much lower rates.</div></div>
+    <div class="trade-flow">
+      <div class="t-step"><div class="t-num">Step 01</div><div class="t-title">Collect Trade Goods</div><div class="t-desc">Blue items found in chests, tables, cabinets while exploring. High-value: Calligraphic Paintings, Tobacco, Ceramics, Red Ginseng.</div></div>
+      <div class="t-step"><div class="t-num">Step 02</div><div class="t-title">Glenbright Manor</div><div class="t-desc">Complete the investigation of Glenbright Manor story quest first — this unlocks the ability to package goods at camp.</div></div>
+      <div class="t-step"><div class="t-num">Step 03</div><div class="t-title">Package via Carl</div><div class="t-desc">Carl (Provisions Keeper) at Greymane Camp → Manage Provisions → Package. Costs 100 Copper per item.</div></div>
+      <div class="t-step"><div class="t-num">Step 04</div><div class="t-title">Load Wagon via Brice</div><div class="t-desc">Talk to Brice to get your wagon. Load packaged goods from inventory or camp storage. Build Brice's workshop to upgrade wagon capacity.</div></div>
+      <div class="t-step"><div class="t-num">Step 05</div><div class="t-title">Drive to Trading Post</div><div class="t-desc">Check map for "High" price percentage before committing to a route. Goldleaf Guildhouse unlocks after Kailok the Hornsplitter boss.</div></div>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Never return with an empty wagon. Buy local goods from the destination post and route to another — that's where trading income compounds. Check the map's "High" price filter before you drive.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Where to sell</div>
+    <div class="grid2" style="margin-bottom:1rem">
+      <div class="card al">
+        <span class="bdg b-gold">Best profit</span>
+        <h3>Trading Posts</h3>
+        <p>Maximum silver per item. Requires packaging + wagon + 25+ quantity.</p>
+        <small><strong>Royal Trading Post</strong> — west of Hernand Castle (early access)<br><strong>Goldleaf Guildhouse</strong> — unlocks after Kailok the Hornsplitter boss<br>9 posts total across the map</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Low return</span>
+        <h3>Black Markets</h3>
+        <p>Zero prep needed. Works for small quantities and stolen goods.</p>
+        <small><strong>First reliable one:</strong> west side of Hernand, southeast of the jail<br>9 Black Markets total on the map<br>Also accepts stolen goods and stolen livestock</small>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card ab">
+        <span class="bdg b-blue">Stolen goods</span>
+        <h3>Back Alley Vendors</h3>
+        <p>For stolen items specifically. Regular vendors will refuse stolen stock.</p>
+        <small>Stealing reduces Contribution Points whether caught or not — be deliberate about what you take.</small>
+      </div>
+      <div class="card aa">
+        <span class="bdg b-amb">Livestock</span>
+        <h3>Livestock Fencer</h3>
+        <p>For stolen animals only.</p>
+        <small>Edmond, the Livestock Fencer — west of Muckroot Ranch.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Other money-making methods</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>How</th><th>Returns</th></tr></thead>
+        <tbody>
+          <tr><td>Archery contests</td><td style="color:var(--text-dm)">Lioncrest Manor near Hernand Castle. Repeatable.</td><td style="color:var(--amb-lt)">Easy copper early</td></tr>
+          <tr><td>Fist fighting / Spear duelling</td><td style="color:var(--text-dm)">Available in towns. Legal minigame.</td><td style="color:var(--amb-lt)">Moderate copper</td></tr>
+          <tr><td>Gambling (Duo)</td><td style="color:var(--text-dm)">Gambling minigame in towns.</td><td style="color:var(--amb-lt)">Variable</td></tr>
+          <tr><td>Robbing Hernand Bank</td><td style="color:var(--text-dm)">Need mask + key. Yields 40+ Silver.</td><td style="color:var(--grn-lt)">40+ Silver (one-time)</td></tr>
+          <tr><td>Lioncrest Manor gold bar</td><td style="color:var(--text-dm)">Steal gold bar, exchange at bank for 500 Silver.</td><td style="color:var(--grn-lt)">500 Silver (one-time)</td></tr>
+          <tr><td>Flower / ore farming</td><td style="color:var(--text-dm)">Pick hundreds of high-priced flowers or mine ore to sell.</td><td style="color:var(--grn-lt)">Surprisingly efficient</td></tr>
+          <tr><td>Outlaw Bounties</td><td style="color:var(--text-dm)">Unlocked after Ch. 2. Capture alive for full compensation.</td><td style="color:var(--grn-lt)">Full reward if alive</td></tr>
+          <tr><td>Sell read recipes</td><td style="color:var(--text-dm)">Sell immediately after reading. Worth more than expected.</td><td style="color:var(--amb-lt)">Consistent copper</td></tr>
+          <tr><td>Bank investment</td><td style="color:var(--text-dm)">Deposit silver at the in-game bank for returns.</td><td style="color:var(--blu-lt)">Passive long-term</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /panel-trading -->
+
+<!-- ════════════════════════ TAB 4: QUESTS ════════════════════════ -->
+<div id="panel-quests" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Quest overview</div>
+    <div class="quest-summary">
+      <div class="qs-cell"><div class="qs-num">442</div><div class="qs-label">Total quests</div></div>
+      <div class="qs-cell"><div class="qs-num">14</div><div class="qs-label">Story chapters</div></div>
+      <div class="qs-cell"><div class="qs-num">76</div><div class="qs-label">Boss fights</div></div>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Orange markers = next main quest. Silver markers = faction / side content. If a faction quest isn't appearing, push the main story — most gate-lock behind chapter milestones.</div></div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Side quests are non-missable and can be returned to across chapters. Still — do Hernand commissions before leaving the region, since they're your best early bag source.</div></div>
+  </div>
+
+  <!-- Quest Sub-tabs -->
+  <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+    <button class="qtab-btn active" onclick="switchQTab('main',this)" style="background:none;border:none;border-bottom:2px solid var(--gold);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px 10px;cursor:pointer;transition:all .2s">Main Story</button>
+    <button class="qtab-btn" onclick="switchQTab('side',this)" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px 10px;cursor:pointer;transition:all .2s">Side Quests</button>
+    <button class="qtab-btn" onclick="switchQTab('greymane',this)" style="background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px 10px;cursor:pointer;transition:all .2s">Commissions</button>
+  </div>
+
+  <!-- ══ MAIN STORY ══ -->
+  <div id="qtab-main" class="qtab-panel">
+
+    <!-- PROLOGUE -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Prologue</div>
+        <div class="chap-title">Dead of Night</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">4 quests</span><span class="bdg b-silv" style="margin:0">Tutorial</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">The Black Bears launch a devastating ambush on the Greymanes' cabin. Survivors are scattered. Kliff must navigate the aftermath and begin the search for lost comrades.</p>
+        <div class="qgroup-label">Ambush</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Unfamiliar Lands</div><div class="quest-note">Hills of No Return</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">In Ashes</div><div class="quest-note">Nas River</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Unknown Space</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Realm of Uncertainty</div><div class="quest-note">The Abyss — Corridor of the Void</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">New Journey</div><div class="quest-note">Three Saints Falls — Kliff's journey truly begins</div></div><div class="quest-tag qt-main">Main</div></div>
+      </div>
+    </div>
+
+    <!-- CH 1 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 1</div>
+        <div class="chap-title">The First Encounter</div>
+        <div class="chap-badges"><span class="bdg b-amb" style="margin:0">9 quests</span><span class="bdg b-silv" style="margin:0">Hernand</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Kliff arrives at Hernand and begins gathering information about the scattered Greymanes. First encounter with the Abyss and the mysterious Woman in White. Ends with Kliff gaining the Flight ability.</p>
+        <div class="qgroup-label">Trials of Kindness</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Where Rumors Gather</div><div class="quest-note">Hernand — gather intel from locals</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Mysterious Man</div><div class="quest-note">Hernand — follow the lead</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">True Wisdom in Kindness</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Actions Speak Louder Than Words</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Heart Beyond Borders</div><div class="quest-note">Hernand — arc conclusion</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Trace</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Mystical Key</div><div class="quest-note">Hernand — following a mysterious lead</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Polar Opposites</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Abyss Without Balance</div><div class="quest-note">Hernand — first real encounter with the Abyss</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Woman in White</div><div class="quest-note">Hernand — mysterious figure, chapter close</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="tip tip-g" style="margin:10px 0 0"><span class="tip-ico">✓</span><div>While in Hernand: buy every Small Bag from vendors (50 Copper), cook Hearty Grilled Meat at the butcher bonfire, get the Palmar Pill recipe from Shadow's Whisper Cave north of town. Do all Hernand Commissions for Medium Bags before leaving.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 2 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 2</div>
+        <div class="chap-title">Golden Greed</div>
+        <div class="chap-badges"><span class="bdg b-amb" style="margin:0">16 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Hernand is in turmoil — bandits control key infrastructure and the Goldleaf Merchant Guild's greed threatens the region. Kliff reunites with Rulupee and fights his way to the Goldleaf Guildhouse. Features bosses Matthias and Kailok the Hornsplitter.</p>
+        <div class="qgroup-label">Unexpected Gift</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Where the Light Leads</div><div class="quest-note">Hernand outskirts</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Memory Fragment</div><div class="quest-note">Hernand — recovering something lost</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Reunion</div><div class="quest-note">Hernand — Rulupee rejoins</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Hernand in Chaos</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">For Honor</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Awestruck</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Shadow Cast Over the River</div><div class="quest-note">Hernand — riverfront trouble</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Where Misery Gathers</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Trial After Trial</div><div class="quest-note">Bandit camp — Grindstone + Anvil here. Sharpen/repair gear for free</div></div><div class="quest-tag qt-bag">+Med Bag</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Man Trapped in the Mire</div><div class="quest-note">Hernand surroundings</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Missing Companion</div><div class="quest-note">Hernand</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Secrets Hidden in the Dark</div><div class="quest-note">Hernand — Goldleaf conspiracy</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">The End of Greed</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Dark Veil</div><div class="quest-note">Hernand — boss Matthias</div></div><div class="quest-tag qt-key">⚔ Matthias</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Flames of Greed</div><div class="quest-note">Goldleaf Guildhouse</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Kidnapped Healer</div><div class="quest-note">Goldleaf Guildhouse — rescue mission</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Rebellion or Revolution</div><div class="quest-note">Goldleaf Guildhouse</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Cheers Echoing From the Edge</div><div class="quest-note">Goldleaf Guildhouse — boss Kailok the Hornsplitter. Rewards: Sword of the Lord</div></div><div class="quest-tag qt-key">⚔ Kailok</div></div>
+        <div class="tip tip-o" style="margin:10px 0 0"><span class="tip-ico">◈</span><div>Outlaw Bounties unlock after Ch. 2. Estate in Dismay (House Roberts side quest) becomes available — do it ASAP for Gold Vein Map, Mining Knuckledrill, Azurite ×3, Bloodstones ×3, Engraved Gold Earring.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 3 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 3</div>
+        <div class="chap-title">Howling Hill</div>
+        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">17 quests</span><span class="bdg b-gold" style="margin:0">Damiane · Camp</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">The Greymanes begin rebuilding at Howling Hill. Kliff tracks down comrades, confronts supernatural threats at Glenbright Manor, and faces the Reed Devil. Most important chapter for inventory — camp, storage, and Damiane all unlock here.</p>
+        <div class="qgroup-label">Homestead — Camp building &amp; recruitment</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Old Friend</div><div class="quest-note">Howling Hill — Greymane survivor reunites</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">First Step to Rebuilding</div><div class="quest-note">Howling Hill — establish camp foundations</div></div><div class="quest-tag qt-bag">Storage unlocks</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">A Fresh Start</div><div class="quest-note">Howling Hill</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Reward for Their Sweat</div><div class="quest-note">Howling Hill — camp resources</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Return of the Comrade</div><div class="quest-note">Howling Hill — another Greymane returns</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Familiar Curses</div><div class="quest-note">Howling Hill — supernatural disturbances begin</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">The Face Behind the Mask — Glenbright Manor investigation</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Return</div><div class="quest-note">Glenbright Manor — investigation begins. Completing this unlocks Trade Goods packaging via Carl</div></div><div class="quest-tag qt-key">Unlocks Trading</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Traces in the Manor</div><div class="quest-note">Glenbright Manor — finding clues</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Nonhuman</div><div class="quest-note">Glenbright Manor — the threat is revealed</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Seed of Unease</div><div class="quest-note">Howling Hill surroundings</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Dance with the Devil</div><div class="quest-note">Mountain of Frozen Souls — boss: the Reed Devil</div></div><div class="quest-tag qt-key">⚔ Reed Devil</div></div>
+        <div class="qgroup-label">Pioneering — Camp expansion &amp; full reunion</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Hope After the Draught</div><div class="quest-note">Howling Hill — expanding camp infrastructure</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Scattered Comrades</div><div class="quest-note">Howling Hill — search for remaining Greymanes via Marius</div></div><div class="quest-tag qt-bag">Unlocks Commissions</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Rumors from the Sawmill</div><div class="quest-note">Howling Hill area</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">A Gentle Touch</div><div class="quest-note">Howling Hill — Damiane joins</div></div><div class="quest-tag qt-bag">+Large Bag · Damiane</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Bustling Hill</div><div class="quest-note">Howling Hill — camp fully operational</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Greymanes Reunited</div><div class="quest-note">Howling Hill — chapter close, all survivors gathered</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="tip tip-w" style="margin:10px 0 0"><span class="tip-ico">⚠</span><div>Don't invest Abyss Artifacts into Damiane yet — focus on Kliff. Upgrade camp immediately for Brice's wagon workshop. Do all 27 Greymane Commissions for up to +81 inventory slots.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 4 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 4</div>
+        <div class="chap-title">The Price of Knowledge</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Scholastone · Abyss</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Kliff investigates the Kilnden Workshop and pursues forbidden knowledge about the Abyss. The trail leads to scholar Alustin and the Scholastone, culminating in a journey through a gate to the otherworld and the Spire of the Stars.</p>
+        <div class="qgroup-label">Mysterious Iron Pot</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Kilnden Workshop</div><div class="quest-note">Kilnden — arrival at the workshop</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Kiln Repair at the Kilnden Workshop</div><div class="quest-note">Kilnden — hands-on crafting quest</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Mysterious Pot</div><div class="quest-note">Kilnden — uncovering what the pot really is</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Iron Pot's Usage</div><div class="quest-note">Kilnden — preparing to use the artifact</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Daily Life</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Disturbance at the Arena</div><div class="quest-note">Hernand arena — combat challenge</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Skilled in Archery</div><div class="quest-note">Hernand — archery contest (also a repeatable money source)</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Forbidden Knowledge</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Words of Alustin</div><div class="quest-note">Scholastone — meeting the scholar</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Scholastone</div><div class="quest-note">Scholastone institute — deep into forbidden research</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Gate to the Otherworld</div><div class="quest-note">Ancient ruins — crossing into the otherworld</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Spire of the Stars</div><div class="quest-note">Otherworld — chapter climax. Boss: Tenebrum</div></div><div class="quest-tag qt-key">⚔ Tenebrum</div></div>
+        <div class="tip tip-g" style="margin:10px 0 0"><span class="tip-ico">✓</span><div>Side quest priority: The Trembling Woods — unlocks Pororin Forest Village access. Then grab the Sustained Supply Arrow (unlimited arrows) from Lumiel at Pororin Village.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 5 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 5</div>
+        <div class="chap-title">Guest Unbidden</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">2 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span><span class="bdg b-silv" style="margin:0">Demeniss</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Kliff leaves Hernand and rides into Demeniss, where individuals with strange abilities are causing serious trouble. Two main quests, each with their own boss fight. Sets up the political and combat escalation for the back half of the game.</p>
+        <div class="qgroup-label">Quest 1: Uninvited Guest</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Uninvited Guest</div><div class="quest-note">Serkis Estate (Hernand) → Demeniss. 3 objectives. Attend banquet at estate → Castle Gate → boss fight</div></div><div class="quest-tag qt-key">⚔ Kearush the Slayer</div></div>
+        <div style="background:rgba(201,150,62,.06);border:1px solid rgba(201,150,62,.15);border-radius:5px;padding:9px 13px;margin:6px 0;font-size:12px;color:var(--text-dm)">
+          Rewards: The Grove's Thorn, Swift I, Howling of Chaos · Don't skip the conversation with Damiane after — it feeds directly into Black and White
+        </div>
+        <div class="qgroup-label">Quest 2: Black and White</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Black and White</div><div class="quest-note">Hernand Castle → Demeniss. 6 objectives. Crowcaller boss fought twice in different locations. Includes sub-quest: The Missing Seal</div></div><div class="quest-tag qt-key">⚔ Crowcaller ×2</div></div>
+        <div style="background:rgba(201,150,62,.06);border:1px solid rgba(201,150,62,.15);border-radius:5px;padding:9px 13px;margin:6px 0;font-size:12px;color:var(--text-dm)">
+          Rewards: Tauria Curved Sword ⭐, Blackwing Leather Armor, Core Blueprint: Haste · Tauria Curved Sword is one of the best early unique weapons
+        </div>
+        <div class="tip tip-w" style="margin:10px 0 0"><span class="tip-ico">⚠</span><div>Most Demeniss faction quests are locked on your first visit — push the main story further before farming side content there. Stock up on consumables before heading north; Demeniss vendors carry less than Hernand.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 6 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 6</div>
+        <div class="chap-title">Cracks in the Shield</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">4 arcs · 15 quests</span><span class="bdg b-silv" style="margin:0">Pailune</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">War erupts on the frontlines in Pailune (icy north). Kliff joins the defense — siege sequences, large-scale counterattacks, fire support missions. Concludes with a decisive victory and an internal betrayal.</p>
+        <div class="qgroup-label">Blazing Beacon — 3 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Blazing Beacon arc quests (3) — Pailune region opening</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Under the Banner Pike Again — 3 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Under the Banner Pike Again arc quests (3) — rallying forces</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Turning Tides — 4 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Turning Tides arc quests (4) — siege defense waves</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">The Undying Shields — 5 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">The Undying Shields arc quests (5) — betrayal, chapter close</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="tip tip-o" style="margin:10px 0 0"><span class="tip-ico">◈</span><div>53 faction quests in Pailune across 4 groups. Antumbra Order: Cloister of Ruination rewards Abyss Artifact ×1. Pailune's Politics (8 quests) affects vendor availability later — do not skip. Some NPCs only appear at certain in-game day times.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 7 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 7</div>
+        <div class="chap-title">Homecoming</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">23 quests</span><span class="bdg b-gold" style="margin:0">Oongka</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Second largest chapter. Kliff returns to find treachery among the Greymanes' allies. Restore trust, drive enemies from Pailune, lead the Battle at Silverwolf Mountain, pursue Ludvig, and reckon with past betrayals. Oongka joins the party.</p>
+        <div class="qgroup-label">Dawn Mist — 5 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Dawn Mist arc quests (5) — return to Pailune</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Dawnrise — 6 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Dawnrise arc quests (6) — driving enemies out</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">Decisive Battle — 6 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Decisive Battle arc quests (6) — Battle at Silverwolf Mountain</div><div class="quest-tag qt-key">⚔ Silverwolf Mountain</div></div>
+        <div class="qgroup-label">Twisted Fate — 2 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Twisted Fate arc quests (2)</div><div class="quest-note">Pursuit of Ludvig · Oongka joins → Large Bag reward</div></div><div class="quest-tag qt-bag">+Large Bag · Oongka</div></div>
+        <div class="tip tip-w" style="margin:10px 0 0"><span class="tip-ico">⚠</span><div>Oongka joins at the end of this chapter. Same rule as Damiane — don't invest Abyss Artifacts into Oongka until Kliff's build is set.</div></div>
+      </div>
+    </div>
+
+    <!-- CH 8 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 8</div>
+        <div class="chap-title">Blood Coronation</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">Demeniss · Cursed Knight</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Kliff travels to Demeniss for a decisive campaign. Rebel suppression, encounter with the Cursed Knight Fortain, and the dramatic Blood Coronation sequence — a major story turning point in the war for Pywel.</p>
+        <div class="qgroup-label">Ashen Steps — 4 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Ashen Steps arc (4) — arrival in Demeniss, rebel forces</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="qgroup-label">To Demeniss — 9 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">To Demeniss arc (9) — campaign across the region. Boss: Fortain the Cursed Knight</div><div class="quest-tag qt-key">⚔ Fortain</div></div>
+        <div class="qgroup-label">Traitor — 2 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Traitor arc (2) — story revelation, Blood Coronation sequence</div><div class="quest-note">Sets up the endgame arc</div></div><div class="quest-tag qt-main">Main</div></div>
+      </div>
+    </div>
+
+    <!-- CH 9 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 9</div>
+        <div class="chap-title">The Sage of the Desert</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">25 quests — longest chapter</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">The largest chapter in the game. A mysterious voice calls Kliff to the Cloister of Enlightenment. Heavily focused on spiritual trials — Kliff trains at Jijeong Temple, faces his inner self, and ultimately confronts the Black Witch. A chapter of revelation before the final escalation.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Cloister of Enlightenment — arrival and training begins</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Jijeong Temple trials — spiritual combat sequences</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Face your inner self — Abyss-fuelled psychological challenges</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Black Witch — chapter climax confrontation</div><div class="quest-note">Kliff receives new perspectives; enemy's full power revealed</div></div><div class="quest-tag qt-key">⚔ Black Witch</div></div>
+        <p style="font-size:12px;color:var(--text-dm);padding-top:8px">Full individual quest names for Ch. 9–12 are still being compiled by the community. Check powerpyx.com for the ongoing walkthrough.</p>
+      </div>
+    </div>
+
+    <!-- CH 10 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 10</div>
+        <div class="chap-title">Counterattack</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">War machines · Eastern invaders</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">The Greymanes prepare a counteroffensive using secret weapons and advanced ironwork technology. Kliff oversees construction of war machines, faces clockwork insect enemies, and battles a frozen-hearted predator as invaders from the east threaten Pywel.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Ironwork weapon construction — logistical quest chain</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Clockwork insect encounters — new enemy type</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Frozen-hearted predator — major boss fight</div><div class="quest-tag qt-key">⚔ Boss</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Eastern invasion front — large-scale defense</div><div class="quest-tag qt-main">Main</div></div>
+      </div>
+    </div>
+
+    <!-- CH 11 -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 11</div>
+        <div class="chap-title">Truth and Reality</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">City of Steel · Cloud Castle</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Kliff enters the City of Steel and discovers the truth behind the forces manipulating Pywel. Navigate a strange manor, uncover fortress keys, and ascend to the Cloud Castle Orbian for the penultimate confrontation.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">City of Steel — arrival and infiltration</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Strange manor — puzzle-heavy navigation sequence</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Fortress keys — unlock the path upward</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Cloud Castle Orbian — penultimate boss sequence</div><div class="quest-tag qt-key">⚔ Cloud Castle</div></div>
+      </div>
+    </div>
+
+    <!-- CH 12 + Epilogue -->
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 12</div>
+        <div class="chap-title">The Abyss &amp; Epilogue: Journey's End</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">8 quests — shortest</span><span class="bdg b-gold" style="margin:0">Final</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">The shortest chapter — 8 quests focused entirely on the climactic final battle sequence. After precise tactical planning and a deferred advance, the brave depart through the forbidden gate into the Void. Face blinding darkness in the ultimate confrontation.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Tactical planning — preparation before the final push</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Through the Forbidden Gate — enter the Void</div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">The Abyss itself — final boss sequence</div><div class="quest-tag qt-key">⚔ Final Boss</div></div>
+        <div class="qgroup-label">Epilogue: Journey's End</div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Closing quest sequence — Abyss threat resolved, story wraps</div><div class="quest-tag qt-main">Ending</div></div>
+        <div class="tip tip-o" style="margin:10px 0 0"><span class="tip-ico">◈</span><div>If Ch. 12 feels too hard, you haven't done enough side content. The game is designed so faction quests and challenges are necessary to keep up with boss difficulty scaling.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /qtab-main -->
+
+  <!-- ══ SIDE QUESTS ══ -->
+  <div id="qtab-side" class="qtab-panel" style="display:none">
+
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Side quests in Crimson Desert are called <strong>Faction Quests</strong>. 16+ distinct factions at launch. Filter by faction group in the quest menu. Use the in-game checklist to mark progress. Side quests are non-missable — but do Hernand ones early for bag rewards.</div></div>
+
+    <!-- HERNAND SIDE QUESTS -->
+    <div class="sec-label" style="margin-top:1.25rem">Hernand Region — available from Ch. 1</div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">House Roberts</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Best early rewards</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Estate in Dismay</div><div class="quest-note">Available from Ch. 2 — highest priority side quest in Hernand</div></div><div class="quest-tag qt-key">Priority</div></div>
+        <div style="background:rgba(201,150,62,.06);border:1px solid rgba(201,150,62,.12);border-radius:5px;padding:9px 13px;margin:4px 0 8px;font-size:12px;color:var(--text-dm)">Rewards: Gold Vein Map ×1, Mining Knuckledrill ×1, Azurite ×3, Bloodstones ×3, Engraved Gold Earring ×1</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Continuing Concern</div><div class="quest-note">House Roberts follow-up</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(201,150,62,.06);border:1px solid rgba(201,150,62,.12);border-radius:5px;padding:9px 13px;margin:4px 0;font-size:12px;color:var(--text-dm)">Rewards: Freya's Elixir ×1, Apollonia's Lesser Elixir, Melliara's Lesser Elixir</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Hernand Commissions</div>
+        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">14+ quests · Bag farm</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm);margin-bottom:10px">Largest single quest pool in the game. Most reward a Medium Bag (+3 slots) alongside crafting materials. Do all of these before leaving Hernand.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Renee's Request</div></div><div class="quest-tag qt-bag">+Med Bag</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Rhett's Request</div></div><div class="quest-tag qt-bag">+Med Bag</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Turnali's Request</div><div class="quest-note">Logging Axe ×1, Bekker Shield ×1, Timber ×10 + Medium Bag</div></div><div class="quest-tag qt-bag">+Med Bag + Axe</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Weight of Knowledge</div><div class="quest-note">Rewards: Investigative Log item</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Additional Commissions (10+ more) — check notice boards</div><div class="quest-tag qt-bag">+Med Bags</div></div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Hernand Requests</div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">5+ quests</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Goddess of Abundance</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0 7px;font-size:12px;color:var(--text-dm)">Rewards: Yellow Bass ×5, Light Silver Pouch</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Path that Connects to House of Healing</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0 7px;font-size:12px;color:var(--text-dm)">Rewards: Wild Ginseng ×2, Light Silver Pouch</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Wolf Protecting Hernand</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0;font-size:12px;color:var(--text-dm)">Rewards: Wild Ginseng ×2, Light Silver Pouch</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Hernand Politics</div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">5+ quests</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Spire of Insight</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0 7px;font-size:12px;color:var(--text-dm)">Rewards: Iron Ore ×10</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Collapsed Stone Tower</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0 7px;font-size:12px;color:var(--text-dm)">Rewards: Stone ×10</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Extinguishing the Last Flames</div><div class="quest-note">Best reward in the Politics chain — grab this one</div></div><div class="quest-tag qt-key">Priority</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0;font-size:12px;color:var(--text-dm)">Rewards: Hernandian Banquet Cloak ×1, Kinetic Counterweight ×1</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Witches Faction</div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">1 quest</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Witch of Wisdom</div><div class="quest-note">Sole Witches faction quest — crafting/alchemy materials reward</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div style="background:rgba(58,106,154,.06);border:1px solid rgba(58,106,154,.12);border-radius:5px;padding:8px 12px;margin:3px 0;font-size:12px;color:var(--text-dm)">Rewards: Blue Lavenders ×20, Peonies ×20, Small Bones ×20</div>
+      </div>
+    </div>
+
+    <!-- SCATTERED EMBERS / PORORIN -->
+    <div class="sec-label" style="margin-top:1.5rem">Camp &amp; Forest Region — Ch. 3–4</div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Scattered Embers / Greymane</div>
+        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">27 quests · +81 slots</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm);margin-bottom:10px">See the Commissions tab for the full list. Every survivor you recruit via Marius in Ch. 3 adds their own Commission requests. Most reward Medium Bags (+3 slots each). 27 total = up to +81 slots.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Carl's Request, Ronnie's Request, Ross's Request</div><div class="quest-tag qt-bag">+Med Bag each</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Tranan, Brice, Ronald, Pierce Requests</div><div class="quest-tag qt-bag">+Med Bag each</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">+20 additional Greymane Commissions</div><div class="quest-tag qt-bag">+Med Bags</div></div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Pororin Forest Guardians</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Ch. 4 · Unlocks region</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Trembling Woods</div><div class="quest-note">One of the most impactful side quests — unlocks Pororin Forest Village map access</div></div><div class="quest-tag qt-key">Region Unlock</div></div>
+        <div style="background:rgba(74,138,74,.07);border:1px solid rgba(74,138,74,.15);border-radius:5px;padding:8px 12px;margin:3px 0 7px;font-size:12px;color:var(--text-dm)">Rewards: Palmar Pill ×1, Astrid's Lesser Elixir ×1 · Unlocks Pororin Forest Village</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Pororin Research Institute</div><div class="quest-note">Follow-up — advances faction storyline</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div class="tip tip-g" style="margin:10px 0 0"><span class="tip-ico">✓</span><div>After unlocking Pororin Village, grab the <strong>Sustained Supply Arrow</strong> from Lumiel the Research Director — unlimited arrows that never run out.</div></div>
+      </div>
+    </div>
+
+    <!-- PAILUNE & DEMENISS -->
+    <div class="sec-label" style="margin-top:1.5rem">Pailune — Ch. 6+ · 53 faction quests</div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Pailune Militia</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">27 quests — longest arc</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm);margin-bottom:10px">Longest single faction arc in the game. Military operations across icy Pailune — several quests require trips back to Hernand or Demeniss. Accept in batches to save travel. Some NPCs only appear at certain in-game day times.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">27 Militia quests — gate-locked by Ch. 6 story beats</div><div class="quest-tag qt-side">Faction</div></div>
+        <div class="tip tip-w" style="margin:8px 0 0"><span class="tip-ico">⚠</span><div>Don't try to force Militia quests before the main story unlocks them — the gates are hard. Push Ch. 6 main quests first, then the faction quest markers appear.</div></div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Antumbra Order</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">2 quests · Abyss Artifact</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Darkness Over the Sanctum</div></div><div class="quest-tag qt-side">Side</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Cloister of Ruination</div></div><div class="quest-tag qt-key">Abyss Artifact reward</div></div>
+        <div style="background:rgba(201,150,62,.06);border:1px solid rgba(201,150,62,.12);border-radius:5px;padding:8px 12px;margin:3px 0;font-size:12px;color:var(--text-dm)">Rewards: Abyss Artifact ×1, Vessel of Dark Pursuit ×1</div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Pailune's Politics</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">8 quests · affects vendors</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm)">Decisions here affect NPC availability and vendor access later in the game. Do not skip — these are shorter than the Militia quests but carry meaningful late-game consequences.</p>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Beighen Tribe (Pailune)</div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">Easy to miss</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm)">Single quest. Trigger is tied to a specific NPC location that doesn't appear on the main quest tracker by default. Watch for it while doing Militia quests in the area.</p>
+      </div>
+    </div>
+
+    <div class="sec-label" style="margin-top:1.5rem">Demeniss — Ch. 5+ · Gate-locked</div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Faction</div>
+        <div class="chap-title">Demeniss's Politics</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">5 quests</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <p style="font-size:12px;color:var(--text-dm);margin-bottom:8px">Core of Demeniss side content. Covers regional power dynamics. Most quests don't appear on your first Ch. 5 visit — push the main story further, then faction markers populate.</p>
+        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">5 political quests — Demeniss internal power struggles</div><div class="quest-tag qt-side">Faction</div></div>
+        <div class="tip tip-i" style="margin:8px 0 0"><span class="tip-ico">◈</span><div>Smaller errand tasks in Demeniss build standing with local NPCs and affect how political quests resolve. Don't skip them even if they look minor on the map.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /qtab-side -->
+
+  <!-- ══ GREYMANE COMMISSIONS ══ -->
+  <div id="qtab-greymane" class="qtab-panel" style="display:none">
+
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>27 total Greymane Commissions available. Each rewards a Medium Bag (+3 slots). Complete all 27 → up to +81 inventory slots. Requires Ch. 3 camp establishment and recruiting survivors via Marius.</div></div>
+
+    <div style="margin-top:1rem" class="tbl-wrap">
+      <table>
+        <thead><tr><th>NPC</th><th>Quest name</th><th>Reward</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Carl</td><td>Carl's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">Carl is your Provisions Keeper — also packages Trade Goods</td></tr>
+          <tr><td>Ronnie</td><td>Ronnie's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Ross</td><td>Ross's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Tranan</td><td>Tranan's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Brice</td><td>Brice's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">Brice also runs the wagon workshop — unlock his camp upgrade first</td></tr>
+          <tr><td>Ronald</td><td>Ronald's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Pierce</td><td>Pierce's Request</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Marius</td><td>Find survivors (triggers Commissions)</td><td><span class="bdg b-gold" style="margin:0">Unlocks all 27</span></td><td style="color:var(--text-dm);font-size:12px">Speak to Marius after camp is established in Ch. 3</td></tr>
+          <tr><td>All 27 survivors</td><td>Greymane Commissions (full set)</td><td><span class="bdg b-gold" style="margin:0">+81 total slots</span></td><td style="color:var(--text-dm);font-size:12px">Find all survivors → each brings their own request. 27 bags = 27 × 3 = +81 slots</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-label" style="margin-top:1.5rem">Also available early — Hernand Medium Bags</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Quest</th><th>Type</th><th>Bag reward</th><th>Additional rewards</th></tr></thead>
+        <tbody>
+          <tr><td>Renee's Request</td><td style="color:var(--text-dm)">Hernand Commission</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Rhett's Request</td><td style="color:var(--text-dm)">Hernand Commission</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Turnali's Request</td><td style="color:var(--text-dm)">Hernand Commission</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">Logging Axe ×1, Bekker Shield ×1, Timber ×10</td></tr>
+          <tr><td>Trial After Trial</td><td style="color:var(--text-dm)">Main quest Ch. 2</td><td><span class="bdg b-grn" style="margin:0">+Med Bag</span></td><td style="color:var(--text-dm);font-size:12px">Access to Grindstone + Anvil for free gear sharpening</td></tr>
+          <tr><td>The Trembling Woods</td><td style="color:var(--text-dm)">Pororin Guardians</td><td style="color:var(--text-dm)">—</td><td style="color:var(--text-dm);font-size:12px">Palmar Pill ×1, unlocks Pororin Forest Village</td></tr>
+          <tr><td>Damiane joins (Ch. 3)</td><td style="color:var(--text-dm)">Story milestone</td><td><span class="bdg b-gold" style="margin:0">+Large Bag</span></td><td style="color:var(--text-dm);font-size:12px">Chapter 3: A Gentle Touch quest</td></tr>
+          <tr><td>Oongka joins (Ch. 7)</td><td style="color:var(--text-dm)">Story milestone</td><td><span class="bdg b-gold" style="margin:0">+Large Bag</span></td><td style="color:var(--text-dm);font-size:12px">Chapter 7: Twisted Fate arc</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip tip-g" style="margin-top:1rem"><span class="tip-ico">✓</span><div>Journal → Faction Quests → scroll reward section → bag icon = Medium Bag reward. Notice boards in every town surface these fast. Buy every Small Bag (50 Copper each) from vendors alongside quest bags.</div></div>
+
+  </div><!-- /qtab-greymane -->
+
+</div><!-- /panel-quests -->
+
+
+
+<!-- ════════════════════════ TAB 5: EARLY GAME ════════════════════════ -->
+<div id="panel-early" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Early game priority checklist</div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Click items to mark them done. Checklist is saved in your browser session.</div></div>
+
+    <div class="priority-list">
+      <div class="pl-head">⚑ Do immediately (Hernand / Ch. 1)</div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Ring the Hernand Bell Tower <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">Reveals a massive chunk of the map and all nearby points of interest. Every city has one — ring them whenever you enter a new region.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Buy every Small Bag from Hernand vendors <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">50 Copper each. Multiple vendors in Hernand each carry one. Check every merchant — some share pools, so buy immediately when you see it.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Cook Hearty Grilled Meat at the butcher bonfire <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">Buy meat from the Hernand butcher → use the Bonfire/Cooking Pot right beside him. 200+ HP regen. Best early food, very cheap. Stack 50 before any boss.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Buy Pickaxe + Logging Axe from vendors <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">Required to gather ore and timber for gear refinement. Buy these before you leave Hernand for the first time.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Get Palmar Pill recipe — Shadow's Whisper Cave <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">North of Hernand. Recipe on a table inside. Palmar Pills auto-revive you at 30% HP during boss fights — your single best tool for surviving hard encounters.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Invest Abyss Artifacts into Health and Stamina first <span class="pi-tag pt-asap">ASAP</span></div>
+          <div class="pi-note">Don't dump into attack. Stamina 200 threshold unlocks faster climbing + extended dodges. Extra Health is the make-or-break for most early bosses. Attack can come later.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-list">
+      <div class="pl-head">⚑ Early priorities (Ch. 1–2)</div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Complete all Hernand Commission quests <span class="pi-tag pt-early">Ch. 1</span></div>
+          <div class="pi-note">Your best early source of Medium Bags (+3 slots each). Renee's, Rhett's, Turnali's requests — do all of them before leaving Hernand. Check notice boards too.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Learn and use Blinding Flash skill <span class="pi-tag pt-early">Ch. 1</span></div>
+          <div class="pi-note">Early unlock. Reveals Abyss Nexuses, solves puzzles, blinds enemies in combat, and sets environmental objects (vines) on fire. Also detects Sealed Abyss Artifacts with a blue glint.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Collect all Sealed Abyss Artifacts you find <span class="pi-tag pt-early">Ch. 1–2</span></div>
+          <div class="pi-note">Challenge progress only counts AFTER pickup — not retroactively. Grab every one you see (blue glint along roads). Check Journal → Challenges to track them. Required for trophies.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Use Grindstone + Anvil (Trial After Trial camp) <span class="pi-tag pt-early">Ch. 2</span></div>
+          <div class="pi-note">Sharpen weapons at Grindstone, repair armor at Anvil — maxes your gear's Reinforcement stat (visible when hovering equipped gear). Noticeable Attack and Defense gain at zero cost.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Do Estate in Dismay (House Roberts) — unlocks early Ch. 2 <span class="pi-tag pt-early">Priority Side</span></div>
+          <div class="pi-note">Rewards: Gold Vein Map, Mining Knuckledrill, Azurite ×3, Bloodstones ×3, Engraved Gold Earring. One of the best early side quest rewards in the game.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Unlock fast travel Abyss Nexus points aggressively <span class="pi-tag pt-early">Ongoing</span></div>
+          <div class="pi-note">Some chapter transitions require long travel between regions. Tag every Nexus point you walk past — saves huge amounts of backtracking later. Some require puzzles or specific steps to unlock.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Rob Hernand Bank + steal Lioncrest Manor gold bar <span class="pi-tag pt-early">Ch. 1–2</span></div>
+          <div class="pi-note">Bank: need mask + key → 40+ Silver. Lioncrest Manor gold bar: steal it and exchange at the bank for 500 Silver. These two are exceptions to the "avoid crime" rule — the loot is worth it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="priority-list">
+      <div class="pl-head">⚑ Mid-game priorities (Ch. 3+)</div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Establish Greymane Camp at Howling Hill immediately <span class="pi-tag pt-mid">Ch. 3</span></div>
+          <div class="pi-note">Unlocks Private Storage (240 slots), Greymane Commissions (27 bags = up to +81 slots), Brice's wagon workshop, and Damiane. Most important chapter milestone for inventory.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Recruit all Greymane survivors → do all 27 Commissions <span class="pi-tag pt-mid">Ch. 3</span></div>
+          <div class="pi-note">Each survivor recruited via Marius adds more Commission requests. 27 total = up to +81 slots from Medium Bags alone. This is your main mid-game slot farming route.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Do NOT invest Abyss Artifacts into Damiane or Oongka yet <span class="pi-tag pt-mid">Ch. 3–7</span></div>
+          <div class="pi-note">Focus all artifacts on Kliff until your build feels complete. Secondary characters' skill trees can wait until you have artifacts to spare.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Park Damiane near Hernand — use as a remote vendor <span class="pi-tag pt-mid">Ch. 3+</span></div>
+          <div class="pi-note">Inventory is shared across all three characters. Switch to Damiane and sell without fast-travelling Kliff. Saves significant travel time when looting-heavy exploring.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Get Sustained Supply Arrow from Lumiel at Pororin Village <span class="pi-tag pt-mid">Ch. 4</span></div>
+          <div class="pi-note">Unlimited arrows — they don't run out. Accessible after The Trembling Woods faction quest unlocks Pororin Forest Village.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Key mechanics the game doesn't explain well</div>
+
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">01</div><div class="tip-card-title">Waterfall traversal</div></div>
+      <p>Waterfalls will knock you back if you walk through them. Use <strong>Stab</strong> (RB+Y / R1+△ / LSHIFT+RMB) right in front of the waterfall — Kliff parts the water with his blade and passes through. There's almost always treasure behind them.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">02</div><div class="tip-card-title">Stacked rock towers = hidden treasure</div></div>
+      <p>If you see a small tower of stacked rocks in front of a waterfall or cliff face, that marks a passage or hidden chest. Either unique equipment or rare ore — always worth checking.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">03</div><div class="tip-card-title">Blinding Flash has hidden uses</div></div>
+      <p>Beyond combat, Blinding Flash can set environmental objects (vines, barriers) on fire. Just aim the light at the obstacle. Also cooks meat if you drop it on the ground — no campfire needed.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">04</div><div class="tip-card-title">Focus (slow-time) — don't forget it exists</div></div>
+      <p>Kliff's slow-time ability is introduced during a busy cutscene and never mentioned again. Bind it to an accessible button and use it liberally — it creates windows to land heavy combos or dodge otherwise unavoidable hits.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">05</div><div class="tip-card-title">Sky Islands for fast travel shortcuts</div></div>
+      <p>On the map press R3 (PC: Mouse Wheel) to view the sky map. You can skydive from the nearest sky island fast travel point to any nearby ground location quickly — faster than riding for frequently visited spots without ground Nexuses.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">06</div><div class="tip-card-title">Height climbing without Stamina drain</div></div>
+      <p>Use double jump + three Aerial Force Palms to reach considerable height without spending any Stamina. If stamina runs out mid-climb, immediately eat any stamina-restoring food — it refills instantly and you can continue.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">07</div><div class="tip-card-title">Boss strategy that always works</div></div>
+      <p>Bosses are designed so you WILL take damage. Heal while attacking with light attacks. For blockable (human) bosses: parry with L1/LB, then combo. For shield users: R2/RT heavy attacks break guard. For monsters: dodge combos, punish windows. Bring at least 50 cooked food and hold Palmar Pills for the final phase.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">08</div><div class="tip-card-title">Hold attack, don't tap</div></div>
+      <p>Hold R1/RB for continuous attacks instead of tapping each time. Much more efficient combat rhythm — tapping is the default instinct but holding keeps your combo momentum going.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">09</div><div class="tip-card-title">Best early skills to unlock</div></div>
+      <p><strong>Nature's Echo</strong>, <strong>Quick Swap</strong>, and <strong>Blinding Flash</strong> are the highest-priority early unlocks. Best early weapons: Tauria's Curved Sword (Crowcaller boss) and Sword of the Lord (Kailok boss). Play on controller if on PC — KB+M is notably harder.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-card-hd"><div class="tip-num">10</div><div class="tip-card-title">Check Notifications for missed knowledge</div></div>
+      <p>Open Notifications from the main menu — it lists everything that's appeared and can redirect you to the specific menu section if you missed a knowledge entry or objective. Use this to stay organised as the quest list balloons.</p>
+    </div>
+  </div>
+
+</div><!-- /panel-early -->
+</div><!-- /panel-wrap -->
+
+<script>
+// ── QUEST SUB-TABS ──
+function switchQTab(id, btn) {
+  document.querySelectorAll('.qtab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.qtab-btn').forEach(b => {
+    b.style.color = 'var(--muted)';
+    b.style.borderBottomColor = 'transparent';
+  });
+  document.getElementById('qtab-' + id).style.display = 'block';
+  btn.style.color = 'var(--gold)';
+  btn.style.borderBottomColor = 'var(--gold)';
+}
+
+// ── TAB SWITCHING ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── ACCORDION ──
+function togAcc(head) {
+  const body = head.nextElementSibling;
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  head.classList.toggle('exp', !open);
+}
+
+// ── CHAPTER ACCORDION ──
+function togChap(head) {
+  const body = head.nextElementSibling;
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  head.classList.toggle('exp', !open);
+}
+
+// ── CHECKLIST ──
+function togglePI(el) {
+  el.classList.toggle('done');
+}
+
+// ── SEARCH ──
+const ITEMS = [
+  {name:'Unique Weapons',type:'Weapons',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Damaged Weapons / Armor',type:'Weapons',verdict:'sell',color:'#e06060',tab:'items'},
+  {name:'Tauria\'s Curved Sword',type:'Unique',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Sword of the Lord',type:'Unique',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Abyss Artifact',type:'Abyss',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Faded Abyss Artifact',type:'Abyss',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Sealed Abyss Artifact',type:'Abyss',verdict:'collect',color:'#e8b86a',tab:'items'},
+  {name:'Abyss Cores',type:'Abyss',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Abyss Fragments',type:'Abyss',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Cooked Meals',type:'Food',verdict:'carry',color:'#6db86d',tab:'items'},
+  {name:'Hearty Grilled Meat',type:'Food',verdict:'carry',color:'#6db86d',tab:'items'},
+  {name:'Palmar Pills',type:'Food',verdict:'stockpile',color:'#6db86d',tab:'items'},
+  {name:'Cooking Recipes',type:'Food',verdict:'sell after reading',color:'#e06060',tab:'items'},
+  {name:'Raw ingredients',type:'Food',verdict:'situational',color:'#5a90c0',tab:'items'},
+  {name:'Refinement Materials',type:'Crafting',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Old-tier mats',type:'Crafting',verdict:'sell',color:'#e06060',tab:'items'},
+  {name:'Logging Axe',type:'Tool',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Pickaxe',type:'Tool',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Fishing Rod',type:'Tool',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Thieves Mask',type:'Tool',verdict:'keep',color:'#6db86d',tab:'items'},
+  {name:'Quest documents / books',type:'Documents',verdict:'sell',color:'#e06060',tab:'items'},
+  {name:'Bounty tokens',type:'Documents',verdict:'sell after',color:'#e06060',tab:'items'},
+  {name:'Skill Manuals',type:'Documents',verdict:'sell after reading',color:'#e06060',tab:'items'},
+  {name:'Trade Goods',type:'Trading',verdict:'trade route',color:'#e8b86a',tab:'trading'},
+  {name:'Calligraphic Paintings',type:'Trading',verdict:'trade',color:'#e8b86a',tab:'trading'},
+  {name:'Ceramics',type:'Trading',verdict:'trade',color:'#e8b86a',tab:'trading'},
+  {name:'Red Ginseng',type:'Trading',verdict:'trade',color:'#e8b86a',tab:'trading'},
+  {name:'Tobacco',type:'Trading',verdict:'trade',color:'#e8b86a',tab:'trading'},
+  {name:'Stolen goods',type:'Trading',verdict:'black market',color:'#e8b86a',tab:'trading'},
+  {name:'Collectibles / pots / paintings',type:'Sell',verdict:'sell',color:'#e06060',tab:'items'},
+  {name:'Small Bag',type:'Bags',verdict:'buy always',color:'#c9963e',tab:'inventory'},
+  {name:'Medium Bag',type:'Bags',verdict:'quest reward',color:'#6db86d',tab:'inventory'},
+  {name:'Large Bag',type:'Bags',verdict:'story reward',color:'#c9963e',tab:'inventory'},
+  {name:'Renee\'s Request',type:'Quest',verdict:'medium bag',color:'#6db86d',tab:'quests'},
+  {name:'Estate in Dismay',type:'Quest',verdict:'key side quest',color:'#e8b86a',tab:'quests'},
+  {name:'Trial After Trial',type:'Quest',verdict:'medium bag',color:'#6db86d',tab:'quests'},
+  {name:'Greymane Commissions',type:'Quest',verdict:'+81 slots',color:'#6db86d',tab:'quests'},
+  {name:'Palmar Pill recipe',type:'Early Game',verdict:'shadow\'s whisper cave',color:'#e8b86a',tab:'early'},
+  {name:'Sustained Supply Arrow',type:'Early Game',verdict:'pororin village',color:'#e8b86a',tab:'early'},
+];
+
+const srch = document.getElementById('srch');
+const drop = document.getElementById('srch-drop');
+
+srch.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  drop.innerHTML = '';
+  if (!q) { drop.style.display = 'none'; return; }
+  const matches = ITEMS.filter(i => i.name.toLowerCase().includes(q) || i.type.toLowerCase().includes(q)).slice(0, 7);
+  if (!matches.length) { drop.style.display = 'none'; return; }
+  matches.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'srch-itm';
+    el.innerHTML = `<div class="srch-name">${item.name}</div><span class="srch-type">${item.type}</span><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${item.color}18;color:${item.color};border:1px solid ${item.color}33">${item.verdict}</span>`;
+    el.onclick = () => {
+      const tabBtn = document.querySelector(`.tab-btn:nth-child(${['inventory','items','trading','quests','early'].indexOf(item.tab)+1})`);
+      if (tabBtn) switchTab(item.tab, tabBtn);
+      drop.style.display = 'none';
+      srch.value = '';
+    };
+    drop.appendChild(el);
+  });
+  drop.style.display = 'block';
+});
+
+document.addEventListener('click', e => {
+  if (!srch.contains(e.target) && !drop.contains(e.target)) drop.style.display = 'none';
+});
+
+// ── QUEST LINK INJECTION ──
+// Converts quest names to slugs for thegameswiki.com and adds link icons
+function toSlug(text) {
+  return text
+    .toLowerCase()
+    .replace(/['']/g, '')        // remove apostrophes
+    .replace(/[^a-z0-9\s-]/g, '') // strip special chars
+    .trim()
+    .replace(/\s+/g, '-');       // spaces → hyphens
+}
+
+const WIKI_BASE = 'https://thegameswiki.com/crimson-desert/wiki/';
+const GOOGLE_BASE = 'https://www.google.com/search?q=Crimson+Desert+';
+
+// Known overrides where the slug doesn't match the display name
+const SLUG_OVERRIDES = {
+  "memory fragment":           "memory-fragments",
+  "the iron pot's usage":      "the-iron-pots-usage",
+  "abyss without balance":     "abyss-without-balance",
+  "woman in white":            "woman-in-white",
+  "kailok the hornsplitter":   "kailok-the-hornsplitter",
+  "trial after trial":         "trial-after-trial",
+  "for honor":                 "for-honor",
+  "shadow cast over the river":"shadow-cast-over-the-river",
+  "where misery gathers":      "where-misery-gathers",
+  "the man trapped in the mire":"the-man-trapped-in-the-mire",
+  "missing companion":         "missing-companion",
+  "secrets hidden in the dark":"secrets-hidden-in-the-dark",
+  "the dark veil":             "the-dark-veil",
+  "the flames of greed":       "the-flames-of-greed",
+  "kidnapped healer":          "kidnapped-healer",
+  "rebellion or revolution":   "rebellion-or-revolution",
+  "cheers echoing from the edge":"cheers-echoing-from-the-edge",
+  "first step to rebuilding":  "first-step-to-rebuilding",
+  "a fresh start":             "a-fresh-start",
+  "reward for their sweat":    "reward-for-their-sweat",
+  "return of the comrade":     "return-of-the-comrade",
+  "familiar curses":           "familiar-curses",
+  "traces in the manor":       "traces-in-the-manor",
+  "seed of unease":            "seed-of-unease",
+  "dance with the devil":      "dance-with-the-devil",
+  "hope after the draught":    "hope-after-the-draught",
+  "scattered comrades":        "scattered-comrades",
+  "rumors from the sawmill":   "rumors-from-the-sawmill",
+  "a gentle touch":            "a-gentle-touch",
+  "bustling hill":             "bustling-hill",
+  "greymanes reunited":        "greymanes-reunited",
+  "kilnden workshop":          "kilnden-workshop",
+  "kiln repair at the kilnden workshop": "kiln-repair-at-the-kilnden-workshop",
+  "the mysterious pot":        "the-mysterious-pot",
+  "disturbance at the arena":  "disturbance-at-the-arena",
+  "skilled in archery":        "skilled-in-archery",
+  "the words of alustin":      "the-words-of-alustin",
+  "estate in dismay":          "estate-in-dismay",
+  "the trembling woods":       "the-trembling-woods",
+  "uninvited guest":           "uninvited-guest",
+  "black and white":           "black-and-white",
+};
+
+// Quests that span multiple items or are meta-descriptions (skip linking)
+const SKIP_PATTERNS = [
+  'arc quest', 'arc (', '+ more', 'additional', '27 total',
+  'find all survivors', 'speak to marius', 'political quests',
+  'quests (', 'various', 'full set', 'triggers commissions'
+];
+
+function shouldSkip(text) {
+  const lower = text.toLowerCase();
+  return SKIP_PATTERNS.some(p => lower.includes(p));
+}
+
+function injectQuestLinks() {
+  // Target .quest-name elements (not inside .iname which are item names)
+  const questNames = document.querySelectorAll('.quest-name');
+
+  questNames.forEach(el => {
+    // Skip if already processed or contains a link
+    if (el.dataset.linked || el.querySelector('a')) return;
+    el.dataset.linked = '1';
+
+    const rawText = el.textContent.trim();
+    if (shouldSkip(rawText)) return;
+
+    // Extract just the quest name part (before any "—" note)
+    const namePart = rawText.split('—')[0].split('·')[0].split('boss')[0].trim();
+    if (namePart.length < 3) return;
+
+    const lower = namePart.toLowerCase();
+    const slug = SLUG_OVERRIDES[lower] || toSlug(namePart);
+    const wikiUrl  = WIKI_BASE + slug;
+    const googleUrl = GOOGLE_BASE + encodeURIComponent('"' + namePart + '" Crimson Desert');
+
+    // Build the link cluster
+    const links = document.createElement('span');
+    links.className = 'quest-links';
+    links.innerHTML =
+      `<a href="${wikiUrl}" target="_blank" rel="noopener" title="Open wiki page for '${namePart}'" class="ql-wiki">Wiki ↗</a>` +
+      `<a href="${googleUrl}" target="_blank" rel="noopener" title="Google '${namePart}'" class="ql-google">Google ↗</a>`;
+
+    el.appendChild(links);
+  });
+
+  // Also inject into table cells that contain quest names (Commissions tab)
+  document.querySelectorAll('.tbl-wrap tbody td:nth-child(2)').forEach(td => {
+    if (td.dataset.linked || td.querySelector('a.ql-wiki')) return;
+    td.dataset.linked = '1';
+
+    const rawText = td.textContent.trim();
+    if (shouldSkip(rawText) || rawText.length < 3) return;
+
+    const lower = rawText.toLowerCase();
+    const slug = SLUG_OVERRIDES[lower] || toSlug(rawText);
+    const wikiUrl  = WIKI_BASE + slug;
+    const googleUrl = GOOGLE_BASE + encodeURIComponent('"' + rawText + '" Crimson Desert');
+
+    const links = document.createElement('span');
+    links.className = 'quest-links';
+    links.innerHTML =
+      `<a href="${wikiUrl}" target="_blank" rel="noopener" class="ql-wiki">Wiki ↗</a>` +
+      `<a href="${googleUrl}" target="_blank" rel="noopener" class="ql-google">↗</a>`;
+    td.appendChild(links);
+  });
+}
+
+// Run once on load, then again whenever an accordion opens (new DOM becomes visible)
+injectQuestLinks();
+document.addEventListener('click', e => {
+  const head = e.target.closest('.acc-head, .chap-head');
+  if (head) setTimeout(injectQuestLinks, 50);
+});
+</script>
+</body>
+</html>
