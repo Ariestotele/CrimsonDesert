@@ -36,15 +36,36 @@
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
 
 /* ── HEADER ── */
-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:200}
-.logo{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:200;gap:16px}
+.logo{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;white-space:nowrap;flex-shrink:0}
 
-/* ── TAB BAR ── */
-.tab-bar{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
-.tab-bar::-webkit-scrollbar{display:none}
-.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:0 18px;height:52px;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;flex-shrink:0}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+/* active tab breadcrumb */
+.active-tab-label{font-size:12px;color:var(--text-dm);flex:1;text-align:center;font-weight:400;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.active-tab-label span{color:var(--text-ht);font-weight:500}
+
+/* menu toggle button */
+.menu-btn{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:6px 14px;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;transition:border-color .18s,color .18s;flex-shrink:0}
+.menu-btn:hover{border-color:var(--border2);color:var(--text-ht)}
+.menu-btn.open{border-color:var(--gold);color:var(--gold)}
+
+/* dropdown overlay */
+.tab-dropdown{position:fixed;top:52px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:199;display:none;padding:1rem 1.5rem 1.25rem}
+.tab-dropdown.open{display:block}
+.tab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:860px;margin:0 auto}
+.tab-grid-btn{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;font-family:'DM Sans',sans-serif}
+.tab-grid-btn:hover{background:var(--sur2);border-color:var(--border2)}
+.tab-grid-btn.active{border-color:var(--gold);background:rgba(201,150,62,.07)}
+.tgb-icon{font-size:16px;margin-bottom:4px}
+.tgb-label{font-size:12px;font-weight:500;color:var(--text-ht);display:block;margin-bottom:1px}
+.tgb-desc{font-size:10px;color:var(--text-dm);line-height:1.4}
+/* dim overlay behind dropdown */
+.tab-overlay{position:fixed;inset:52px 0 0 0;background:rgba(0,0,0,.5);z-index:198;display:none}
+.tab-overlay.open{display:block}
+
+@media(max-width:600px){
+  .tab-grid{grid-template-columns:repeat(2,1fr)}
+  .active-tab-label{display:none}
+}
 
 /* ── HERO ── */
 .hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
@@ -238,11 +259,11 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
 /* ── QUEST LINKS ── */
 .quest-links{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle;flex-shrink:0}
-.ql-wiki,.ql-google{font-size:10px;font-weight:500;padding:1px 6px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .15s;line-height:1.6}
+.ql-wiki,.ql-google{font-size:10px;font-weight:500;padding:1px 6px;border-radius:4px;text-decoration:none;white-space:nowrap;transition:opacity .15s;line-height:1.6;cursor:pointer;font-family:'DM Sans',sans-serif;border:none}
 .ql-wiki{background:rgba(201,150,62,.12);color:var(--gold-lt);border:1px solid rgba(201,150,62,.22)}
-.ql-wiki:hover{background:rgba(201,150,62,.22);opacity:1}
+.ql-wiki:hover{background:rgba(201,150,62,.25)}
 .ql-google{background:rgba(58,106,154,.1);color:var(--blu-lt);border:1px solid rgba(58,106,154,.18)}
-.ql-google:hover{background:rgba(58,106,154,.2)}
+.ql-google:hover{background:rgba(58,106,154,.25)}
 .quest-name{display:flex;align-items:center;flex-wrap:wrap;gap:2px;flex:1}
 
 /* ── QUEST GROUPS ── */
@@ -253,7 +274,6 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 /* ── RESPONSIVE ── */
 @media(max-width:680px){
   header{padding:0 1rem}
-  .tab-btn{padding:0 12px;font-size:11px}
   .panel-wrap{padding:1.5rem 1rem 3rem}
   .hero{padding:1.75rem 1rem 1.5rem}
   .grid2,.grid3,.dec-grid{grid-template-columns:1fr}
@@ -275,20 +295,87 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
 <header>
   <div class="logo">Crimson Desert</div>
-  <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('inventory',this)">Inventory</button>
-    <button class="tab-btn" onclick="switchTab('items',this)">Items Guide</button>
-    <button class="tab-btn" onclick="switchTab('trading',this)">Trading</button>
-    <button class="tab-btn" onclick="switchTab('quests',this)">Quests</button>
-    <button class="tab-btn" onclick="switchTab('early',this)">Early Game</button>
-  </div>
+  <div class="active-tab-label">Currently viewing: <span id="active-tab-name">Inventory</span></div>
+  <button class="menu-btn" id="menu-toggle" onclick="toggleMenu()">
+    <span id="menu-icon">≡</span> Sections
+  </button>
 </header>
+
+<!-- Dim overlay -->
+<div class="tab-overlay" id="tab-overlay" onclick="closeMenu()"></div>
+
+<!-- Dropdown grid -->
+<div class="tab-dropdown" id="tab-dropdown">
+  <div class="tab-grid">
+    <button class="tab-grid-btn active" id="tgb-inventory" onclick="pickTab('inventory','Inventory',this)">
+      <div class="tgb-icon">🎒</div>
+      <span class="tgb-label">Inventory</span>
+      <div class="tgb-desc">Bags, slots, storage</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-items" onclick="pickTab('items','Items Guide',this)">
+      <div class="tgb-icon">⚔</div>
+      <span class="tgb-label">Items Guide</span>
+      <div class="tgb-desc">What to sell, keep & trade</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-trading" onclick="pickTab('trading','Trading',this)">
+      <div class="tgb-icon">🪙</div>
+      <span class="tgb-label">Trading</span>
+      <div class="tgb-desc">Wagons, black markets, silver</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-quests" onclick="pickTab('quests','Quests',this)">
+      <div class="tgb-icon">📜</div>
+      <span class="tgb-label">Quests</span>
+      <div class="tgb-desc">All chapters, side quests, map</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-bosses" onclick="pickTab('bosses','Bosses',this)">
+      <div class="tgb-icon">💀</div>
+      <span class="tgb-label">Bosses</span>
+      <div class="tgb-desc">Strategies, weaknesses, rewards</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-builds" onclick="pickTab('builds','Builds & Weapons',this)">
+      <div class="tgb-icon">🗡</div>
+      <span class="tgb-label">Builds & Weapons</span>
+      <div class="tgb-desc">Tier list, skill trees, Abyss</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-camp" onclick="pickTab('camp','Camp',this)">
+      <div class="tgb-icon">🏕</div>
+      <span class="tgb-label">Camp</span>
+      <div class="tgb-desc">Greymane upgrades, dispatch</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-crafting" onclick="pickTab('crafting','Crafting',this)">
+      <div class="tgb-icon">⚒</div>
+      <span class="tgb-label">Crafting</span>
+      <div class="tgb-desc">Refinement, alchemy, cooking</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-mounts" onclick="pickTab('mounts','Mounts & Pets',this)">
+      <div class="tgb-icon">🐴</div>
+      <span class="tgb-label">Mounts & Pets</span>
+      <div class="tgb-desc">Taming, legendary mounts</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-characters" onclick="pickTab('characters','Characters',this)">
+      <div class="tgb-icon">🧑</div>
+      <span class="tgb-label">Characters</span>
+      <div class="tgb-desc">Kliff, Damiane, Oongka skills</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-secrets" onclick="pickTab('secrets','Secrets',this)">
+      <div class="tgb-icon">🔍</div>
+      <span class="tgb-label">Secrets</span>
+      <div class="tgb-desc">Hidden mechanics & tips</div>
+    </button>
+    <button class="tab-grid-btn" id="tgb-early" onclick="pickTab('early','Early Game',this)">
+      <div class="tgb-icon">⚑</div>
+      <span class="tgb-label">Early Game</span>
+      <div class="tgb-desc">Priority checklist & tips</div>
+    </button>
+  </div>
+</div>
+
 
 <div class="hero">
   <div class="hero-inner">
     <div class="eyebrow">Complete Guide</div>
     <h1>Crimson Desert —<br><span>Pywel Field Manual</span></h1>
-    <p style="max-width:520px;color:var(--text-dm);font-size:13px">Inventory, items, trading, quests & early game. Use the tabs above to jump between sections.</p>
+    <p style="max-width:520px;color:var(--text-dm);font-size:13px">Inventory, items, trading, quests, bosses, builds, camp & early game. Use the tabs above.</p>
     <div class="hero-pills">
       <div class="hero-pill">50 starting slots · slot-based only</div>
       <div class="hero-pill">Stack cap 50 per slot</div>
@@ -615,6 +702,185 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
     </div>
     <div class="tip tip-i"><span class="tip-ico">◈</span><div>Orange markers = next main quest. Silver markers = faction / side content. If a faction quest isn't appearing, push the main story — most gate-lock behind chapter milestones.</div></div>
     <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Side quests are non-missable and can be returned to across chapters. Still — do Hernand commissions before leaving the region, since they're your best early bag source.</div></div>
+  </div>
+
+  <!-- ══ PYWEL REGION MAP ══ -->
+  <div class="sec" style="margin-bottom:1.5rem">
+    <div class="sec-label">Map of Pywel — click a region</div>
+
+    <!-- External map links -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem">
+      <button onclick="openLink('https://pywelmap.com/')" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 13px;font-size:12px;font-weight:500;color:var(--gold-lt);cursor:pointer;font-family:'DM Sans',sans-serif;transition:border-color .2s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:14px">🗺</span> PywelMap.com — full interactive map ↗
+      </button>
+      <button onclick="openLink('https://game8.co/games/Crimson-Desert/archives/585760')" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 13px;font-size:12px;font-weight:500;color:var(--blu-lt);cursor:pointer;font-family:'DM Sans',sans-serif;transition:border-color .2s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:14px">📍</span> Game8 Interactive Map ↗
+      </button>
+      <button onclick="openLink('https://crimsondeserthub.com/map')" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 13px;font-size:12px;font-weight:500;color:var(--text-dm);cursor:pointer;font-family:'DM Sans',sans-serif;transition:border-color .2s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        <span style="font-size:14px">🌐</span> CrimsonDesertHub Map ↗
+      </button>
+    </div>
+
+    <!-- Map + info panel -->
+    <div id="map-wrap" style="display:grid;grid-template-columns:1fr 300px;gap:12px;align-items:start">
+
+      <!-- SVG MAP -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative">
+        <svg id="pywel-map" viewBox="0 0 520 480" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;cursor:default">
+          <defs>
+            <filter id="rglow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r="0.6" fill="#3d3930"/></pattern>
+          </defs>
+
+          <!-- Background -->
+          <rect width="520" height="480" fill="#141310"/>
+          <rect width="520" height="480" fill="url(#dots)"/>
+
+          <!-- Ocean / ambient -->
+          <ellipse cx="260" cy="240" rx="240" ry="220" fill="none" stroke="#1e1c18" stroke-width="40"/>
+
+          <!-- ── PAILUNE — icy north ── -->
+          <g class="map-region" id="mr-pailune" onclick="selectRegion('pailune')" style="cursor:pointer">
+            <path d="M100,38 Q150,22 210,28 Q270,34 310,42 Q340,50 330,80 Q320,108 290,118 Q260,128 230,122 Q200,116 175,108 Q145,98 120,82 Q95,66 100,38 Z" fill="#1a2635" stroke="#2a3d52" stroke-width="1.2" class="region-fill"/>
+            <path d="M180,50 L185,45 L190,52 L195,46 L200,54 L205,48 L210,55 L215,50 L220,57 L225,51 L230,58" fill="none" stroke="#2a3d52" stroke-width="1" opacity="0.6"/>
+            <text x="215" y="75" text-anchor="middle" font-family="'Cinzel',serif" font-size="12" font-weight="600" fill="#7ab3d4" letter-spacing="1">PAILUNE</text>
+            <text x="215" y="89" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="#4a6a80">Icy North · Ch. 6–7</text>
+            <!-- snowflake dots -->
+            <circle cx="155" cy="60" r="1.5" fill="#4a6a80" opacity="0.7"/>
+            <circle cx="168" cy="55" r="1" fill="#4a6a80" opacity="0.5"/>
+            <circle cx="270" cy="65" r="1.5" fill="#4a6a80" opacity="0.7"/>
+            <circle cx="258" cy="72" r="1" fill="#4a6a80" opacity="0.5"/>
+            <!-- Howling Hill marker -->
+            <circle cx="200" cy="108" r="4" fill="#c9963e" opacity="0.9"/>
+            <text x="212" y="112" font-family="'DM Sans',sans-serif" font-size="8" fill="#c9963e">Howling Hill</text>
+          </g>
+
+          <!-- ── HERNAND — southwest lush ── -->
+          <g class="map-region" id="mr-hernand" onclick="selectRegion('hernand')" style="cursor:pointer">
+            <path d="M40,160 Q60,135 90,128 Q118,122 145,135 Q170,148 178,175 Q186,202 175,228 Q162,255 138,265 Q110,275 82,262 Q52,248 38,220 Q24,192 40,160 Z" fill="#1a2815" stroke="#2a4020" stroke-width="1.2" class="region-fill"/>
+            <!-- tree symbols -->
+            <text x="95" y="178" font-size="10" fill="#2a4a20" opacity="0.7" font-family="serif">♣ ♣ ♣</text>
+            <text x="108" y="198" font-size="9" fill="#2a4a20" opacity="0.5" font-family="serif">♣ ♣</text>
+            <text x="95" y="162" text-anchor="middle" font-family="'Cinzel',serif" font-size="12" font-weight="600" fill="#6db86d" letter-spacing="1">HERNAND</text>
+            <text x="95" y="175" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="#3a6a30">Grasslands · Ch. 1–4</text>
+            <!-- Hernand city marker -->
+            <rect x="83" y="216" width="6" height="6" fill="#c9963e" rx="1"/>
+            <text x="92" y="223" font-family="'DM Sans',sans-serif" font-size="8" fill="#c9963e">Hernand</text>
+          </g>
+
+          <!-- ── DEMENISS — central political hub ── -->
+          <g class="map-region" id="mr-demeniss" onclick="selectRegion('demeniss')" style="cursor:pointer">
+            <path d="M200,148 Q232,132 268,138 Q300,144 318,168 Q334,192 326,222 Q318,250 294,262 Q268,274 240,268 Q212,262 196,240 Q180,218 182,194 Q184,168 200,148 Z" fill="#201828" stroke="#382045" stroke-width="1.2" class="region-fill"/>
+            <!-- castle symbol -->
+            <rect x="240" y="192" width="4" height="6" fill="#5a3a7a" opacity="0.6"/>
+            <rect x="248" y="192" width="4" height="6" fill="#5a3a7a" opacity="0.6"/>
+            <rect x="244" y="188" width="12" height="4" fill="#5a3a7a" opacity="0.6"/>
+            <text x="255" y="172" text-anchor="middle" font-family="'Cinzel',serif" font-size="12" font-weight="600" fill="#9a7ab4" letter-spacing="1">DEMENISS</text>
+            <text x="255" y="185" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="#5a3a7a">Capital · Ch. 5, 8</text>
+          </g>
+
+          <!-- ── DELESYIA — eastern tech region ── -->
+          <g class="map-region" id="mr-delesyia" onclick="selectRegion('delesyia')" style="cursor:pointer">
+            <path d="M330,165 Q362,150 395,158 Q428,166 442,196 Q456,226 444,255 Q430,284 400,292 Q368,300 342,285 Q316,270 308,244 Q298,216 308,190 Q316,168 330,165 Z" fill="#201c14" stroke="#403820" stroke-width="1.2" class="region-fill"/>
+            <!-- gear symbol -->
+            <circle cx="378" cy="228" r="8" fill="none" stroke="#60501a" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="378" cy="228" r="3" fill="#60501a" opacity="0.7"/>
+            <text x="378" y="205" text-anchor="middle" font-family="'Cinzel',serif" font-size="12" font-weight="600" fill="#c9963e" letter-spacing="1">DELESYIA</text>
+            <text x="378" y="218" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="#806030">Tech Region · Ch. 10–11</text>
+          </g>
+
+          <!-- ── CRIMSON DESERT — southeast barren ── -->
+          <g class="map-region" id="mr-crimson" onclick="selectRegion('crimson')" style="cursor:pointer">
+            <path d="M100,290 Q132,272 165,278 Q195,284 218,305 Q240,326 238,358 Q235,390 210,408 Q182,426 150,420 Q118,414 98,390 Q76,364 78,334 Q80,304 100,290 Z" fill="#281810" stroke="#4a2810" stroke-width="1.2" class="region-fill"/>
+            <!-- sand dots -->
+            <circle cx="150" cy="340" r="1.2" fill="#6a3818" opacity="0.6"/>
+            <circle cx="162" cy="348" r="1" fill="#6a3818" opacity="0.5"/>
+            <circle cx="140" cy="355" r="1.2" fill="#6a3818" opacity="0.6"/>
+            <circle cx="168" cy="362" r="0.8" fill="#6a3818" opacity="0.4"/>
+            <circle cx="130" cy="365" r="1" fill="#6a3818" opacity="0.5"/>
+            <text x="158" y="325" text-anchor="middle" font-family="'Cinzel',serif" font-size="10" font-weight="600" fill="#c97050" letter-spacing="0.5">CRIMSON</text>
+            <text x="158" y="338" text-anchor="middle" font-family="'Cinzel',serif" font-size="10" font-weight="600" fill="#c97050" letter-spacing="0.5">DESERT</text>
+            <text x="158" y="352" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="9" fill="#6a3818">Lawless · Ch. 9</text>
+          </g>
+
+          <!-- ── THE ABYSS — sky islands, top right ── -->
+          <g class="map-region" id="mr-abyss" onclick="selectRegion('abyss')" style="cursor:pointer">
+            <ellipse cx="432" cy="82" rx="58" ry="42" fill="#0e1020" stroke="#1a1e38" stroke-width="1.2" class="region-fill"/>
+            <!-- floating islands -->
+            <ellipse cx="420" cy="78" rx="22" ry="8" fill="#1a1e38" opacity="0.8"/>
+            <ellipse cx="450" cy="90" rx="14" ry="5" fill="#1a1e38" opacity="0.7"/>
+            <ellipse cx="430" cy="95" rx="10" ry="4" fill="#1a1e38" opacity="0.6"/>
+            <!-- stars -->
+            <circle cx="408" cy="62" r="0.8" fill="#6a70b4" opacity="0.9"/>
+            <circle cx="418" cy="66" r="0.6" fill="#6a70b4" opacity="0.7"/>
+            <circle cx="455" cy="70" r="0.8" fill="#6a70b4" opacity="0.9"/>
+            <circle cx="462" cy="64" r="0.5" fill="#6a70b4" opacity="0.6"/>
+            <circle cx="440" cy="60" r="0.7" fill="#8a8ed4" opacity="0.8"/>
+            <text x="432" y="80" text-anchor="middle" font-family="'Cinzel',serif" font-size="11" font-weight="600" fill="#8a8ed4" letter-spacing="1">THE ABYSS</text>
+            <text x="432" y="93" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8.5" fill="#4a4e84">Sky Islands · Ch. 12</text>
+          </g>
+
+          <!-- ── CONNECTING paths / roads ── -->
+          <g opacity="0.25" stroke="#c9963e" stroke-width="0.8" fill="none" stroke-dasharray="4 3">
+            <line x1="145" y1="135" x2="185" y2="148"/>  <!-- Hernand → Demeniss -->
+            <line x1="175" y1="110" x2="210" y2="138"/>  <!-- Pailune → Demeniss -->
+            <line x1="318" y1="170" x2="330" y2="165"/>  <!-- Demeniss → Delesyia -->
+            <line x1="215" y1="268" x2="200" y2="285"/>  <!-- Demeniss → Crimson -->
+            <line x1="290" y1="118" x2="380" y2="80"/>   <!-- Pailune → Abyss -->
+          </g>
+
+          <!-- ── COMPASS ── -->
+          <g transform="translate(468,420)">
+            <circle r="18" fill="#141310" stroke="#2e2b24" stroke-width="1"/>
+            <text text-anchor="middle" y="-8" font-family="'Cinzel',serif" font-size="8" fill="#c9963e" font-weight="600">N</text>
+            <text text-anchor="middle" y="13" font-family="'Cinzel',serif" font-size="7" fill="#5a5548">S</text>
+            <text x="-11" text-anchor="middle" y="3" font-family="'Cinzel',serif" font-size="7" fill="#5a5548">W</text>
+            <text x="11" text-anchor="middle" y="3" font-family="'Cinzel',serif" font-size="7" fill="#5a5548">E</text>
+            <line x1="0" y1="-12" x2="0" y2="-4" stroke="#c9963e" stroke-width="1.5"/>
+            <line x1="0" y1="4" x2="0" y2="10" stroke="#5a5548" stroke-width="1"/>
+          </g>
+
+          <!-- ── MAP TITLE ── -->
+          <text x="260" y="456" text-anchor="middle" font-family="'Cinzel',serif" font-size="10" fill="#3d3930" letter-spacing="2">PYWEL · CONTINENT MAP</text>
+
+          <!-- ── SELECTED REGION HIGHLIGHT (injected by JS) ── -->
+          <g id="map-highlight" opacity="0"/>
+        </svg>
+
+        <!-- Hover instruction -->
+        <div id="map-hint" style="position:absolute;bottom:8px;left:12px;font-size:11px;color:var(--text-dm);pointer-events:none">Click a region to explore</div>
+      </div>
+
+      <!-- REGION INFO PANEL -->
+      <div id="map-info" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;min-height:280px;transition:border-color .2s">
+
+        <!-- Default state -->
+        <div id="map-default" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:260px;text-align:center;color:var(--text-dm)">
+          <div style="font-size:28px;margin-bottom:12px;opacity:.4">🗺</div>
+          <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;color:var(--text-dm);margin-bottom:6px">SELECT A REGION</div>
+          <div style="font-size:12px;line-height:1.6">Click any region on<br>the map to see chapter<br>info and key quests</div>
+        </div>
+
+        <!-- Region data (hidden until click) -->
+        <div id="map-data" style="display:none">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px">
+            <div>
+              <div id="ri-name" style="font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--text-ht);margin-bottom:2px"></div>
+              <div id="ri-sub" style="font-size:11px;color:var(--text-dm)"></div>
+            </div>
+            <span id="ri-chap" style="font-size:10px;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:2px"></span>
+          </div>
+          <div id="ri-desc" style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border)"></div>
+          <div style="font-size:10px;font-family:'Cinzel',serif;letter-spacing:.1em;color:var(--text-dm);text-transform:uppercase;margin-bottom:8px">Key quests &amp; locations</div>
+          <div id="ri-quests" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px"></div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <button id="ri-wiki" onclick="" style="display:flex;align-items:center;gap:6px;background:rgba(201,150,62,.08);border:1px solid rgba(201,150,62,.18);border-radius:5px;padding:6px 10px;font-size:11px;color:var(--gold-lt);cursor:pointer;font-weight:500;font-family:'DM Sans',sans-serif;text-align:left;transition:background .15s" onmouseover="this.style.background='rgba(201,150,62,.15)'" onmouseout="this.style.background='rgba(201,150,62,.08)'">Wiki page ↗</button>
+            <button id="ri-map" onclick="openLink('https://pywelmap.com/')" style="display:flex;align-items:center;gap:6px;background:rgba(58,106,154,.08);border:1px solid rgba(58,106,154,.18);border-radius:5px;padding:6px 10px;font-size:11px;color:var(--blu-lt);cursor:pointer;font-weight:500;font-family:'DM Sans',sans-serif;text-align:left;transition:background .15s" onmouseover="this.style.background='rgba(58,106,154,.15)'" onmouseout="this.style.background='rgba(58,106,154,.08)'">Open interactive map ↗</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /map-wrap -->
   </div>
 
   <!-- Quest Sub-tabs -->
@@ -1356,9 +1622,1122 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
   </div>
 
 </div><!-- /panel-early -->
+
+<!-- ════ CRAFTING ════ -->
+<div id="panel-crafting" class="panel">
+  <div class="sec">
+    <div class="sec-label">Crafting systems overview</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Priority order: <strong>Cooking first</strong> (only healing source) → <strong>Alchemy second</strong> (Palmar Pills + Attack Speed potions) → <strong>Gear Refinement third</strong> → Dyes (cosmetic only).</div></div>
+    <div class="grid2" style="margin-bottom:1rem">
+      <div class="card ag"><span class="bdg b-grn">Cooking</span><h3>Only healing source — non-negotiable</h3><small>Cook at any pot or campfire. Eat mid-combat with no cooldown and no animation lock. Keep 100+ Grilled Meat on you for any boss. Cooked meals give significantly more HP than raw food. Meat Skewers restore both Health and Spirit for one extra ingredient.</small></div>
+      <div class="card ab"><span class="bdg b-blue">Alchemy</span><h3>Game-changing potions</h3><small>Attack Speed Potion: +30% attack speed for 60 seconds — transforms boss fights. Palmar Pills: auto-revive at 30% HP. Both crafted at cauldrons. Palmar Pill recipe: Shadow's Whisper Cave north of Hernand (2× water + 15× any herb — Pine Mushroom, Rosemary, Lavender all work).</small></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Gear refinement — the upgrade system</div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div><strong>Stop at Level 4.</strong> Levels 1–4 use standard materials only. Level 5+ costs Abyss Artifacts — the same currency you need for skills. Early on, Artifact investment in combat skills is worth far more than a marginal gear stat increase.</div></div>
+
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Refinement level</th><th>Cost</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Lv. 1–4</td><td style="color:var(--grn-lt);font-size:12px">Standard materials only — ores, timber, hides. No silver cost.</td><td style="color:var(--text-dm);font-size:12px">Do this on all your main gear ASAP</td></tr>
+          <tr><td>Lv. 5–10</td><td style="color:var(--red-lt);font-size:12px">Standard materials + Abyss Artifacts. Use Refinement Tokens (Patch 1.01) to skip up to Lv. 4 for free.</td><td style="color:var(--text-dm);font-size:12px">Only for final weapons you're keeping</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-label" style="font-size:10px;margin-bottom:.75rem">Materials by gear type</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Gear type</th><th>Primary material</th><th>Secondary</th><th>How to gather</th></tr></thead>
+        <tbody>
+          <tr><td>Melee weapons</td><td style="color:var(--text-dm);font-size:12px">Iron Ore, Copper Ore</td><td style="color:var(--text-dm);font-size:12px">Gems (higher levels)</td><td style="color:var(--text-dm);font-size:12px">Mine ore nodes with Pickaxe. Can also use Force Palm while climbing cliff faces.</td></tr>
+          <tr><td>Bows &amp; ranged</td><td style="color:var(--text-dm);font-size:12px">Timber, Fine Timber</td><td style="color:var(--text-dm);font-size:12px">Iron Ore</td><td style="color:var(--text-dm);font-size:12px">Chop trees with Logging Axe. Turning Slash skill also works as a substitute.</td></tr>
+          <tr><td>Plate / metal armor</td><td style="color:var(--text-dm);font-size:12px">Iron Ore, Copper Ore</td><td style="color:var(--text-dm);font-size:12px">Stone</td><td style="color:var(--text-dm);font-size:12px">Mine ore nodes. Dispatch missions at camp also produce ore passively.</td></tr>
+          <tr><td>Leather / soft armor</td><td style="color:var(--text-dm);font-size:12px">Thin Hide, Animal Hide</td><td style="color:var(--text-dm);font-size:12px">Bones</td><td style="color:var(--text-dm);font-size:12px">Hunt animals. Mountain Goats die fast and drop Fine Meat + hides.</td></tr>
+          <tr><td>Shields</td><td style="color:var(--text-dm);font-size:12px">Timber</td><td style="color:var(--text-dm);font-size:12px">Iron Ore</td><td style="color:var(--text-dm);font-size:12px">Logging axe or Turning Slash on trees.</td></tr>
+          <tr><td>Accessories (rings, amulets)</td><td style="color:var(--text-dm);font-size:12px">Mixed ores + hides</td><td style="color:var(--text-dm);font-size:12px">Gems, rare drops</td><td style="color:var(--text-dm);font-size:12px">Preview stats at Refinement Lv. 3 before investing — accessories don't show previews by default.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="card al"><span class="bdg b-gold">Duplicate weapon trick</span><h3>Sacrifice a copy instead of materials</h3><small>If you have two identical weapons (common from enemy drops), you can sacrifice the duplicate to pay the refinement cost instead of raw materials. Always check if you have a duplicate before mining.</small></div>
+      <div class="card aa"><span class="bdg b-amb">Refinement Tokens (Patch 1.01)</span><h3>Free upgrades to Lv. 4</h3><small>Added in Patch 1.01.00. Bypasses all material costs for refinements up to Stage 4. Obtained from Hernand quests and as login rewards. Check your inventory after updating — many players received tokens retroactively for completed quests.</small></div>
+      <div class="card ag"><span class="bdg b-grn">Grindstone &amp; Anvil buffs</span><h3>Free temporary power spike before bosses</h3><small>Grindstones temporarily boost weapon attack. Anvils temporarily boost armor defense. Found in bandit camps (Trial After Trial has both). Use them immediately before entering a boss arena — free advantage that stacks with your refinement level.</small></div>
+      <div class="card ab"><span class="bdg b-blue">Preview before you invest</span><h3>Inspect → Refinement Information</h3><small>Select any gear in your inventory → Inspect → Refinement Information to see every stat gain across all 10 levels before spending a single material. Accessories don't preview by default — push them to Lv. 3 first to see what secondary and tertiary stats unlock.</small></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Where to find blacksmiths</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Blacksmith</th><th>Location</th><th>Unlock</th></tr></thead>
+        <tbody>
+          <tr><td>Turnali (first &amp; main)</td><td style="color:var(--text-dm);font-size:12px">Hernand — north-central district, anvil icon on map</td><td style="color:var(--text-dm);font-size:12px">Turnali's Request side quest from Hernand notice board (also rewards Medium Bag + Bekker Shield)</td></tr>
+          <tr><td>Grindstone + Anvil (temporary)</td><td style="color:var(--text-dm);font-size:12px">Trial After Trial bandit camp (Ch. 2)</td><td style="color:var(--text-dm);font-size:12px">Complete Trial After Trial main quest — use them immediately before the chapter boss</td></tr>
+          <tr><td>Regional blacksmiths</td><td style="color:var(--text-dm);font-size:12px">Every major town across Pywel</td><td style="color:var(--text-dm);font-size:12px">Look for anvil icon on the map in any settlement</td></tr>
+          <tr><td>Witch NPC</td><td style="color:var(--text-dm);font-size:12px">Various — first: Elowen north of Hernand. Areciel in Crimson Desert region.</td><td style="color:var(--text-dm);font-size:12px">Ch. 5+ for full access. Socket Abyss Cores here, not at blacksmiths.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Ore nodes respawn over time and are marked permanently on the map once discovered. Each node yields up to 6 pieces per harvest. Rare materials (Diamond, Epidote) are found in caves and hard-to-reach cliff locations.</div></div>
+  </div>
+</div><!-- /panel-crafting -->
+
+<!-- ════ MOUNTS & PETS ════ -->
+<div id="panel-mounts" class="panel">
+  <div class="sec">
+    <div class="sec-label">Mount types overview</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>29 total mounts. Most wild animals are <strong>temporary rides only</strong> — you can hop on a bear or raptor in the wild but cannot stable or summon them later. <strong>Horses</strong> are your only permanent summonable mounts unless you unlock legendary creatures via quests or boss fights.</div></div>
+
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Type</th><th>Best for</th><th>Notes</th><th>Permanent?</th></tr></thead>
+        <tbody>
+          <tr><td>Horse</td><td style="color:var(--text-dm);font-size:12px">Exploration, mounted combat (bow/sword from saddle), racing</td><td style="color:var(--text-dm);font-size:12px">Back-kick is horse's only attack. Can swim across water when upgraded.</td><td style="color:var(--grn-lt);font-size:12px">Yes</td></tr>
+          <tr><td>Bear</td><td style="color:var(--text-dm);font-size:12px">Ground combat, enemy camps</td><td style="color:var(--text-dm);font-size:12px">Massive HP, devastating AoE swipes, fights on its own near you. Mounting unlocks hidden movesets (long slashes, bite attacks).</td><td style="color:var(--red-lt);font-size:12px">Temporary wild</td></tr>
+          <tr><td>Raptor</td><td style="color:var(--text-dm);font-size:12px">Speed &amp; agility</td><td style="color:var(--text-dm);font-size:12px">High speed, swift turns without losing speed. Good for escaping enemies. Delesyian Swift is a standout variant.</td><td style="color:var(--red-lt);font-size:12px">Temporary wild</td></tr>
+          <tr><td>Wyvern / Dragon</td><td style="color:var(--text-dm);font-size:12px">Flight, aerial combat, fire breath</td><td style="color:var(--text-dm);font-size:12px">Mid-to-endgame. Can burn entire battlefields. Used in the Golden Star boss fight.</td><td style="color:var(--grn-lt);font-size:12px">Yes (late game)</td></div></tr>
+          <tr><td>Dinosaur</td><td style="color:var(--text-dm);font-size:12px">Tanky vantage-point riding</td><td style="color:var(--text-dm);font-size:12px">High vantage + great stamina. Low speed. Heavily armored, good combat.</td><td style="color:var(--text-dm);font-size:12px">Varies</td></tr>
+          <tr><td>ATAG Mech</td><td style="color:var(--text-dm);font-size:12px">Explosive area damage</td><td style="color:var(--text-dm);font-size:12px">Mobile artillery for short windows. Temporary.</td><td style="color:var(--red-lt);font-size:12px">Temporary</td></tr>
+          <tr><td>Blackstar Dragon</td><td style="color:var(--text-dm);font-size:12px">Prestige, flight, combat</td><td style="color:var(--text-dm);font-size:12px">15-minute flight limit then 50-minute real-time cooldown. Late game unlock.</td><td style="color:var(--grn-lt);font-size:12px">Yes</td></tr>
+          <tr><td>Cloudcart (Hot Air Balloon)</td><td style="color:var(--text-dm);font-size:12px">Aerial transport to remote areas</td><td style="color:var(--text-dm);font-size:12px">Crafted at Emberwind Workshop in camp. Not a combat mount — transport only.</td><td style="color:var(--grn-lt);font-size:12px">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">How to tame horses</div>
+    <div class="card" style="margin-bottom:.75rem">
+      <h3>Standard horse taming</h3>
+      <small style="font-size:13px;color:var(--text);display:block;margin-top:6px;line-height:1.7">Wild horses roam open plains and river areas, particularly east and south of Hernand. Approach slowly — moving too fast scares them away. Once close, mount and the taming minigame begins.<br><br>
+      <strong>The trick:</strong> Hold the camera directly behind the horse and hold S (backward) continuously. The game says to align WASD with the horse's tail — holding the camera behind and pressing backward achieves this automatically as the horse spins. Much easier than trying to track the tail direction manually.<br><br>
+      Fill the yellow gauge before your stamina runs out. If thrown off, run up and interact to start again — the progress doesn't reset. You need at least 4–6 Endurance skill points before attempting legendary horses.</small>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Horse</th><th>Type</th><th>Location</th><th>Best stat</th></tr></thead>
+        <tbody>
+          <tr><td>Herspia</td><td style="color:var(--text-dm);font-size:12px">Starter — given after prologue</td><td style="color:var(--text-dm);font-size:12px">Automatic</td><td style="color:var(--amb-lt);font-size:12px">Decent base — upgrade it at stables early</td></tr>
+          <tr><td>Royler (white) ⭐</td><td style="color:var(--text-dm);font-size:12px">Legendary — best overall</td><td style="color:var(--text-dm);font-size:12px">Pailune — Snowgrass Hearth camp near Silver Wolf Mountains, by a frozen lake</td><td style="color:var(--grn-lt);font-size:12px">Highest speed + great stamina + unique acceleration skill. Best exploration horse.</td></tr>
+          <tr><td>Rokade (black)</td><td style="color:var(--text-dm);font-size:12px">Legendary — tankiest</td><td style="color:var(--text-dm);font-size:12px">Southern Hernand, small lake west of Spire of Insight near Steel Mountains</td><td style="color:var(--grn-lt);font-size:12px">Highest HP + best durability. Ideal for combat scenarios.</td></tr>
+          <tr><td>Camora (red)</td><td style="color:var(--text-dm);font-size:12px">Legendary — combat horse</td><td style="color:var(--text-dm);font-size:12px">Tashkalp region (SE) — Redtree Forest, cavern meadow below Red River cliffs</td><td style="color:var(--grn-lt);font-size:12px">Highest ATK + DEF. Best for mounted combat builds.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>All horses go to your stable — you can switch between them any time at a Stable NPC in any city. To respawn a legendary horse after losing sight: move 200–300 meters away then return. It respawns automatically. Clear any enemies in the area first or they block the spawn.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Legendary mounts (post-patch 1.01)</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Mount</th><th>Type</th><th>Location / Method</th><th>Specialty</th></tr></thead>
+        <tbody>
+          <tr><td>White Bear</td><td style="color:var(--text-dm);font-size:12px">Legendary beast</td><td style="color:var(--text-dm);font-size:12px">Far NW Pailune — Five Finger Mountain / White Wastes Sanctuary. Defeat the giant White Bear, skin it for White Bear Claw, take to Witch to craft Sigil of Solidarity.</td><td style="color:var(--grn-lt);font-size:12px">Super tanky — high HP, strong stun attacks. Best for clearing enemy camps.</td></tr>
+          <tr><td>Silver Fang Wolf</td><td style="color:var(--text-dm);font-size:12px">Legendary beast</td><td style="color:var(--text-dm);font-size:12px">Hernand region — Howling Hollow cave, north of The Sage's Peak near Pailune border</td><td style="color:var(--grn-lt);font-size:12px">High speed with combat capability.</td></tr>
+          <tr><td>Blackstar Dragon</td><td style="color:var(--text-dm);font-size:12px">Legendary flying</td><td style="color:var(--text-dm);font-size:12px">Late game unlock / Abyssal Dragon Armor upgrade</td><td style="color:var(--grn-lt);font-size:12px">Flight + fire breath combat. 15-min flight cap, 50-min cooldown.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Mount leveling &amp; horse skills</div>
+    <div class="grid3" style="margin-bottom:1rem">
+      <div class="card ag"><span class="bdg b-grn">Feed</span><h3>Fastest Trust gain</h3><small>Buy horse food from any Saddler NPC. Use from inventory. Fastest method for leveling Trust (1–5). Each pet/mount has a favourite food type that gives +35 Trust.</small></div>
+      <div class="card al"><span class="bdg b-gold">Pet / Caress</span><h3>Free daily Trust</h3><small>Target your horse (CTRL / LB) then press R. Gives free XP. Daily limit applies — spam it every time you pass your horse. Also works for pets.</small></div>
+      <div class="card ab"><span class="bdg b-blue">Ride</span><h3>Passive gain</h3><small>Simply riding your mount builds Trust passively. Your starting horse Herspia levels this way naturally. Invest in Stable upgrades early — higher-grade horses have better stat ceilings.</small></div>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Horses can swim when upgraded — you don't need to dismount at water. When horse stamina runs out mid-water, switch to Kliff's own swimming stamina. Eating stamina food mid-swim refills the bar instantly without interrupting the animation.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Pets</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Pets automatically collect loot from nearby enemy corpses after fights. Huge quality-of-life upgrade — especially in dungeon and fort clearing where corpse looting manually is tedious. Pet armor available at Tailor Shops.</div></div>
+    <div class="card" style="margin-bottom:1rem">
+      <span class="bdg b-blue">How to tame pets</span>
+      <h3>Build Trust to 100 by feeding and petting</h3>
+      <small style="font-size:13px;color:var(--text);display:block;margin-top:6px;line-height:1.7">
+        Hundreds of dogs and cats (and other animals) are scattered across Pywel — never flagged as stealing to interact with.<br><br>
+        <strong>Petting:</strong> +5 Trust per interaction. Max 5× per in-game day = +25 daily.<br>
+        <strong>Feeding:</strong> +10 to +35 Trust depending on food type. Drop food near them to feed. Each pet has a favourite food that gives +35 Trust.<br>
+        <strong>Daily limits</strong> reset at midnight (12:00 AM) in-game time.<br>
+        Reach 100 Trust to claim the animal as a permanent companion. Unlock pet taming further via Naira's faction quest chain at Greymane Camp.
+      </small>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Poison arrows one-shot almost any animal for hunting — single arrow takes down deer, goats, anything. Far faster than chasing with a sword. Standard practice for meat and hide farming once you have arrows.</div></div>
+  </div>
+</div><!-- /panel-mounts -->
+
+<!-- ════ CHARACTERS ════ -->
+<div id="panel-characters" class="panel">
+  <div class="sec">
+    <div class="sec-label">Playable characters overview</div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Each character has a completely separate Abyss Artifact progression tree. Points invested in Kliff do NOT carry to Damiane or Oongka. <strong>Focus all Artifacts on Kliff first</strong> — both secondary characters unlock well into the story and Kliff must carry every main chapter.</div></div>
+
+    <div class="card-grid card-grid-3" style="margin-bottom:1rem">
+      <div class="card al">
+        <span class="bdg b-gold">Kliff</span>
+        <h3>Leader of the Greymanes</h3>
+        <small>The only character who can advance the main story. Versatile brawler — works with every weapon type. Most skill tree options available. Start here, stay here until late game. Unlocked: Prologue.</small>
+      </div>
+      <div class="card ag">
+        <span class="bdg b-grn">Damiane</span>
+        <h3>Tactical — positioning &amp; counters</h3>
+        <small>Unlocks Ch. 3 ("A Gentle Touch" quest). Rapier riposte bonus and longsword synergy. More punishing build — if burning healing items frequently, check your Abyss Core loadout. Best parked near a vendor as remote sell point.</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Oongka</span>
+        <h3>Power — two-handed, high damage</h3>
+        <small>Unlocks Ch. 7 ("Twisted Fate" arc). Axes scale uniquely on him vs other characters. Two-handed hits hardest in the game — less forgiving on mobility. For players who've mastered combat through Kliff first.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Kliff — full skill tree guide</div>
+    <div class="grid3" style="margin-bottom:1rem">
+      <div class="card ab">
+        <span class="bdg b-blue">Blue tree — Endurance (Lv. 1–16)</span>
+        <h3>Armed combat core</h3>
+        <small>Dodges, weapon attacks, gliding, combo chains. The DPS engine. Stamina thresholds:<br>• <strong>Stamina 200</strong> → faster climbing + extended dodge chains<br>• <strong>Armed Combat Lv. 3</strong> → unlocks Evasive Slash (spear counter)<br>Priority: Max this first alongside Red Lv. 4.</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Red tree — Health (Lv. 1–18)</span>
+        <h3>Survival &amp; aerial skills</h3>
+        <small>Max HP, mobility, aerial abilities. Raw staying power.<br>• <strong>Health Lv. 4</strong> = minimum floor before mid-game bosses<br>• Aerial Force Palm upgrades unlock here<br>• Invest enough to survive two boss combos without healing<br>Priority: Lv. 4 minimum, then revisit late game.</small>
+      </div>
+      <div class="card ag">
+        <span class="bdg b-grn">Green tree — Mind</span>
+        <h3>Control &amp; Force Palm</h3>
+        <small>Energy, counters, stun, Force Palm power.<br>• <strong>Nature's Echo</strong> — duplicates heavy attacks. Best DPS multiplier in the game.<br>• <strong>Nature's Snare</strong> — roots enemies completely (negates boss speed)<br>• <strong>Blinding Flash</strong> — early unlock, essential utility<br>Priority: After Blue/Red minimums are set.</small>
+      </div>
+    </div>
+
+    <div class="sec-label" style="font-size:10px;margin-bottom:.75rem">Kliff priority skill unlock order</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>#</th><th>Skill</th><th>Tree</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--gold);font-weight:600">1</td><td>Blinding Flash</td><td style="color:var(--text-dm);font-size:12px">Early / Green</td><td style="color:var(--text-dm);font-size:12px">Reveals Nexuses, weak spots, solves puzzles, detects Sealed Artifacts, sets vines on fire, cooks dropped meat</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">2</td><td>Health Lv. 4</td><td style="color:var(--text-dm);font-size:12px">Red</td><td style="color:var(--text-dm);font-size:12px">Survival floor for all mid-game bosses. Do this before anything else in Red.</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">3</td><td>Stamina threshold (Blue to 200)</td><td style="color:var(--text-dm);font-size:12px">Blue</td><td style="color:var(--text-dm);font-size:12px">Unlocks faster climbing + longer dodge chains — changes traversal and combat flow</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">4</td><td>Quick Swap</td><td style="color:var(--text-dm);font-size:12px">Blue</td><td style="color:var(--text-dm);font-size:12px">Mid-combo weapon switching — the core of Kliff's damage architecture</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">5</td><td>Nature's Echo</td><td style="color:var(--text-dm);font-size:12px">Green</td><td style="color:var(--text-dm);font-size:12px">Duplicates heavy attacks — combined with Tauria Curved Sword this is peak mid-game DPS</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">6</td><td>Nature's Snare</td><td style="color:var(--text-dm);font-size:12px">Green</td><td style="color:var(--text-dm);font-size:12px">Roots enemies — nullifies fast-moving bosses (Crowcaller, Hornsplitter) entirely</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">7</td><td>Evasive Slash (spear)</td><td style="color:var(--text-dm);font-size:12px">Blue / Armed Lv.3</td><td style="color:var(--text-dm);font-size:12px">Counter stance safer than standard parry, blocks unblockable attacks — widely considered overpowered</td></tr>
+          <tr><td style="color:var(--gold);font-weight:600">8</td><td>Turning Slash Mastery</td><td style="color:var(--text-dm);font-size:12px">Blue</td><td style="color:var(--text-dm);font-size:12px">Adds Super Armor Break — lets you interrupt boss Super Armor animations</td></tr>
+          <tr><td style="color:var(--text-dm);font-weight:500">9+</td><td>Force Palm upgrades</td><td style="color:var(--text-dm);font-size:12px">Red</td><td style="color:var(--text-dm);font-size:12px">Triple aerial Force Palm for vertical traversal + boss combat. Also cooks meat (aim at dropped raw meat).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Bare fists (open radial menu → select fists) unlock a full separate martial arts combo system — launchers, grapples, German suplex. These skills are learned free by watching enemies perform them. Zero Artifact cost, persist through respecs. Use in at least one fight to feel it.</div></div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Respec with a Faded Abyss Artifact (rare). Plan before spending. Use the Observe mechanic on bosses during their unique animations — hold observe when the prompt appears to bank a free technique that costs zero Artifacts.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Damiane — build &amp; tips</div>
+    <div class="card" style="margin-bottom:.75rem">
+      <span class="bdg b-grn">Unlock: Ch. 3 — A Gentle Touch quest</span>
+      <h3>Tactical fighter · Rapier riposte · Longsword</h3>
+      <small style="font-size:13px;color:var(--text);display:block;margin-top:6px;line-height:1.7">
+        Damiane rewards positioning and timing over raw aggression. Her Rapier riposte deals colossal damage when triggered — riposte scaling makes counter-attacks hit significantly harder than Kliff's equivalent.<br><br>
+        <strong>Recommended weapons:</strong> Rapier (primary for counter-attack builds) + Longsword (excels in her hands, better scaling than on Kliff).<br><br>
+        <strong>If you're burning through healing items:</strong> The issue is almost always your Abyss Core loadout — check it before adjusting weapons or armor.<br><br>
+        <strong>Best use when not in your party:</strong> Park near a vendor in Hernand. Inventory is shared across all three characters — switch to Damiane to sell without fast-travelling Kliff back to town.
+      </small>
+    </div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Don't invest Kliff's Abyss Artifacts into Damiane's tree. Wait until Kliff's build is fully set before splitting resources. Damiane's progression is meant to be a secondary investment.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Oongka — build &amp; tips</div>
+    <div class="card" style="margin-bottom:.75rem">
+      <span class="bdg b-red">Unlock: Ch. 7 — Twisted Fate arc</span>
+      <h3>Power fighter · Axe · Two-handed</h3>
+      <small style="font-size:13px;color:var(--text);display:block;margin-top:6px;line-height:1.7">
+        Oongka is a high-reward, low-mobility fighter. Two-handed weapons hit hardest in the game on him — unique axe scaling means axes perform better on Oongka than on any other character.<br><br>
+        <strong>Playstyle:</strong> Read enemy patterns and commit to punish windows. Wind-up animations absorb hits — you take more damage during attacks. Not for players still learning enemy timing.<br><br>
+        <strong>German suplex:</strong> Oongka's wrestling-style grapple sends enemies flying for massive crowd control. His heavy moveset is one of the most satisfying in the game once mastered.<br><br>
+        <strong>Unlock timing:</strong> Ch. 7 is late enough that Kliff should be well-developed by the time Oongka joins. Invest in Oongka's tree once you have Artifacts to spare.
+      </small>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Spread secondary characters across different regions to cover more of the map efficiently. Damiane near Hernand, Oongka near a mid-game trading hub — switch between them to manage selling and trading without long Kliff travel times.</div></div>
+  </div>
+</div><!-- /panel-characters -->
+
+<!-- ════ SECRETS ════ -->
+<div id="panel-secrets" class="panel">
+  <div class="sec">
+    <div class="sec-label">Hidden mechanics the game never explains</div>
+
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>This tab covers things Pearl Abyss never puts in a tutorial. Most players discover these 20–50 hours in. Knowing them from the start saves enormous time.</div></div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">🧱</div>
+        <div class="acc-label">Illusory walls — walk into highlighted walls</div>
+        <div class="acc-verdict v-keep">Exploration</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">The mechanic</div><div class="inote">Some walls in caves and ruins are illusory. If your Lantern (L1/LB) highlights a wall but nothing happens when you press interact — walk directly into it. The wall dissolves and reveals a hidden passage or secret room. Zero tutorial, zero indication.</div></div><span class="itag t-k">Key</span></div>
+        <div class="itm"><div><div class="iname">How to find them</div><div class="inote">Activate your Lantern in every cave and ruin systematically. If a marker appears on a wall without an interaction prompt, walk into it. Check everywhere — some of the best unique weapons in the game are behind illusory walls.</div></div><span class="itag t-c">Always try</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">💧</div>
+        <div class="acc-label">Waterfalls always hide something — stab to pass through</div>
+        <div class="acc-verdict v-keep">Exploration</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">How to pass waterfalls</div><div class="inote">Waterfalls knock you back if you walk through them. Use Stab (RB+Y / R1+△ / LShift+RMB) right in front — Kliff parts the water with his blade and passes through. Every waterfall in the game has something behind it: treasure chest, unique weapon, or rare ore.</div></div><span class="itag t-k">Always check</span></div>
+        <div class="itm"><div><div class="iname">Stacked rock towers</div><div class="inote">A small tower of stacked rocks in front of a waterfall or cliff face marks a passage or hidden chest. The Hollow Visage Katana (one of the best early weapons) is in a waterfall cave near the Reed Devil boss.</div></div><span class="itag t-k">Tip</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-amb">🍖</div>
+        <div class="acc-label">Blinding Flash cooks meat — no campfire needed</div>
+        <div class="acc-verdict v-keep">Combat / Utility</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">The trick</div><div class="inote">Drop raw meat on the ground (Discard from inventory), then aim your Blinding Flash / Guiding Light at it. The sunbeam reflection cooks the meat on the spot. No campfire, no cooking pot required.</div></div><span class="itag t-k">Useful</span></div>
+        <div class="itm"><div><div class="iname">Also: fire mechanic</div><div class="inote">The same Blinding Flash mechanism sets fire to wooden structures, bushes, carts, vines blocking paths, and even enemies. Aim at flammable environmental objects to burn them. Useful for clearing vine barriers and environmental puzzle elements.</div></div><span class="itag t-c">Multi-use</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">🧗</div>
+        <div class="acc-label">Eat food mid-climb, mid-swim, mid-glide — infinite range</div>
+        <div class="acc-verdict v-keep">Traversal</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">The mechanic</div><div class="inote">Stamina food can be consumed while hanging on a cliff face, mid-swim, or mid-glide without interrupting the action. Open the consumable wheel (hold D-Pad Right / F3) and eat — your stamina bar refills instantly. This effectively gives you unlimited climbing and swimming as long as you have stamina food.</div></div><span class="itag t-k">Essential</span></div>
+        <div class="itm"><div><div class="iname">Cliff ore trick</div><div class="inote">Ore veins on cliff faces look unreachable. Use Force Palm while clinging to the wall (hold Resist button simultaneously) to mine them. Alternatively, use Charged Shot skill to shoot ore from the ground.</div></div><span class="itag t-k">Mining tip</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">✊</div>
+        <div class="acc-label">Fist combat — separate full martial arts system</div>
+        <div class="acc-verdict v-keep">Combat</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Unlocking it</div><div class="inote">Open the weapon radial menu and select fists. This does NOT give you a basic punch — it activates a completely separate martial arts combo system with its own R1 and R2 attack chains. Includes launchers, grapples, a German Suplex, and a chokeslam.</div></div><span class="itag t-k">Try it</span></div>
+        <div class="itm"><div><div class="iname">Free skills</div><div class="inote">Watch enemies perform special moves — the Observe prompt appears above their head. Hold observe to learn their technique for free. Zero Artifact cost, persist through respecs. Don't skip optional bosses — they teach rare abilities unavailable elsewhere.</div></div><span class="itag t-k">Free XP</span></div>
+        <div class="itm"><div><div class="iname">Tackle (hidden)</div><div class="inote">Roll then press Circle + Triangle simultaneously (PS) to tackle and subdue an enemy on the ground. Standard controls for a standing throw — but works as a grapple during a roll. Key mechanic for capturing bounties alive.</div></div><span class="itag t-c">Hidden move</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-grn">📦</div>
+        <div class="acc-label">Item grouping — L3 bundles identical items</div>
+        <div class="acc-verdict v-keep">Inventory</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">How it works</div><div class="inote">Hover over any item in your inventory and hold L3 (PlayStation) / left stick press — all identical items of the same type bundle into a single inventory slot and move to the left side of the screen. Doesn't increase slot count but makes the inventory significantly cleaner to read.</div></div><span class="itag t-k">QoL</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">🐴</div>
+        <div class="acc-label">You can steal enemy wagons — then sell them</div>
+        <div class="acc-verdict v-keep">Economy</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Wagon theft</div><div class="inote">Wagons parked on roads (guarded by bandits, parked near NPCs, or being driven) can simply be stolen. Just hop on. They don't become your permanent property, but you can sell them to Wagon Fences for decent coin.</div></div><span class="itag t-t">Easy silver</span></div>
+        <div class="itm"><div><div class="iname">Disarming enemies</div><div class="inote">You can disarm humanoid enemies and steal their weapons mid-combat. The disarmed weapon is then yours to use or sell. Useful for getting weapon samples without farming boss drops.</div></div><span class="itag t-t">Steal gear</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-grn">🏹</div>
+        <div class="acc-label">Poison arrows one-shot any animal — fastest meat farming</div>
+        <div class="acc-verdict v-keep">Gathering</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">The trick</div><div class="inote">A single poison arrow kills almost any animal instantly. Deer, goats, pigs — one arrow, instant drop. No chasing, no stamina use, no sword swinging. You get poison arrows from looting enemies. Make this your standard hunting method whenever you have them.</div></div><span class="itag t-k">Standard now</span></div>
+        <div class="itm"><div><div class="iname">Mountain Goats</div><div class="inote">Best early meat source — faster to kill than deer, same Fine Meat drops. Hunt near mountains northwest of Hernand. Combined with poison arrows, one hunting run fills your food supply for a boss fight in minutes.</div></div><span class="itag t-k">Best target</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">🌟</div>
+        <div class="acc-label">Abyss Cressets — free fast travel + Abyss Artifacts</div>
+        <div class="acc-verdict v-keep">Progression</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Abyss Cressets are glowing collectible points scattered across Pywel. Each one gives: 1 Abyss Artifact (skill point) + a new fast travel point. Some require aerial Force Palm, Gliding, or Triple Aerial Focus Palm to reach elevated positions.</div></div><span class="itag t-k">Collect all</span></div>
+        <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint — use Blinding Flash / Guiding Light to spot them. Challenge progress only counts AFTER pickup (not retroactively). Collecting them all gives the Pilgrim of Wonders trophy and meaningful skill point rewards.</div></div><span class="itag t-k">Grab early</span></div>
+        <div class="itm"><div><div class="iname">Abyss Nexus fast travel</div><div class="inote">47 Nexus points across all 5 regions. Activate by stepping on pressure plates. Crimson Desert region has 13 (most of any region). Ring the 8 Bell Towers first to clear fog of war — then hunt Nexus points on the revealed map.</div></div><span class="itag t-k">Unlock ASAP</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">🏰</div>
+        <div class="acc-label">Faction contribution shops — free endgame armor</div>
+        <div class="acc-verdict v-keep">Gear</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Hidden shops in each region sell armor that rivals crafted gear — but instead of silver, they cost Contribution Points (faction reputation). These are completely separate from regular vendors and easy to miss.</div></div><span class="itag t-k">Hidden</span></div>
+        <div class="itm"><div><div class="iname">Important</div><div class="inote">Stealing reduces Contribution Points whether you're caught or not. If you're farming Contribution Points to buy gear from these shops, steal in moderation and avoid crimes in that specific region.</div></div><span class="itag t-s">Watch crime</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">💰</div>
+        <div class="acc-label">Hidden early game loot — Lioncrest Manor &amp; Hernand Bank</div>
+        <div class="acc-verdict v-keep">Economy</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Lioncrest Manor gold bar</div><div class="inote">Lioncrest Manor (near Hernand Castle) — steal the gold bar inside. Take it to the Hernand Bank and exchange it for 500 Silver. One-time. One of the single largest early-game windfall rewards in the game.</div></div><span class="itag t-t">500 Silver</span></div>
+        <div class="itm"><div><div class="iname">Lioncrest Manor gear</div><div class="inote">The same manor also holds the Brass Wardens Plate and Rhonid Large Shield — steal both for free early armor upgrades.</div></div><span class="itag t-k">Free armor</span></div>
+        <div class="itm"><div><div class="iname">Hernand Bank robbery</div><div class="inote">Need a mask + a key. Yields 40+ Silver (one-time). Both the bank and Lioncrest are exceptions to the "avoid crime" rule — the loot is worth the Contribution Point cost.</div></div><span class="itag t-t">40+ Silver</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-grn">🌲</div>
+        <div class="acc-label">Stealth system — the game never explains this</div>
+        <div class="acc-verdict v-keep">Combat</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">How stealth works</div><div class="inote">Crimson Desert has a fully functional stealth mechanic with zero tutorial. Hide in thick bushes, at the top of a tree, or behind objects that block enemy line of sight. You'll know it's active because the screen lighting dims significantly and the screen edges darken.</div></div><span class="itag t-k">It exists</span></div>
+        <div class="itm"><div><div class="iname">Climbing trick</div><div class="inote">When running out of stamina on a wall, use precision jump (aim at a selectable spot above you) — the jump distance is surprisingly long and doesn't consume much stamina. More efficient than eating food just for wall climbing.</div></div><span class="itag t-k">Traversal</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-amb">🗺</div>
+        <div class="acc-label">Notifications menu — tracks everything you've missed</div>
+        <div class="acc-verdict v-keep">UI</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">What it does</div><div class="inote">Open Notifications from the main menu — it lists every notification that's appeared in your session (quest unlocks, knowledge gained, collectible hints) and can redirect you directly to the relevant menu section. Use this whenever you feel like you missed something or a quest counter looks wrong.</div></div><span class="itag t-k">Check often</span></div>
+        <div class="itm"><div><div class="iname">Knowledge acquired check</div><div class="inote">Before selling any book, recipe, or document — open it in your inventory and check for the grey text "Knowledge acquired" in the description. If it's there, the content is already saved to your journal. Sell the item — it has no further value.</div></div><span class="itag t-k">Before selling</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Hidden weapon locations</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Weapon</th><th>Location</th><th>Stats</th></tr></thead>
+        <tbody>
+          <tr><td>Hollow Visage Katana</td><td style="color:var(--text-dm);font-size:12px">Waterfall cave south of map, near Reed Devil boss area — chest behind waterfall</td><td style="color:var(--grn-lt);font-size:12px">14 ATK, Critical Rate + Attack Speed Abyss Gears pre-loaded. Best early one-hander.</td></tr>
+          <tr><td>Frozen Anguish</td><td style="color:var(--text-dm);font-size:12px">Dawn Cave behind a waterfall in Mountain of Lost Souls</td><td style="color:var(--grn-lt);font-size:12px">17 ATK, Insight I + Gale I + Destruction I. Excellent early exploration reward.</td></tr>
+          <tr><td>Darkbringer</td><td style="color:var(--text-dm);font-size:12px">Death's Grip Cave, NW of Lake Kharonso — behind a waterfall</td><td style="color:var(--grn-lt);font-size:12px">21 ATK. Monster hidden weapon — 3 Abyss Gears pre-loaded.</td></tr>
+          <tr><td>Dual Axes (free)</td><td style="color:var(--text-dm);font-size:12px">Underbridge area — one in a tree stump, one on a nearby rock. Post-prologue.</td><td style="color:var(--grn-lt);font-size:12px">12 ATK each. Free AoE option available from the very start.</td></tr>
+          <tr><td>Hwando (katana)</td><td style="color:var(--text-dm);font-size:12px">Lioncrest Manor / Crêtelion Manor northwest of Hernand</td><td style="color:var(--grn-lt);font-size:12px">Strong early two-hander with Abyss Gears already embedded.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>The rule: <strong>every waterfall in Crimson Desert has something behind it.</strong> Stab through any waterfall you find (RB+Y / R1+△). Stacked rock piles in front of cliff faces also mark secret passages. Check behind both every time.</div></div>
+  </div>
+</div><!-- /panel-secrets -->
+
+
+<div id="panel-bosses" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Boss system overview</div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-v">76</div><div class="stat-l">Total bosses</div></div>
+      <div class="stat"><div class="stat-v">28</div><div class="stat-l">Story bosses</div></div>
+      <div class="stat"><div class="stat-v">3</div><div class="stat-l">Final bosses (back-to-back)</div></div>
+      <div class="stat"><div class="stat-v">∞</div><div class="stat-l">Food needed</div></div>
+    </div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div><strong>Universal strategy:</strong> Eat while attacking — food has no animation lock. Spam light attacks + heal simultaneously to tank through damage. Never rely on blocking; it drains stamina fast and some attacks deal damage through it. Learn to parry (L1/LB) instead.</div></div>
+    <div class="grid2" style="margin-bottom:.75rem">
+      <div class="card aa">
+        <span class="bdg b-amb">Human / knight bosses</span>
+        <small style="font-size:13px;color:var(--text)">Parry with L1/LB to interrupt and open a combo window. Heavy attacks (R2/RT) break their guard. Most can be grappled — drains stagger bar fast.</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Monster bosses</span>
+        <small style="font-size:13px;color:var(--text)">Dodge combos, attack in the recovery window after a miss. Target weak spots. Watch for Observation Learning prompts — hold observe to bank a free technique.</small>
+      </div>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Broken pillars in boss arenas deal 25–50% of a boss's HP when thrown. If a boss breaks one, use <strong>Nature's Grasp</strong> to pick it up and throw it. Most bosses are also vulnerable to Lariat attacks which stagger them easily.</div></div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>The final chapter is 3 bosses back-to-back — the first has 3 phases. Bring 50+ Palmar Pills and max food before entering. Hold pills until the final phase so you don't restart the encounter.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Main story bosses — in order</div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-amb">⚔</div>
+        <div class="acc-label">Matthias</div>
+        <div class="acc-verdict v-ctx">Ch. 2 · Hernand</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="inote">Human knight · Hernand city square · The Dark Veil quest</div></div><span class="itag t-c">Ch. 2</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Classic opener boss — slow, predictable sword attacks. Chain 3 quick attacks then 3 heavy attacks to interrupt. Parry every slow swing for easy counter damage. Very forgiving, teaches core combat flow.</div></div><span class="itag t-k">Easy</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Abyss Artifact, story progression to Goldleaf Guildhouse</div></div><span class="itag t-k">Reward</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">Kailok the Hornsplitter</div>
+        <div class="acc-verdict v-ctx">Ch. 2 · Goldleaf Guildhouse</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="inote">Beast / monster · Goldleaf Guildhouse · "Cheers Echoing From the Edge" quest</div></div><span class="itag t-c">Ch. 2</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Fast, aggressive. Dodge combos then punish in the recovery window. Lariat attacks stagger it well. Nature's Snare (Green tree) roots it completely — use it to create free attack windows. Grappling drains stagger bar fast.</div></div><span class="itag t-c">Medium</span></div>
+        <div class="itm"><div><div class="iname">Weakness</div><div class="inote">Stagger-heavy attacks, Lariat, Nature's Snare roots</div></div><span class="itag t-k">Tip</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Sword of the Lord ⭐ (one of the best early unique weapons — keep it), Abyss Artifact</div></div><span class="itag t-k">Keep Weapon</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">The Reed Devil</div>
+        <div class="acc-verdict v-ctx">Ch. 3 · Mountain of Frozen Souls</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="inote">Supernatural creature · Mountain of Frozen Souls · "Dance with the Devil" quest. Encountered near Glenbright Manor investigation.</div></div><span class="itag t-c">Ch. 3</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Has a unique mechanic — destroy its totems scattered around the arena. Each totem destroyed weakens it significantly. Don't just attack the boss; prioritise the totems. Use Blinding Flash to reveal weak points. Attacks are blindingly fast — dodge through rather than away.</div></div><span class="itag t-c">Medium</span></div>
+        <div class="itm"><div><div class="iname">Weakness</div><div class="inote">Destroy totems first. Blinding Flash reveals weak spots.</div></div><span class="itag t-k">Tip</span></div>
+        <div class="itm"><div><div class="iname">Note</div><div class="inote">Patch 1.00.03 reduced ambush difficulty in the lead-up to this fight and adjusted attack patterns — easier than at launch.</div></div><span class="itag t-c">Patched</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">⚔</div>
+        <div class="acc-label">Tenebrum</div>
+        <div class="acc-verdict v-ctx">Ch. 4 · Spire of the Stars</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="inote">Abyss specter · Otherworld / Spire of the Stars · Ch. 4 climax</div></div><span class="itag t-c">Ch. 4</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Flying boss — you must use Blinding Flash once to reveal its weak point (only do this once; the game prompts you but don't keep spamming it). Then fly toward it using double jump + glide. The wind current lifts you up. Use Force Palm mid-air to hit it — each Force Palm removes ~⅓ of its HP. Attack when it stops moving to charge up.</div></div><span class="itag t-c">Unique</span></div>
+        <div class="itm"><div><div class="iname">Common mistake</div><div class="inote">The screen says "approach Tenebrum" but you need to FLY toward it, not walk. If you die and retry, you must redo the push-block puzzle first.</div></div><span class="itag t-s">Watch out</span></div>
+        <div class="itm"><div><div class="iname">Lasers</div><div class="inote">3-laser burst attack shoots through pillars — can't hide from them. Blocking doesn't work. Just dodge. A single weaker laser fires between regular attacks; that one does much less damage.</div></div><span class="itag t-s">Dodge</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">Kearush the Slayer</div>
+        <div class="acc-verdict v-ctx">Ch. 5 · Serkis Estate / Demeniss</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="iname">Large beast / primate · Ch. 5 "Uninvited Guest" quest · Hernand banquet then Demeniss</div></div><span class="itag t-c">Ch. 5</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Standard dodge-and-punish. Watch for recovery frames after heavy swings before committing to a combo. Patch 1.00.03 adjusted some attack patterns — less punishing than launch.</div></div><span class="itag t-c">Medium</span></div>
+        <div class="itm"><div><div class="iname">Weakness</div><div class="inote">Fire damage / Burn status — a flame-imbued weapon scorches fur, stunning for several seconds. Fire Spear drops from random bandits. If you have one, use it here.</div></div><span class="itag t-k">Fire weakness</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">The Grove's Thorn, Swift I, Howling of Chaos. Don't skip Damiane's post-fight dialogue — feeds directly into the next quest.</div></div><span class="itag t-k">Reward</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">Crowcaller (Draven) — fought twice</div>
+        <div class="acc-verdict v-ctx">Ch. 5 · Black and White quest</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Encounters</div><div class="inote">Round 1: Graveyard — a preview fight. Round 2: After Spire of Soaring and Crescent Skybridge puzzles — 3 phases, each progressively harder.</div></div><span class="itag t-s">3 phases</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Similar to Hornsplitter and Reed Devil — blindingly fast, dodges around the arena constantly. Dodge through his attacks (not away). Bait his weapon slam which has a long recovery window, then execute a full combo. Nature's Snare roots him, negating his speed entirely.</div></div><span class="itag t-c">Hard</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Tauria Curved Sword ⭐ — one of the best mid-game weapons thanks to Crow's Pursuit Abyss Gear. Blackwing Leather Armor, Core Blueprint: Haste.</div></div><span class="itag t-k">Best Weapon</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">⚔</div>
+        <div class="acc-label">Saigord the Staglord</div>
+        <div class="acc-verdict v-ctx">Pailune · Side boss / optional</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type</div><div class="inote">Fallen king · 3 HP bars · Hardest non-world-boss in Pailune</div></div><span class="itag t-s">3 HP bars</span></div>
+        <div class="itm"><div><div class="iname">Phase 1</div><div class="inote">Standard sword-and-shield chains. Use Parry-Counter for reliable damage.</div></div><span class="itag t-c">Manageable</span></div>
+        <div class="itm"><div><div class="iname">Phase 2</div><div class="inote">Adds leaping overhead slashes and ground shockwaves. Keep mobile.</div></div><span class="itag t-c">Harder</span></div>
+        <div class="itm"><div><div class="iname">Phase 3</div><div class="inote">Fury state — significantly faster swing speed. Do NOT rush. Turning Slash Mastery with Super Armor Break is essential for interrupting Two-Hand Sword Strike. Methodical parrying is the winning approach.</div></div><span class="itag t-s">Brutal</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Staglord's Shield (A-tier — Fortification I gives Defense +3)</div></div><span class="itag t-k">Shield reward</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">White Horn</div>
+        <div class="acc-verdict v-ctx">Pailune region · Optional world boss</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type</div><div class="inote">Massive yeti-reindeer hybrid · 2 phases · Apex predator</div></div><span class="itag t-s">World boss</span></div>
+        <div class="itm"><div><div class="iname">Phase 1</div><div class="inote">Throws boulders at distance, charges across arena, disorienting roars that temporarily invert controls. Horns apply Knockdown on close-range attacks.</div></div><span class="itag t-c">Hard</span></div>
+        <div class="itm"><div><div class="iname">Critical weakness</div><div class="inote">Fire damage and Burn status. Torch environmental objects in the arena to create fire hazards, then kite him through them. Sustained burn is this fight's easiest strategy.</div></div><span class="itag t-k">Fire weakness</span></div>
+        <div class="itm"><div><div class="iname">Phase 2</div><div class="inote">Adds ice breath — dodge horizontally, not forward rolling. Fire attacks remain the primary weakness in this phase too.</div></div><span class="itag t-s">Ice added</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-red">⚔</div>
+        <div class="acc-label">Fortain, the Cursed Knight</div>
+        <div class="acc-verdict v-ctx">Ch. 8 · Demeniss campaign</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type &amp; location</div><div class="inote">Cursed knight · Ch. 8 "To Demeniss" arc</div></div><span class="itag t-c">Ch. 8</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Aggressive spear-wielding warlord who closes distance rapidly. Her spinning spear combo is her most dangerous move — dodge THROUGH it (not away) to get inside the follow-up radius. Shield Bash immediately after dodging her combo creates a free attack window.</div></div><span class="itag t-c">Hard</span></div>
+        <div class="itm"><div><div class="iname">Phase 2 (below 50% HP)</div><div class="inote">Gains a lunge attack from maximum range. Stay mobile and dodge toward her after the lunge to stay inside her attack radius.</div></div><span class="itag t-s">Lunge added</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Her spear is obtainable post-fight — one of the game's strongest early polearms</div></div><span class="itag t-k">Spear reward</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">⚔</div>
+        <div class="acc-label">Queen Stoneback Crab</div>
+        <div class="acc-verdict v-ctx">Optional · Shadow of the Colossus style</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Mechanic</div><div class="inote">Colossal beast — ground attacks are ineffective. You must climb her shell and destroy silver weak-point patches. She constantly bucks and rears to throw Kliff off.</div></div><span class="itag t-s">Unique</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Use Fist of Flame (Burn) to stall her rearing animation while you climb. Target weak points in sequence from tail to head. Standing in her saliva pools applies poison — avoid them.</div></div><span class="itag t-c">Patience needed</span></div>
+        <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Excellent crafting material drops. One of the most unique fight designs in the game.</div></div><span class="itag t-k">Crafting mats</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-gold">⚔</div>
+        <div class="acc-label">Storm Crusher (Tank boss)</div>
+        <div class="acc-verdict v-ctx">Delesyia · Fortress boss</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type</div><div class="inote">Mechanical fire tank · 1 HP bar · Aeronautical Research Base fortress</div></div><span class="itag t-c">Mech</span></div>
+        <div class="itm"><div><div class="iname">Strategy A — aggressive</div><div class="inote">Damage the top turret to stun it and blow off its lid, exposing a weak spot. Climb on top and hit the weak spot for massive damage.</div></div><span class="itag t-k">Climb &amp; stab</span></div>
+        <div class="itm"><div><div class="iname">Strategy B — cheese</div><div class="inote">Find the stairs on the left-hand side of the area. Homing missiles hit the floor there. Dip in and out to bait missiles, then use Focused Shot + rapid-fire arrows from that safe spot.</div></div><span class="itag t-c">Cheese spot</span></div>
+        <div class="itm"><div><div class="iname">Up close</div><div class="inote">Ramming attack at close range can one-shot Kliff. At range, fires homing fire projectiles — block with Nature's Snare.</div></div><span class="itag t-s">One-shot risk</span></div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="togAcc(this)">
+        <div class="acc-icon ic-blue">⚔</div>
+        <div class="acc-label">Golden Star (Mechanical Dragon)</div>
+        <div class="acc-verdict v-ctx">Delesyia · Aerial boss fight</div>
+        <div class="acc-chev">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="itm"><div><div class="iname">Type</div><div class="inote">Massive mechanical dragon · Delesyia · Fought entirely while riding a Wyvern mount</div></div><span class="itag t-s">Wyvern combat</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Pure aerial combat — entirely different fight design. Stay mobile on the Wyvern and target weak spots exposed during its attack animations. One of the most visually spectacular fights in the game.</div></div><span class="itag t-c">Hard</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">General boss tips</div>
+    <div class="card-grid card-grid-2">
+      <div class="card ag">
+        <span class="bdg b-grn">Observation Learning</span>
+        <h3>Watch bosses to earn free skills</h3>
+        <small>Every boss has an Observation Learning prompt during unique animations. Hold the observe button to bank a technique. These skills cost zero Abyss Artifacts and persist through respecs. Don't skip optional bosses — they teach rare abilities unavailable elsewhere.</small>
+      </div>
+      <div class="card al">
+        <span class="bdg b-gold">Super Armor &amp; stagger</span>
+        <h3>Know when to interrupt</h3>
+        <small>Bosses have Super Armor on specific attacks — standard strikes won't interrupt these. You need Super Armor Break from Turning Slash Mastery or Stab Mastery to interrupt them. Watch for the Super Armor animation and back off rather than trading hits.</small>
+      </div>
+      <div class="card aa">
+        <span class="bdg b-amb">Difficulty was patched</span>
+        <h3>Post-patch 1.00.03 changes</h3>
+        <small>Pearl Abyss reduced HP and attack of several bosses. Stamina consumption for blocking reduced. Stun gauge now accumulates faster on successful parries. Boss weakness effects display without needing prior knowledge. Game is more forgiving than at launch.</small>
+      </div>
+      <div class="card ab">
+        <span class="bdg b-blue">Weapon tip for all bosses</span>
+        <h3>Tauria + Nature's Echo = strongest</h3>
+        <small>Tauria Curved Sword (Crowcaller drop, Ch. 5) + Nature's Echo skill (Green tree) is the highest DPS combo in the mid-game. Nature's Echo duplicates heavy attacks — combined with Tauria's speed it melts health bars. Priority skill investment.</small>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-bosses -->
+
+<!-- ════════════════════════ TAB: BUILDS & WEAPONS ════════════════════════ -->
+<div id="panel-builds" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Weapon type tier list</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Weapon stats equalize through reinforcement — what separates weapons are their Abyss Gears, combo flow, and playstyle. There are no truly bad weapons. Equip multiple and switch mid-combo.</div></div>
+
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Tier</th><th>Weapon type</th><th>Strength</th><th>Best for</th><th>Character</th></tr></thead>
+        <tbody>
+          <tr><td><span class="bdg b-gold" style="margin:0">S+</span></td><td>Bare Hands / Fists</td><td style="color:var(--text-dm);font-size:12px">Universal combo extender &amp; finisher for every weapon. Blinding Flash Finisher is one of the game's most powerful attacks. Free skills from watching enemies — no Artifact cost.</td><td style="color:var(--grn-lt);font-size:12px">Every build</td><td style="color:var(--text-dm);font-size:12px">All</td></tr>
+          <tr><td><span class="bdg b-gold" style="margin:0">S</span></td><td>Greatsword (Two-handed)</td><td style="color:var(--text-dm);font-size:12px">Best crowd damage, great reach, satisfying combos. Invulnerability i-frame on large heavy attack. 5 Abyss Gear slots.</td><td style="color:var(--grn-lt);font-size:12px">Fortress clearing, crowd</td><td style="color:var(--text-dm);font-size:12px">Kliff</td></tr>
+          <tr><td><span class="bdg b-gold" style="margin:0">S</span></td><td>Spear / Lance</td><td style="color:var(--text-dm);font-size:12px">Best reach. Evasive Slash counter (unlock at Armed Combat Lv. 3) is considered overpowered — safer than standard parry, blocks unblockable attacks. 5 Abyss Gear slots.</td><td style="color:var(--grn-lt);font-size:12px">Boss fights, mid-range</td><td style="color:var(--text-dm);font-size:12px">Kliff</td></tr>
+          <tr><td><span class="bdg b-gold" style="margin:0">S</span></td><td>Pistol</td><td style="color:var(--text-dm);font-size:12px">Built-in dodge after every shot. Extends aerial combos in ways no other ranged weapon can. Primary-weapon viable, not just support.</td><td style="color:var(--grn-lt);font-size:12px">Mobile / aerial builds</td><td style="color:var(--text-dm);font-size:12px">Damiane</td></tr>
+          <tr><td><span class="bdg b-silv" style="margin:0">A</span></td><td>Sword (One-handed)</td><td style="color:var(--text-dm);font-size:12px">Best all-rounder. Safe, pairs with shield. Lowest skill floor. Dual-wield converts it to a fast AoE grinder. 3 Abyss Gear slots (shield adds 2 more).</td><td style="color:var(--grn-lt);font-size:12px">Beginners, shield builds</td><td style="color:var(--text-dm);font-size:12px">Kliff, Damiane</td></tr>
+          <tr><td><span class="bdg b-silv" style="margin:0">A</span></td><td>Axe / Hammer</td><td style="color:var(--text-dm);font-size:12px">Best AoE &amp; crowd control. Slow but sends enemies flying. Dual-wield with sword for stun-lock into finisher combo.</td><td style="color:var(--grn-lt);font-size:12px">Crowd control, AoE</td><td style="color:var(--text-dm);font-size:12px">Oongka</td></tr>
+          <tr><td><span class="bdg b-silv" style="margin:0">A</span></td><td>Rapier</td><td style="color:var(--text-dm);font-size:12px">Fast attacks, powerful riposte that deals colossal damage when triggered. Niche weapon — excels in Damiane's hands due to riposte scaling.</td><td style="color:var(--grn-lt);font-size:12px">Counter-attack builds</td><td style="color:var(--text-dm);font-size:12px">Damiane</td></tr>
+          <tr><td><span class="bdg b-silv" style="margin:0">A</span></td><td>Bow</td><td style="color:var(--text-dm);font-size:12px">Grey Wolf Bow — starter ranged weapon, very easy to upgrade. Charged Shot one-shots animals for meat farming. Good at range, weak up close.</td><td style="color:var(--grn-lt);font-size:12px">Ranged, food farming</td><td style="color:var(--text-dm);font-size:12px">Kliff</td></tr>
+          <tr><td><span class="bdg b-blue" style="margin:0">B</span></td><td>Dagger</td><td style="color:var(--text-dm);font-size:12px">Stealth assassination tool only — not a combat weapon. Use for stealing and stealth kills, then switch to real weapons.</td><td style="color:var(--grn-lt);font-size:12px">Stealth only</td><td style="color:var(--text-dm);font-size:12px">Any</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Best early weapons to grab</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Weapon</th><th>How to get</th><th>Why it's good</th><th>Chapter</th></tr></thead>
+        <tbody>
+          <tr><td>Hollow Visage Katana</td><td style="color:var(--text-dm);font-size:12px">Waterfall cave south of map, near Reed Devil boss area</td><td style="color:var(--grn-lt);font-size:12px">14 ATK, pre-loaded Abyss Artifacts for Critical Rate + Attack Speed. Strongest early one-hander.</td><td style="color:var(--text-dm);font-size:12px">Ch. 2–3</td></tr>
+          <tr><td>Hwando (Katana-sword)</td><td style="color:var(--text-dm);font-size:12px">Lioncrest Manor / Hernand area (Crêtelion Manor NW of Hernand)</td><td style="color:var(--grn-lt);font-size:12px">Strong early two-hander with Abyss Gears already embedded. Huge early power spike.</td><td style="color:var(--text-dm);font-size:12px">Ch. 1–2</td></tr>
+          <tr><td>Sword of the Lord</td><td style="color:var(--text-dm);font-size:12px">Kailok boss drop (Ch. 2)</td><td style="color:var(--grn-lt);font-size:12px">First weapon with Abyss Gear + Lv. 2 attack speed. Great for dual-wielding.</td><td style="color:var(--text-dm);font-size:12px">Ch. 2</td></tr>
+          <tr><td>Tauria Curved Sword</td><td style="color:var(--text-dm);font-size:12px">Crowcaller boss drop (Ch. 5)</td><td style="color:var(--grn-lt);font-size:12px">Crow's Pursuit Abyss Gear makes it top-tier mid-game. Combine with Nature's Echo for highest DPS.</td><td style="color:var(--text-dm);font-size:12px">Ch. 5</td></tr>
+          <tr><td>Rhett's Longsword</td><td style="color:var(--text-dm);font-size:12px">Complete Rhett's quest in Hernand</td><td style="color:var(--grn-lt);font-size:12px">Best early two-handed sword from quests. 5 Abyss Gear slots.</td><td style="color:var(--text-dm);font-size:12px">Ch. 1–2</td></tr>
+          <tr><td>Dual Axes</td><td style="color:var(--text-dm);font-size:12px">Underbridge area — one in a tree stump, one on a rock. Accessible right after prologue.</td><td style="color:var(--grn-lt);font-size:12px">12 ATK each. Free early-game AoE option before you can buy anything better.</td><td style="color:var(--text-dm);font-size:12px">Prologue</td></tr>
+          <tr><td>Darkbringer / Frozen Anguish</td><td style="color:var(--text-dm);font-size:12px">Exploration (Dead Fire Mountains and similar areas)</td><td style="color:var(--grn-lt);font-size:12px">Both available before Ch. 5. Each comes with 3 Abyss Gears pre-loaded — massive power.</td><td style="color:var(--text-dm);font-size:12px">Ch. 3–4</td></tr>
+          <tr><td>Fated Shadow</td><td style="color:var(--text-dm);font-size:12px">Ch. 9 — story progression</td><td style="color:var(--grn-lt);font-size:12px">Strongest one-hander in the game. ATK 25, Greysoul Howling adds phantom strikes to Turning Slash.</td><td style="color:var(--text-dm);font-size:12px">Ch. 9</td></tr>
+          <tr><td>Soul Spear</td><td style="color:var(--text-dm);font-size:12px">Late game exploration</td><td style="color:var(--grn-lt);font-size:12px">Highest raw ATK stat in the game (27). Fires spectral projectiles. Best endgame spear.</td><td style="color:var(--text-dm);font-size:12px">Late</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>You can extract Abyss Gears from any weapon at the Witch and re-socket into other equipment with zero penalty. A weak weapon with a great Abyss Gear is still worth picking up — grab the gear, not the weapon.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Abyss system — skill trees &amp; artifact priorities</div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Each character has their own separate tree — points invested in Kliff don't carry to Damiane or Oongka. Focus all Artifacts on Kliff first. Respec costs a Faded Abyss Artifact (rare) — plan carefully before spending.</div></div>
+
+    <div class="grid3" style="margin-bottom:1rem">
+      <div class="card ab">
+        <span class="bdg b-blue">Blue tree — Endurance</span>
+        <h3>Armed combat, dodges, attacks, gliding</h3>
+        <small>Goes up to Lv. 16. The heart of your DPS. Invest heavily early — Stamina 200 threshold unlocks faster climbing speed and extended dodge chains. Essential for all combat styles.</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Red tree — Health</span>
+        <h3>Max HP, mobility, aerial skills</h3>
+        <small>Goes up to Lv. 18. Raw survival. Health Lv. 4 is a minimum before any mid-game boss. More HP = more room to heal while attacking. Aerial skills unlock here too.</small>
+      </div>
+      <div class="card ag">
+        <span class="bdg b-grn">Green tree — Mind</span>
+        <h3>Energy, counters, stun, Force Palm</h3>
+        <small>Combat control tree. Nature's Echo (duplicates heavy attacks), Nature's Snare (roots enemies), Force Palm upgrades live here. High value after core Blue/Red investments are done.</small>
+      </div>
+    </div>
+
+    <div class="section-title" style="font-size:10px;margin-bottom:.75rem">Priority skill unlocks</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Skill</th><th>Tree</th><th>Why it's priority</th></tr></thead>
+        <tbody>
+          <tr><td>Blinding Flash</td><td style="color:var(--text-dm)">Early unlock</td><td style="color:var(--text-dm);font-size:12px">Reveals Abyss Nexuses, solves puzzles, blinds enemies, sets vines on fire, reveals boss weak spots, detects Sealed Artifacts</td></tr>
+          <tr><td>Nature's Echo</td><td style="color:var(--text-dm)">Green</td><td style="color:var(--text-dm);font-size:12px">Duplicates heavy attacks — combined with Tauria Curved Sword it's the highest DPS combo in mid-game</td></tr>
+          <tr><td>Quick Swap</td><td style="color:var(--text-dm)">Blue</td><td style="color:var(--text-dm);font-size:12px">Weapon swapping mid-combo — core to the combat system. Unlock early to enable full combo architecture</td></tr>
+          <tr><td>Nature's Snare</td><td style="color:var(--text-dm)">Green</td><td style="color:var(--text-dm);font-size:12px">Roots enemies completely — negates boss speed entirely (especially Crowcaller and Hornsplitter)</td></tr>
+          <tr><td>Evasive Slash (Spear)</td><td style="color:var(--text-dm)">Blue / Armed Lv.3</td><td style="color:var(--text-dm);font-size:12px">Counter stance safer than standard parry, blocks attacks regular guards can't. Widely considered overpowered</td></tr>
+          <tr><td>Turning Slash Mastery</td><td style="color:var(--text-dm)">Blue</td><td style="color:var(--text-dm);font-size:12px">Adds Super Armor Break — essential for interrupting boss Super Armor attack windows</td></tr>
+          <tr><td>Health Lv. 4 + Stamina Lv. 4</td><td style="color:var(--text-dm)">Red + Blue</td><td style="color:var(--text-dm);font-size:12px">Unlock these before going deeper — stats apply to all characters, and this is the survival floor for mid-game bosses</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Character builds overview</div>
+    <div class="card-grid card-grid-3">
+      <div class="card al">
+        <span class="bdg b-gold">Kliff — Starter build</span>
+        <h3>Sword of Wolf + Warspike Spear</h3>
+        <small>Sword for close pressure, Spear for reach and interrupts. Practice weapon-swapping mid-combo on regular enemies before bosses. Invest Blue (Stamina), then Red (HP), then Green (Nature's Echo). Most flexible early build.</small>
+      </div>
+      <div class="card al">
+        <span class="bdg b-gold">Kliff — Mid/endgame</span>
+        <h3>Lance (Rhett's) + Nature's Echo</h3>
+        <small>Rhett's Lance refined to Tier 4. Unlock Sharpened Lance I–V (Sealed Mastery Artifacts). Counter Posture + Tactical Thrust + Forward Strike daily rotation. Abyss Cores: Destruction I + Velocity I. Best range in the game for endgame boss hitboxes.</small>
+      </div>
+      <div class="card ag">
+        <span class="bdg b-grn">Damiane — Tactical</span>
+        <h3>Rapier + Longsword · Positioning focus</h3>
+        <small>Rapier riposte scaling makes counter-attacks hit much harder than Kliff's. Longsword excels in her hands. More punishing to build wrong — if burning healing items, check Abyss Core loadout first. Don't invest Kliff's Artifacts into Damiane until Kliff's build is set.</small>
+      </div>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <span class="bdg b-red">Oongka — Power</span>
+      <h3>Axe + Two-handed weapons · High damage, low mobility</h3>
+      <small>Axes scale better on Oongka than any other character. Two-handed hits significantly harder but you absorb more damage during wind-ups. Less forgiving than Kliff — better for players who have learned enemy patterns. Best for punish-window combat. Unlock after Ch. 7. Don't invest Artifacts until Kliff is set.</small>
+    </div>
+    <div class="tip tip-g" style="margin-top:.75rem"><span class="tip-ico">✓</span><div>Abyss Cores: socket at a Witch NPC. Attack power amplifiers and skill cooldown reducers are universally strong. Farm Sealed Abyss Artifacts — they're the primary source of higher-tier Cores. Socket costs 5→40 Silver per slot, 105 Silver total to max a weapon.</div></div>
+  </div>
+
+</div><!-- /panel-builds -->
+
+<!-- ════════════════════════ TAB: CAMP ════════════════════════ -->
+<div id="panel-camp" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Camp overview</div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-v">Ch. 3</div><div class="stat-l">When it unlocks</div></div>
+      <div class="stat"><div class="stat-v">4</div><div class="stat-l">Expansion tiers</div></div>
+      <div class="stat"><div class="stat-v">240</div><div class="stat-l">Storage slots</div></div>
+      <div class="stat"><div class="stat-v">4</div><div class="stat-l">Supply types</div></div>
+    </div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>The camp is the single most important system to stay on top of. Every expansion opens new dispatch missions, new recruits, and more passive income. Treat every new Expansion mission like a main story objective.</div></div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Camp supplies are categorized into 4 types: <strong>Food, Armaments, Stone, Timber.</strong> Donate via Carl. All 4 types feed different dispatch missions — keep all four stocked, not just one.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">How to establish and expand the camp</div>
+    <div class="priority-list">
+      <div class="pl-head">⚑ Setup sequence</div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Complete Ch. 3 Homestead quests <span class="pi-tag pt-asap">Required first</span></div>
+          <div class="pi-note">Meet Marius → receive fief from Marquis Serkis → secure tent → carry supplies → plant Greymane banner → cook 2× Modest Clear Soup at the nearby pot. Camp established at Howling Hill.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Complete "First Step to Rebuilding" &amp; "A Fresh Start" <span class="pi-tag pt-asap">Immediately</span></div>
+          <div class="pi-note">These unlock Private Storage (240 slots) and the dispatch system. Most important early unlocks — don't ignore them.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Trigger First Expansion mission <span class="pi-tag pt-early">Ch. 3</span></div>
+          <div class="pi-note">Open map → switch filter to "Factions" → hover camp icon → press Inspect. Requires: 2 recruits, 100× food, 250× silver. Sleep in tent bed to fast-forward the 17–18 in-game hour timer.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Recruit Greymane survivors via Marius <span class="pi-tag pt-early">Ch. 3</span></div>
+          <div class="pi-note">Every survivor recruits adds: their Commission request (+3 slot Medium Bag), more Freeswords for dispatch, and sometimes a new camp vendor or facility. 27 commissions total = up to +81 slots.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Complete Timberturner Wainwright missions <span class="pi-tag pt-early">Priority</span></div>
+          <div class="pi-note">Requires a Freesword with the Engineering skill. Unlocks wagon construction — essential for trade routes and passive income. Assign an Engineer recruit for best results.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">Complete "A Rumor at Glenbright Farm" <span class="pi-tag pt-early">Unlock Cook &amp; Quartermaster</span></div>
+          <div class="pi-note">Both the Cook and Quartermaster unlock simultaneously from this one mission. Gives access to food production and camp provisioning facilities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Camp buildings &amp; what they unlock</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Building / Feature</th><th>How to unlock</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>Private Storage Chest</td><td style="color:var(--text-dm);font-size:12px">Ch. 3 — behind Carl. Added in Patch 1.00.03</td><td style="color:var(--grn-lt);font-size:12px">240 item slots. Main long-term stash for anything you don't carry in the field.</td></tr>
+          <tr><td>Farm</td><td style="color:var(--text-dm);font-size:12px">Camp expansion + Greymane Sunrise quests</td><td style="color:var(--grn-lt);font-size:12px">Grow crops on a schedule. Products used for cooking, alchemy, and selling. Steadily supplies the food pool.</td></tr>
+          <tr><td>Ranch</td><td style="color:var(--text-dm);font-size:12px">Camp expansion</td><td style="color:var(--grn-lt);font-size:12px">Raise chickens, cows, goats. Fleece needed for certain armor upgrades. Meat for cooking. Passive food source.</td></tr>
+          <tr><td>Wagon Workshop (Brice)</td><td style="color:var(--text-dm);font-size:12px">Timberturner Wainwright faction quest (needs Engineer recruit)</td><td style="color:var(--grn-lt);font-size:12px">Build wagons for trade route delivery. More wagons = bigger hauls. Key passive silver income.</td></tr>
+          <tr><td>Emberwind Workshop</td><td style="color:var(--text-dm);font-size:12px">Later expansion</td><td style="color:var(--grn-lt);font-size:12px">Craft Cloudcarts (rideable hot air balloons) for aerial transport to remote areas.</td></tr>
+          <tr><td>Klinden Workshop</td><td style="color:var(--text-dm);font-size:12px">Later expansion</td><td style="color:var(--grn-lt);font-size:12px">Produce Kuku Pots for storing puzzle pieces and machinery parts.</td></tr>
+          <tr><td>Cook</td><td style="color:var(--text-dm);font-size:12px">A Rumor at Glenbright Farm quest</td><td style="color:var(--grn-lt);font-size:12px">Food production dispatch missions. Converts raw ingredients into cooked meals passively.</td></tr>
+          <tr><td>Blacksmith (Grindstone + Anvil)</td><td style="color:var(--text-dm);font-size:12px">Trial After Trial bandit camp (Ch. 2) then camp later</td><td style="color:var(--grn-lt);font-size:12px">Sharpen weapons (Grindstone) and repair armor (Anvil) — maxes Reinforcement stat for free attack/defense boost.</td></tr>
+          <tr><td>Naira's quests</td><td style="color:var(--text-dm);font-size:12px">Scattered Embers faction</td><td style="color:var(--grn-lt);font-size:12px">Unlock pets and color dyes for Kliff. Side content but worth doing.</td></tr>
+          <tr><td>Yann's quests</td><td style="color:var(--text-dm);font-size:12px">Scattered Embers faction</td><td style="color:var(--grn-lt);font-size:12px">Unlock Royal Trading system — a separate high-value trading route beyond standard wagon delivery.</td></tr>
+          <tr><td>Pailune Reconstruction (Ch. 7+)</td><td style="color:var(--text-dm);font-size:12px">After Chapter 7: Homecoming</td><td style="color:var(--grn-lt);font-size:12px">Pailune Council + Pailune Institute — large-scale reconstruction projects. Gives long-term work for dispatched recruits.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Dispatch missions — priority order &amp; tips</div>
+    <div class="priority-list">
+      <div class="pl-head">⚑ Dispatch priority order</div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">#1 — Construction / Expansion missions <span class="pi-tag pt-asap">Top priority</span></div>
+          <div class="pi-note">Anything with a build icon — ranch, farm, new facilities. Keep these running at all times until every facility is built. Each expansion raises Greymane skill caps and unlocks better missions.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">#2 — Money missions <span class="pi-tag pt-early">Fund upgrades</span></div>
+          <div class="pi-note">Return trade goods and coin. Use these to fund camp upgrades and church donations. Thornbriar Food Storage, Sungrove Manor, and Azerian Manor (Demeniss) are strong mid-game money spots.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">#3 — Food missions <span class="pi-tag pt-early">Never let food run out</span></div>
+          <div class="pi-note">Every mission type draws from the food pool — running dry stalls your entire operation. Stack food missions early and keep the food supply well ahead of demand.</div>
+        </div>
+      </div>
+      <div class="priority-item" onclick="togglePI(this)">
+        <div class="pi-cb">✓</div>
+        <div class="pi-text">
+          <div class="pi-label">#4 — Stone &amp; Timber missions <span class="pi-tag pt-mid">Resource push</span></div>
+          <div class="pi-note">Use when you're pushing toward a major camp level that needs bulk stone/lumber. The 4th Expansion alone needs 2,500× stone, 2,500× timber alongside 1,500× armaments, 4,000× food, and 100,000× silver — start stockpiling early.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:1rem">
+      <div class="card ag">
+        <span class="bdg b-grn">Recruit skills matter</span>
+        <h3>Match the right Greymane to each mission</h3>
+        <small>Each recruit has skills (Farmer, Builder, Jeweler, Craftsman, etc.). Matching the required skill = better rewards and success rates. Some missions won't start without the right skill. Check Manage Comrades before assigning.</small>
+      </div>
+      <div class="card al">
+        <span class="bdg b-gold">Sleep to fast-forward</span>
+        <h3>Dispatch runs on in-game time</h3>
+        <small>Missions take 17–18 in-game hours. Sleep at the camp tent bed to advance time while you plan your next moves. Assign max recruits per mission — extra bodies generate bonus rewards on completion.</small>
+      </div>
+      <div class="card ab">
+        <span class="bdg b-blue">Camp stuck? Check journal</span>
+        <h3>9 out of 10 times it's a missed Sunrise quest</h3>
+        <small>If progression feels blocked, open Journal → Faction Quests → Greymane Grounds of the Sunrise. Find any quest with a camp icon. Talk to Marius whenever new Greymanes arrive — his quests unlock new people and facilities.</small>
+      </div>
+      <div class="card aa">
+        <span class="bdg b-amb">Late game — Gorthak Ironworks</span>
+        <h3>Best production location</h3>
+        <small>After Ch. 10, Gorthak Ironworks (Delesyia) becomes available and produces thousands of armaments per run. This is your primary endgame armament source for final expansion requirements.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Free camp loot</div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>As the camp levels up, items and resources respawn over time in the camp area — free to take. Includes 100s of arrows, stacks of meat and herbs, silver coins, and crafting materials. Check camp regularly between quests.</div></div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Carl can also retrieve items you accidentally left behind in the field ("Drop" items, not sold). Different from the Private Storage Chest. Check it regularly — there's a 240-slot cap on items Carl holds.</div></div>
+  </div>
+
+</div><!-- /panel-camp -->
+
 </div><!-- /panel-wrap -->
 
 <script>
+// ── PYWEL REGION MAP ──
+const REGIONS = {
+  hernand: {
+    name: 'Hernand',
+    sub: 'Lush grasslands · Starting region',
+    chap: 'Ch. 1–4',
+    chapColor: '#d4904a',
+    desc: 'The most content-dense region in the game and where Kliff\'s journey begins. Home to the City of Hernand, Lioncrest Manor, Shadow\'s Whisper Cave, and the Greymane\'s first safe haven. Fully explorable from the start.',
+    quests: [
+      { name: 'Ch. 1 — Trials of Kindness (5 quests)', tag: 'Story', color: '#c9963e' },
+      { name: 'Ch. 2 — Golden Greed · Matthias & Kailok bosses', tag: '⚔ Bosses', color: '#e06060' },
+      { name: 'Hernand Commissions (14+ Medium Bags)', tag: 'Bags', color: '#6db86d' },
+      { name: 'House Roberts · Estate in Dismay', tag: 'Priority', color: '#e8b86a' },
+      { name: 'Palmar Pill recipe — Shadow\'s Whisper Cave', tag: 'Get early', color: '#6db86d' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/hernand',
+    mapUrl: 'https://game8.co/games/Crimson-Desert/archives/585760',
+  },
+  pailune: {
+    name: 'Pailune',
+    sub: 'Icy north · Greymane homeland',
+    chap: 'Ch. 6–7',
+    chapColor: '#5a90c0',
+    desc: 'Frozen tundra and icy mountains — spiritual home of the Greymanes. Howling Hill and the Greymane Camp are located here. Arrives in the story during Ch. 6 and is the site of the decisive Battle at Silverwolf Mountain in Ch. 7.',
+    quests: [
+      { name: 'Ch. 3 — Greymane Camp at Howling Hill (storage unlocks)', tag: 'Ch. 3', color: '#6db86d' },
+      { name: 'Ch. 6 — Cracks in the Shield (4 arcs, 15 quests)', tag: 'Story', color: '#c9963e' },
+      { name: 'Ch. 7 — Homecoming · Battle at Silverwolf Mt.', tag: '⚔ Boss', color: '#e06060' },
+      { name: 'Pailune Militia — 27 faction quests', tag: 'Faction', color: '#5a90c0' },
+      { name: 'Antumbra Order — Cloister of Ruination (Abyss Artifact)', tag: '🔑 Key', color: '#e8b86a' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/pailune',
+    mapUrl: 'https://pywelmap.com/',
+  },
+  demeniss: {
+    name: 'Demeniss',
+    sub: 'Capital · Political & military hub',
+    chap: 'Ch. 5, 8',
+    chapColor: '#9a7ab4',
+    desc: 'The seat of political and military power in Pywel. Imposing castles, ancient temples, and regal architecture. First visited briefly in Ch. 5 — but most faction content gates behind story progression. Returns in Ch. 8 for the Blood Coronation arc.',
+    quests: [
+      { name: 'Ch. 5 — Guest Unbidden · Kearush & Crowcaller bosses', tag: '⚔ Bosses', color: '#e06060' },
+      { name: 'Ch. 8 — Blood Coronation · Fortain the Cursed Knight', tag: '⚔ Boss', color: '#e06060' },
+      { name: 'Demeniss\'s Politics — 5 faction quests', tag: 'Faction', color: '#5a90c0' },
+      { name: 'Most faction quests gate-locked — push story first', tag: '⚠ Note', color: '#d4904a' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/demeniss',
+    mapUrl: 'https://pywelmap.com/',
+  },
+  delesyia: {
+    name: 'Delesyia',
+    sub: 'Tech region · Mechanical wonders',
+    chap: 'Ch. 10–11',
+    chapColor: '#c9963e',
+    desc: 'The most scientifically advanced region on the continent. Mechanical beings, robots, and otherworldly creatures alongside sophisticated cities. Features the City of Steel and the Cloud Castle Orbian. Home to the Golden Star mechanical dragon boss.',
+    quests: [
+      { name: 'Ch. 10 — Counterattack · War machines & ironwork', tag: 'Story', color: '#c9963e' },
+      { name: 'Ch. 11 — Truth and Reality · City of Steel', tag: 'Story', color: '#c9963e' },
+      { name: 'Cloud Castle Orbian — penultimate boss sequence', tag: '⚔ Boss', color: '#e06060' },
+      { name: 'Golden Star — mechanical dragon boss', tag: '⚔ Boss', color: '#e06060' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/delesyia',
+    mapUrl: 'https://gamerant.com/map/crimson-desert-complete-delesyia-full-interactive-map/',
+  },
+  crimson: {
+    name: 'Crimson Desert',
+    sub: 'Lawless desert · Crimson sands',
+    chap: 'Ch. 9',
+    chapColor: '#c97050',
+    desc: 'The namesake region — a barren, crimson-sand desert with no central government and no rules. Home to all types of brigands and dangerous creatures. Features the Cloister of Enlightenment and Jijeong Temple for Ch. 9\'s spiritual trials.',
+    quests: [
+      { name: 'Ch. 9 — The Sage of the Desert (25 quests — longest)', tag: 'Story', color: '#c9963e' },
+      { name: 'Cloister of Enlightenment — Kliff\'s spiritual trials', tag: 'Story', color: '#c9963e' },
+      { name: 'Jijeong Temple — facing the inner self', tag: 'Story', color: '#c9963e' },
+      { name: 'Black Witch — chapter climax boss', tag: '⚔ Boss', color: '#e06060' },
+      { name: 'Most lawless region — prep consumables before entering', tag: '⚠ Note', color: '#d4904a' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/crimson-desert-region',
+    mapUrl: 'https://pywelmap.com/',
+  },
+  abyss: {
+    name: 'The Abyss',
+    sub: 'Floating sky islands · Separate dimension',
+    chap: 'Ch. 12',
+    chapColor: '#8a8ed4',
+    desc: 'A mysterious realm of floating sky islands above the main continent — connected to Pywel through falling Abyss fragments. Source of all Abyss Artifacts and the Sealed Abyss Artifacts scattered across Pywel. Site of the final battle.',
+    quests: [
+      { name: 'Ch. 12 — The Abyss (8 quests — shortest chapter)', tag: 'Final', color: '#8a8ed4' },
+      { name: 'Forbidden Gate — enter the Void', tag: 'Story', color: '#c9963e' },
+      { name: 'Final boss sequence — climactic confrontation', tag: '⚔ Final', color: '#e06060' },
+      { name: '47 Abyss Nexus fast travel points across Pywel', tag: 'Explore', color: '#5a90c0' },
+      { name: '141 Sealed Abyss Artifacts — collect for challenges', tag: 'Collect', color: '#6db86d' },
+    ],
+    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/the-abyss',
+    mapUrl: 'https://pywelmap.com/',
+  },
+};
+
+let activeRegion = null;
+
+function selectRegion(id) {
+  const r = REGIONS[id];
+  if (!r) return;
+  activeRegion = id;
+
+  // Update SVG fills — dim all, highlight selected
+  document.querySelectorAll('.region-fill').forEach(el => {
+    el.style.opacity = '0.4';
+    el.style.filter = 'brightness(0.5)';
+  });
+  const active = document.querySelector(`#mr-${id} .region-fill`);
+  if (active) {
+    active.style.opacity = '1';
+    active.style.filter = 'brightness(1.4)';
+  }
+
+  // Update border colour on map info
+  const infoBox = document.getElementById('map-info');
+  const colors = {
+    hernand:'#4a8a4a', pailune:'#3a6a9a', demeniss:'#6a4a9a',
+    delesyia:'#9a7030', crimson:'#9a4820', abyss:'#4a4e8a'
+  };
+  infoBox.style.borderColor = colors[id] || 'var(--border2)';
+
+  // Hide default, show data
+  document.getElementById('map-default').style.display = 'none';
+  document.getElementById('map-data').style.display = 'block';
+  document.getElementById('map-hint').style.display = 'none';
+
+  // Populate fields
+  document.getElementById('ri-name').textContent = r.name;
+  document.getElementById('ri-sub').textContent = r.sub;
+  const chapEl = document.getElementById('ri-chap');
+  chapEl.textContent = r.chap;
+  chapEl.style.cssText = `font-size:10px;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:2px;background:${r.chapColor}18;color:${r.chapColor};border:1px solid ${r.chapColor}33`;
+  document.getElementById('ri-desc').textContent = r.desc;
+
+  // Quests
+  const qContainer = document.getElementById('ri-quests');
+  qContainer.innerHTML = '';
+  r.quests.forEach(q => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:flex-start;gap:7px;font-size:12px;';
+    row.innerHTML = `<span style="flex-shrink:0;font-size:10px;padding:1px 6px;border-radius:12px;margin-top:1px;background:${q.color}18;color:${q.color};border:1px solid ${q.color}33;white-space:nowrap">${q.tag}</span><span style="color:var(--text);line-height:1.5">${q.name}</span>`;
+    qContainer.appendChild(row);
+  });
+
+  // Links
+  const wikiBtn = document.getElementById('ri-wiki');
+  wikiBtn.textContent = r.name + ' — wiki page ↗';
+  wikiBtn.onclick = () => openLink(r.wikiUrl);
+
+  const mapBtn = document.getElementById('ri-map');
+  mapBtn.onclick = () => openLink(r.mapUrl);
+}
+
+// Responsive: stack map vertically on mobile
+function checkMapLayout() {
+  const wrap = document.getElementById('map-wrap');
+  if (!wrap) return;
+  wrap.style.gridTemplateColumns = window.innerWidth < 680 ? '1fr' : '1fr 300px';
+}
+window.addEventListener('resize', checkMapLayout);
+checkMapLayout();
+
 // ── QUEST SUB-TABS ──
 function switchQTab(id, btn) {
   document.querySelectorAll('.qtab-panel').forEach(p => p.style.display = 'none');
@@ -1371,13 +2750,51 @@ function switchQTab(id, btn) {
   btn.style.borderBottomColor = 'var(--gold)';
 }
 
+// ── MENU TOGGLE ──
+function toggleMenu() {
+  const dd = document.getElementById('tab-dropdown');
+  const ov = document.getElementById('tab-overlay');
+  const btn = document.getElementById('menu-toggle');
+  const icon = document.getElementById('menu-icon');
+  const isOpen = dd.classList.contains('open');
+  dd.classList.toggle('open', !isOpen);
+  ov.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  icon.textContent = isOpen ? '≡' : '✕';
+}
+
+function closeMenu() {
+  document.getElementById('tab-dropdown').classList.remove('open');
+  document.getElementById('tab-overlay').classList.remove('open');
+  document.getElementById('menu-toggle').classList.remove('open');
+  document.getElementById('menu-icon').textContent = '≡';
+}
+
 // ── TAB SWITCHING ──
-function switchTab(id, btn) {
+function pickTab(id, label, gridBtn) {
+  // Hide all panels
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // Deactivate all grid buttons
+  document.querySelectorAll('.tab-grid-btn').forEach(b => b.classList.remove('active'));
+  // Show target panel
   document.getElementById('panel-' + id).classList.add('active');
-  btn.classList.add('active');
+  // Mark grid button active
+  if (gridBtn) gridBtn.classList.add('active');
+  else {
+    const btn = document.getElementById('tgb-' + id);
+    if (btn) btn.classList.add('active');
+  }
+  // Update breadcrumb
+  document.getElementById('active-tab-name').textContent = label;
+  // Close menu and scroll to top
+  closeMenu();
   window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Legacy alias so any old switchTab() calls still work
+function switchTab(id, _btn) {
+  const labels = {inventory:'Inventory',items:'Items Guide',trading:'Trading',quests:'Quests',bosses:'Bosses',builds:'Builds & Weapons',camp:'Camp',crafting:'Crafting',mounts:'Mounts & Pets',characters:'Characters',secrets:'Secrets',early:'Early Game'};
+  pickTab(id, labels[id] || id, null);
 }
 
 // ── ACCORDION ──
@@ -1458,8 +2875,8 @@ srch.addEventListener('input', function() {
     el.className = 'srch-itm';
     el.innerHTML = `<div class="srch-name">${item.name}</div><span class="srch-type">${item.type}</span><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:${item.color}18;color:${item.color};border:1px solid ${item.color}33">${item.verdict}</span>`;
     el.onclick = () => {
-      const tabBtn = document.querySelector(`.tab-btn:nth-child(${['inventory','items','trading','quests','early'].indexOf(item.tab)+1})`);
-      if (tabBtn) switchTab(item.tab, tabBtn);
+      const labels = {inventory:'Inventory',items:'Items Guide',trading:'Trading',quests:'Quests',bosses:'Bosses',builds:'Builds & Weapons',camp:'Camp',crafting:'Crafting',mounts:'Mounts & Pets',characters:'Characters',secrets:'Secrets',early:'Early Game'};
+      pickTab(item.tab, labels[item.tab] || item.tab, null);
       drop.style.display = 'none';
       srch.value = '';
     };
@@ -1543,40 +2960,90 @@ function shouldSkip(text) {
   return SKIP_PATTERNS.some(p => lower.includes(p));
 }
 
+// ── URL POPUP — shows URL to copy when links can't open directly ──
+(function() {
+  // Create the popup bar
+  const bar = document.createElement('div');
+  bar.id = 'url-popup';
+  bar.style.cssText = [
+    'position:fixed;top:0;left:0;right:0;z-index:9999',
+    'background:#1a1915;border-bottom:2px solid #c9963e',
+    'padding:10px 16px;display:none;align-items:center;gap:10px',
+    'font-family:"DM Sans",sans-serif;font-size:13px',
+    'box-shadow:0 4px 24px rgba(0,0,0,.6)'
+  ].join(';');
+
+  bar.innerHTML = `
+    <span style="color:#c9963e;font-size:11px;font-weight:600;letter-spacing:.08em;white-space:nowrap;text-transform:uppercase">Open URL ↗</span>
+    <input id="url-input" readonly style="
+      flex:1;background:#0e0d0b;border:1px solid #3d3930;border-radius:5px;
+      padding:6px 10px;font-size:12px;color:#ddd7c8;font-family:monospace;
+      outline:none;cursor:text;min-width:0
+    "/>
+    <button onclick="document.getElementById('url-input').select();document.execCommand('copy');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)"
+      style="background:#c9963e;color:#0e0d0b;border:none;border-radius:5px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif">
+      Copy
+    </button>
+    <button onclick="document.getElementById('url-popup').style.display='none'"
+      style="background:none;border:1px solid #3d3930;border-radius:5px;padding:6px 10px;font-size:12px;color:#6e6860;cursor:pointer;font-family:'DM Sans',sans-serif">
+      ✕
+    </button>
+  `;
+  document.body.appendChild(bar);
+
+  window.openLink = function(url) {
+    document.getElementById('url-input').value = url;
+    bar.style.display = 'flex';
+    setTimeout(() => {
+      const input = document.getElementById('url-input');
+      input.select();
+      // also try direct navigation as fallback — works when downloaded locally
+      try { window.open(url, '_blank'); } catch(e) {}
+    }, 50);
+  };
+})();
+
 function injectQuestLinks() {
-  // Target .quest-name elements (not inside .iname which are item names)
   const questNames = document.querySelectorAll('.quest-name');
 
   questNames.forEach(el => {
-    // Skip if already processed or contains a link
-    if (el.dataset.linked || el.querySelector('a')) return;
+    if (el.dataset.linked || el.querySelector('.ql-wiki')) return;
     el.dataset.linked = '1';
 
     const rawText = el.textContent.trim();
     if (shouldSkip(rawText)) return;
 
-    // Extract just the quest name part (before any "—" note)
     const namePart = rawText.split('—')[0].split('·')[0].split('boss')[0].trim();
     if (namePart.length < 3) return;
 
     const lower = namePart.toLowerCase();
     const slug = SLUG_OVERRIDES[lower] || toSlug(namePart);
-    const wikiUrl  = WIKI_BASE + slug;
+    const wikiUrl   = WIKI_BASE + slug;
     const googleUrl = GOOGLE_BASE + encodeURIComponent('"' + namePart + '" Crimson Desert');
 
-    // Build the link cluster
     const links = document.createElement('span');
     links.className = 'quest-links';
-    links.innerHTML =
-      `<a href="${wikiUrl}" target="_blank" rel="noopener" title="Open wiki page for '${namePart}'" class="ql-wiki">Wiki ↗</a>` +
-      `<a href="${googleUrl}" target="_blank" rel="noopener" title="Google '${namePart}'" class="ql-google">Google ↗</a>`;
 
+    const wBtn = document.createElement('button');
+    wBtn.className = 'ql-wiki';
+    wBtn.textContent = 'Wiki ↗';
+    wBtn.title = wikiUrl;
+    wBtn.onclick = (e) => { e.stopPropagation(); openLink(wikiUrl); };
+
+    const gBtn = document.createElement('button');
+    gBtn.className = 'ql-google';
+    gBtn.textContent = 'Google ↗';
+    gBtn.title = googleUrl;
+    gBtn.onclick = (e) => { e.stopPropagation(); openLink(googleUrl); };
+
+    links.appendChild(wBtn);
+    links.appendChild(gBtn);
     el.appendChild(links);
   });
 
-  // Also inject into table cells that contain quest names (Commissions tab)
+  // Table cells (Commissions tab)
   document.querySelectorAll('.tbl-wrap tbody td:nth-child(2)').forEach(td => {
-    if (td.dataset.linked || td.querySelector('a.ql-wiki')) return;
+    if (td.dataset.linked || td.querySelector('.ql-wiki')) return;
     td.dataset.linked = '1';
 
     const rawText = td.textContent.trim();
@@ -1584,19 +3051,28 @@ function injectQuestLinks() {
 
     const lower = rawText.toLowerCase();
     const slug = SLUG_OVERRIDES[lower] || toSlug(rawText);
-    const wikiUrl  = WIKI_BASE + slug;
+    const wikiUrl   = WIKI_BASE + slug;
     const googleUrl = GOOGLE_BASE + encodeURIComponent('"' + rawText + '" Crimson Desert');
 
     const links = document.createElement('span');
     links.className = 'quest-links';
-    links.innerHTML =
-      `<a href="${wikiUrl}" target="_blank" rel="noopener" class="ql-wiki">Wiki ↗</a>` +
-      `<a href="${googleUrl}" target="_blank" rel="noopener" class="ql-google">↗</a>`;
+
+    const wBtn = document.createElement('button');
+    wBtn.className = 'ql-wiki';
+    wBtn.textContent = 'Wiki ↗';
+    wBtn.onclick = (e) => { e.stopPropagation(); openLink(wikiUrl); };
+
+    const gBtn = document.createElement('button');
+    gBtn.className = 'ql-google';
+    gBtn.textContent = '↗';
+    gBtn.onclick = (e) => { e.stopPropagation(); openLink(googleUrl); };
+
+    links.appendChild(wBtn);
+    links.appendChild(gBtn);
     td.appendChild(links);
   });
 }
 
-// Run once on load, then again whenever an accordion opens (new DOM becomes visible)
 injectQuestLinks();
 document.addEventListener('click', e => {
   const head = e.target.closest('.acc-head, .chap-head');
