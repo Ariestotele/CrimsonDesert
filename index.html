@@ -26,6 +26,7 @@
   --amber:   #b87030;
   --amb-lt:  #d4904a;
   --blue:    #3a6a9a;
+  --abyss:   #7840c8;
   --blu-lt:  #5a90c0;
   --muted:   #635e54;
   --text:    #bfb9aa;
@@ -101,6 +102,10 @@ p{color:var(--text);margin-bottom:.6rem;font-size:14px}
 /* ── CARDS ── */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+/* card-grid aliases (same as grid2/grid3 but used in newer panels) */
+.card-grid{display:grid;gap:10px}
+.card-grid-2{grid-template-columns:1fr 1fr}
+.card-grid-3{grid-template-columns:1fr 1fr 1fr}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;transition:border-color .18s}
 .card:hover{border-color:var(--border2)}
 .card.al{border-left:3px solid var(--gold-dk)}
@@ -117,6 +122,11 @@ p{color:var(--text);margin-bottom:.6rem;font-size:14px}
 .b-grn   {background:rgba(74,138,74,.13);color:var(--grn-lt);border:1px solid rgba(74,138,74,.22)}
 .b-blue  {background:rgba(58,106,154,.13);color:var(--blu-lt);border:1px solid rgba(58,106,154,.22)}
 .b-amb   {background:rgba(184,112,48,.13);color:var(--amb-lt);border:1px solid rgba(184,112,48,.22)}
+.b-abyss {background:rgba(130,80,200,.14);color:#c09af0;border:1px solid rgba(130,80,200,.28)}
+.tip-abyss{background:rgba(130,80,200,.08);border:1px solid rgba(130,80,200,.2);color:#c09af0}
+.t-abyss{background:rgba(130,80,200,.12);color:#c09af0;border:1px solid rgba(130,80,200,.28)}
+.qt-abyss{background:rgba(130,80,200,.12);color:#c09af0;border:1px solid rgba(130,80,200,.2)}
+.ap{border-left:3px solid #7840c8}
 
 /* ── TIP BOXES ── */
 .tip{display:flex;gap:10px;padding:11px 13px;border-radius:6px;font-size:13px;line-height:1.6;margin-bottom:9px}
@@ -214,7 +224,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 .pi-note{font-size:12px;color:var(--text-dm);line-height:1.5}
 .pi-tag{display:inline-block;font-size:10px;padding:1px 7px;border-radius:20px;margin-left:6px;vertical-align:middle}
 .pt-asap{background:rgba(184,64,64,.15);color:var(--red-lt);border:1px solid rgba(184,64,64,.25)}
-.pt-early{background:rgba(201,150,62,.12);color:var(--gold-lt);border:1px solid rgba(201,150,62,.2)}
+.pt-early{background:rgba(184,112,48,.14);color:var(--amb-lt);border:1px solid rgba(184,112,48,.24)}
 .pt-mid{background:rgba(58,106,154,.12);color:var(--blu-lt);border:1px solid rgba(58,106,154,.2)}
 
 /* ── TIP CARDS (early game tips) ── */
@@ -245,6 +255,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 .qt-bag{background:rgba(74,138,74,.12);color:var(--grn-lt);border:1px solid rgba(74,138,74,.2)}
 .qt-key{background:rgba(184,64,64,.12);color:var(--red-lt);border:1px solid rgba(184,64,64,.2)}
 .qt-side{background:rgba(110,100,90,.15);color:#9a9080;border:1px solid rgba(110,100,90,.2)}
+.qt-abyss{background:rgba(130,80,200,.12);color:#c09af0;border:1px solid rgba(130,80,200,.2)}
 
 /* ── FACTION TABLE ── */
 .faction-row td.faction-name{font-weight:500;color:var(--text-ht)}
@@ -269,26 +280,41 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 /* ── QUEST GROUPS ── */
 .qgroup-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dk);padding:10px 0 4px;margin-top:6px;border-top:1px solid var(--border)}
 .quest-note{font-size:11px;color:var(--text-dm);margin-top:1px}
+/* ── QUEST SUB-TABS ── */
 .qtab-panel{}
+.qtab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:color .18s,border-color .18s}
+.qtab-btn:hover{color:var(--text)}
+.qtab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+/* quest region map layout */
+.map-wrap{display:grid;grid-template-columns:1fr 300px;gap:12px;align-items:start}
+/* sec-label alias for legacy section-title usage */
+.section-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.75rem}
 
 /* ── RESPONSIVE ── */
 @media(max-width:680px){
   header{padding:0 1rem}
   .panel-wrap{padding:1.5rem 1rem 3rem}
   .hero{padding:1.75rem 1rem 1.5rem}
-  .grid2,.grid3,.dec-grid{grid-template-columns:1fr}
+  .grid2,.grid3,.dec-grid,.card-grid-2,.card-grid-3{grid-template-columns:1fr}
   .stat-row{grid-template-columns:1fr 1fr}
   .quest-summary{grid-template-columns:1fr 1fr 1fr}
   .trade-flow{flex-direction:column}
   .t-step{border-right:none;border-bottom:1px solid var(--border)}
   .t-step:last-child{border-bottom:none}
   .chap-badges{display:none}
+  .map-wrap{grid-template-columns:1fr}
+  .qtab-btn{padding:6px 9px;font-size:11px}
 }
 
 /* ── ANIMS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .hero-inner{animation:fadeUp .45s ease both}
-.panel.active > *{animation:fadeUp .3s ease both}
+/* Children of active panels get a subtle slide-in — opacity starts at 1 so content
+   is never hidden if the animation is blocked or skipped */
+.panel.active > .sec,
+.panel.active > .priority-list,
+.panel.active > .chapter-block,
+.panel.active > .acc-item{animation:fadeUp .25s ease both}
 </style>
 </head>
 <body>
@@ -347,6 +373,11 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <span class="tgb-label">Crafting</span>
       <div class="tgb-desc">Refinement, alchemy, cooking</div>
     </button>
+    <button class="tab-grid-btn" id="tgb-cooking" onclick="pickTab('cooking','Cooking',this)">
+      <div class="tgb-icon">🍖</div>
+      <span class="tgb-label">Cooking</span>
+      <div class="tgb-desc">All recipes, HP values, efficiency</div>
+    </button>
     <button class="tab-grid-btn" id="tgb-mounts" onclick="pickTab('mounts','Mounts & Pets',this)">
       <div class="tgb-icon">🐴</div>
       <span class="tgb-label">Mounts & Pets</span>
@@ -367,6 +398,19 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <span class="tgb-label">Early Game</span>
       <div class="tgb-desc">Priority checklist & tips</div>
     </button>
+  </div>
+  <!-- Color legend -->
+  <div style="border-top:1px solid var(--border);margin-top:10px;padding-top:10px">
+    <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:.15em;color:var(--text-dm);text-transform:uppercase;margin-bottom:7px;max-width:860px;margin-left:auto;margin-right:auto">Color key</div>
+    <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:860px;margin:0 auto">
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(74,138,74,.14);color:#6db86d;border:1px solid rgba(74,138,74,.28)">🟢 Keep / Do this / Unlock</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(184,64,64,.13);color:#e06060;border:1px solid rgba(184,64,64,.22)">🔴 Boss / Danger / Sell</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(201,150,62,.14);color:#e8b86a;border:1px solid rgba(201,150,62,.22)">🟡 Reward / Story / Loot</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(58,106,154,.13);color:#5a90c0;border:1px solid rgba(58,106,154,.22)">🔵 Info / Quest / Explore</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(184,112,48,.13);color:#d4904a;border:1px solid rgba(184,112,48,.22)">🟠 Warning / Cost / Timing</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(160,155,145,.1);color:#a09585;border:1px solid rgba(160,155,145,.18)">⚪ Neutral / Label / Count</span>
+      <span style="font-size:11px;padding:2px 9px;border-radius:20px;background:rgba(130,80,200,.14);color:#c09af0;border:1px solid rgba(130,80,200,.28)">🟣 Abyss System</span>
+    </div>
   </div>
 </div>
 
@@ -461,7 +505,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
     <div class="sec-label">Storage locations</div>
     <div class="grid2" style="margin-bottom:.75rem">
       <div class="card ab">
-        <span class="bdg b-blue">Temporary</span>
+        <span class="bdg b-amb">Temporary</span>
         <h3>Freesword Encampment Chest</h3>
         <small>Inside your tent near Hernand Castle. Available from the very start. Use it immediately for items you don't need to carry.</small>
       </div>
@@ -471,7 +515,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <small>Added in Patch 1.00.03. Your main long-term stash at Howling Hill. Located behind Carl at the supply area. Unlocks when you establish camp in Ch. 3.</small>
       </div>
     </div>
-    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Housing storage furniture is confirmed for a future patch. Once live, slot pressure will drop significantly — but bag expansion stays your primary carry tool.</div></div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Housing storage furniture is confirmed for a future patch. Once live, slot pressure will drop significantly — but bag expansion stays your primary carry tool.</div></div>
     <div class="tip tip-i"><span class="tip-ico">◈</span><div>Donate unwanted items to <strong>Carl</strong> at Greymane Camp → Manage Provisions. Clears your slots and contributes to camp progression simultaneously.</div></div>
   </div>
 
@@ -532,11 +576,11 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <div class="acc-chev">▼</div>
       </div>
       <div class="acc-body">
-        <div class="itm"><div><div class="iname">Abyss Artifacts (Regular)</div><div class="inote">Boost skills and core stats. Also purchasable from vendors like Elowen the Witch north of Hernand. Embed in gear for build customization.</div></div><span class="itag t-k">Never Sell</span></div>
-        <div class="itm"><div><div class="iname">Faded Abyss Artifacts</div><div class="inote">Enables skill tree resets. Crucial for build experimentation — extremely valuable, especially early when you make mistakes.</div></div><span class="itag t-k">Never Sell</span></div>
+        <div class="itm"><div><div class="iname">Abyss Artifacts (Regular)</div><div class="inote">Boost skills and core stats. Also purchasable from vendors like Elowen the Witch north of Hernand. Embed in gear for build customization.</div></div><span class="itag t-abyss">Never Sell</span></div>
+        <div class="itm"><div><div class="iname">Faded Abyss Artifacts</div><div class="inote">Enables skill tree resets. Crucial for build experimentation — extremely valuable, especially early when you make mistakes.</div></div><span class="itag t-abyss">Never Sell</span></div>
         <div class="itm"><div><div class="iname">Abyss Cores</div><div class="inote">Augment gear with extra stats and effects. Keep for build variety. Available from vendors but stockpile every free one you find.</div></div><span class="itag t-k">Keep</span></div>
-        <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint. Collect ASAP — challenge progress only counts after pickup, not retroactively. Check Journal → Challenges to track them.</div></div><span class="itag t-k">Collect ASAP</span></div>
-        <div class="itm"><div><div class="iname">Abyss Fragments</div><div class="inote">Earned from quests, boss kills, and exploration. Used to unlock the Artifact System. Never discard.</div></div><span class="itag t-k">Never Sell</span></div>
+        <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint. Collect ASAP — challenge progress only counts after pickup, not retroactively. Check Journal → Challenges to track them.</div></div><span class="itag t-abyss">Collect ASAP</span></div>
+        <div class="itm"><div><div class="iname">Abyss Fragments</div><div class="inote">Earned from quests, boss kills, and exploration. Used to unlock the Artifact System. Never discard.</div></div><span class="itag t-abyss">Never Sell</span></div>
       </div>
     </div>
 
@@ -898,7 +942,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Prologue</div>
         <div class="chap-title">Dead of Night</div>
-        <div class="chap-badges"><span class="bdg b-red" style="margin:0">4 quests</span><span class="bdg b-silv" style="margin:0">Tutorial</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">4 quests</span><span class="bdg b-silv" style="margin:0">Tutorial</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -917,7 +961,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 1</div>
         <div class="chap-title">The First Encounter</div>
-        <div class="chap-badges"><span class="bdg b-amb" style="margin:0">9 quests</span><span class="bdg b-silv" style="margin:0">Hernand</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">9 quests</span><span class="bdg b-blue" style="margin:0">Hernand</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -942,7 +986,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 2</div>
         <div class="chap-title">Golden Greed</div>
-        <div class="chap-badges"><span class="bdg b-amb" style="margin:0">16 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">16 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -975,7 +1019,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 3</div>
         <div class="chap-title">Howling Hill</div>
-        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">17 quests</span><span class="bdg b-gold" style="margin:0">Damiane · Camp</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">17 quests</span><span class="bdg b-grn" style="margin:0">Damiane · Camp</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1009,7 +1053,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 4</div>
         <div class="chap-title">The Price of Knowledge</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Scholastone · Abyss</span></div>
+        <div class="chap-badges"><span class="bdg b-abyss" style="margin:0">Scholastone · Abyss</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1036,7 +1080,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 5</div>
         <div class="chap-title">Guest Unbidden</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">2 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span><span class="bdg b-silv" style="margin:0">Demeniss</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">2 quests</span><span class="bdg b-red" style="margin:0">2 bosses</span><span class="bdg b-blue" style="margin:0">Demeniss</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1060,7 +1104,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 6</div>
         <div class="chap-title">Cracks in the Shield</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">4 arcs · 15 quests</span><span class="bdg b-silv" style="margin:0">Pailune</span></div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">4 arcs · 15 quests</span><span class="bdg b-blue" style="margin:0">Pailune</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1082,7 +1126,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 7</div>
         <div class="chap-title">Homecoming</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">23 quests</span><span class="bdg b-gold" style="margin:0">Oongka</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">23 quests</span><span class="bdg b-gold" style="margin:0">Oongka</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1175,7 +1219,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Ch. 12</div>
         <div class="chap-title">The Abyss &amp; Epilogue: Journey's End</div>
-        <div class="chap-badges"><span class="bdg b-red" style="margin:0">8 quests — shortest</span><span class="bdg b-gold" style="margin:0">Final</span></div>
+        <div class="chap-badges"><span class="bdg b-red" style="margin:0">8 quests — shortest</span><span class="bdg b-red" style="margin:0">Final</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1372,7 +1416,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="chap-head" onclick="togChap(this)">
         <div class="chap-num">Faction</div>
         <div class="chap-title">Demeniss's Politics</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">5 quests</span></div>
+        <div class="chap-badges"><span class="bdg b-silv" style="margin:0">5 quests</span></div>
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
@@ -1435,7 +1479,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
   <div class="sec">
     <div class="sec-label">Early game priority checklist</div>
-    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>Click items to mark them done. Checklist is saved in your browser session.</div></div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex:1">Click items to mark done. <strong>Progress saves to this browser on this PC.</strong><button onclick="clearState()" style="background:none;border:1px solid rgba(184,112,48,.35);border-radius:4px;color:var(--amb-lt);font-size:11px;font-family:'DM Sans',sans-serif;padding:2px 9px;cursor:pointer;white-space:nowrap;flex-shrink:0">Reset all</button></div></div>
 
     <div class="priority-list">
       <div class="pl-head">⚑ Do immediately (Hernand / Ch. 1)</div>
@@ -1623,6 +1667,298 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
 </div><!-- /panel-early -->
 
+<!-- ════ COOKING ════ -->
+<div id="panel-cooking" class="panel">
+
+  <div class="sec">
+    <div class="sec-label">Cooking system overview</div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-v">∞</div><div class="stat-l">No cooldown on eating</div></div>
+      <div class="stat"><div class="stat-v">4</div><div class="stat-l">Quality tiers</div></div>
+      <div class="stat"><div class="stat-v">35+</div><div class="stat-l">Recipes in game</div></div>
+      <div class="stat"><div class="stat-v">2s</div><div class="stat-l">Eat interval in combat</div></div>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div><strong>Critical efficiency rule:</strong> 10 raw meat cooked as 10 individual Grilled Meats = 800 total HP. The same 10 meat as one Hearty Grilled Meat = 220 HP. <strong>Always cook basic tier in bulk.</strong> Quantity beats quality every time for pure healing output.</div></div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Every bonfire, campfire, and cooking pot in the open world is a cooking station — cook mid-exploration without returning to camp. Food is arranged left-to-right in the quickslot wheel from highest to lowest heal value. The Frying Pan is for field grill recipes; the Cauldron/Pot is for soups and drinks.</div></div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div><strong>Blinding Flash emergency trick:</strong> Drop raw meat on the ground (Discard from inventory) then aim Blinding Flash at it — cooks the meat on the spot. Daytime outdoors only. No campfire needed.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Quality tiers — how they work</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Tier</th><th>How to unlock</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><span class="bdg b-silv" style="margin:0">Modest</span></td><td style="color:var(--text-dm);font-size:12px">Base amount of ingredients</td><td style="color:var(--text-dm);font-size:12px">Minimum HP / Spirit restore. Use for bulk production.</td></tr>
+          <tr><td><span class="bdg b-blue" style="margin:0">Filling</span></td><td style="color:var(--text-dm);font-size:12px">Add more of the same ingredients</td><td style="color:var(--text-dm);font-size:12px">Moderate improvement.</td></tr>
+          <tr><td><span class="bdg b-amb" style="margin:0">Satisfying</span></td><td style="color:var(--text-dm);font-size:12px">Even more ingredients of the same type</td><td style="color:var(--text-dm);font-size:12px">Good improvement. Worth it for boss prep.</td></tr>
+          <tr><td><span class="bdg b-gold" style="margin:0">Hearty</span></td><td style="color:var(--text-dm);font-size:12px">Maximum ingredient count</td><td style="color:var(--text-dm);font-size:12px">Maximum HP/Spirit per dish. Best for per-slot efficiency, not total HP.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-w"><span class="tip-ico">⚠</span><div>All meat quality types (Tough, Lean, Fine, Tender, Marbled) produce identical results when cooked. There is zero advantage to using expensive meat variants for basic recipes. Hunt Mountain Goats — they die faster than deer and drop Fine Meat + hides.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">HP efficiency rankings — field grill (bonfire)</div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Field grill recipes use a Frying Pan at any bonfire. Generally provide Fire Resistance buffs. Tend to restore less HP than pot recipes but require no water and are faster to prepare.</div></div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Recipe</th><th>Ingredients</th><th>HP</th><th>Spirit</th><th>Bonus</th><th>Efficiency</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Meat Skewers</strong> ⭐</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Meat + 1 Onion/Flax/Cucumber/Turnip/Beet</td>
+            <td style="color:var(--grn-lt);font-weight:600">+120</td>
+            <td style="color:var(--blu-lt);font-size:12px">+10</td>
+            <td style="color:var(--text-dm);font-size:12px">Fire Res Lv.2</td>
+            <td><span class="bdg b-gold" style="margin:0">Best overall</span></td>
+          </tr>
+          <tr>
+            <td>Grilled Meat</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Meat</td>
+            <td style="color:var(--grn-lt);font-weight:600">+80</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td><span class="bdg b-grn" style="margin:0">Best bulk (×10 = 800 HP)</span></td>
+          </tr>
+          <tr>
+            <td>Hearty Grilled Meat</td>
+            <td style="color:var(--text-dm);font-size:12px">10 Meat</td>
+            <td style="color:var(--grn-lt);font-weight:600">+220</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td><span class="bdg b-red" style="margin:0">Inefficient (800 better)</span></td>
+          </tr>
+          <tr>
+            <td>Braised Meat</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Meat + 1 Berry</td>
+            <td style="color:var(--grn-lt);font-weight:600">+120</td>
+            <td style="color:var(--blu-lt);font-size:12px">+10</td>
+            <td style="color:var(--text-dm);font-size:12px">Fire Res Lv.2</td>
+            <td><span class="bdg b-silv" style="margin:0">Same as Skewers</span></td>
+          </tr>
+          <tr>
+            <td>Battered Meat</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Meat + 1 Egg + 3 Cooking Oil</td>
+            <td style="color:var(--grn-lt);font-weight:600">+140</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Fire Res Lv.2</td>
+            <td><span class="bdg b-silv" style="margin:0">Good but costs oil</span></td>
+          </tr>
+          <tr>
+            <td>Salt-Roasted Bird Meat</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Bird Meat + 1 Salt</td>
+            <td style="color:var(--grn-lt);font-weight:600">+120</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Fire Res Lv.2</td>
+            <td><span class="bdg b-silv" style="margin:0">Good for bird hunters</span></td>
+          </tr>
+          <tr>
+            <td>Toasted Grains</td>
+            <td style="color:var(--text-dm);font-size:12px">3 Grain (any)</td>
+            <td style="color:var(--grn-lt);font-weight:600">+100</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td><span class="bdg b-silv" style="margin:0">When no meat available</span></td>
+          </tr>
+          <tr>
+            <td>Battered Vegetables</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Onion/Flax/Veg + 1 Egg</td>
+            <td style="color:var(--grn-lt);font-weight:600">+100</td>
+            <td style="color:var(--blu-lt);font-size:12px">+8</td>
+            <td style="color:var(--text-dm);font-size:12px">Fire Res Lv.2</td>
+            <td><span class="bdg b-silv" style="margin:0">HP + Spirit backup</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">HP efficiency rankings — pot recipes (cooking pot + water required)</div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Pot recipes require Water as a base ingredient and a Field Pot/cooking pot in towns. Produce higher healing values than field grill recipes and generally grant <strong>Ice Resistance</strong> instead of Fire. These are the backbone of boss fight preparation.</div></div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Recipe</th><th>Ingredients</th><th>HP base</th><th>HP Hearty</th><th>Spirit</th><th>Bonus</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Fishball Soup</strong> ⭐</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Fish/2 Fillet + 2 Grain + 1 Veg + 1 Salt + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+340</td>
+            <td style="color:var(--grn-lt);font-weight:600">~680+</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.4 (1 min)</td>
+          </tr>
+          <tr>
+            <td><strong>Steamed Fish</strong> ⭐</td>
+            <td style="color:var(--text-dm);font-size:12px">2 Northern Pike/Med Fish + 1 Shineberry/Fruit + 2 Barley + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+280</td>
+            <td style="color:var(--text-dm);font-size:12px">~560+</td>
+            <td style="color:var(--blu-lt);font-size:12px">+26</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.4 (1 min)</td>
+          </tr>
+          <tr>
+            <td><strong>Braised Ribs</strong> ⭐</td>
+            <td style="color:var(--text-dm);font-size:12px">4 Meat + 2 Veg + 2 Berry + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+260</td>
+            <td style="color:var(--text-dm);font-size:12px">~520+</td>
+            <td style="color:var(--blu-lt);font-size:12px">+24</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.4 (1 min)</td>
+          </tr>
+          <tr>
+            <td>Fish Porridge</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Fish/2 Fillet + 1 Grain + 1 Salt + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+240</td>
+            <td style="color:var(--grn-lt);font-weight:600">+540</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.5 (10 min)</td>
+          </tr>
+          <tr>
+            <td>Vegetable &amp; Seafood Porridge</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Fish/2 Fillet + 2 Grain + 3 Veg + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+240</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--blu-lt);font-size:12px">+22</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.4 (1 min)</td>
+          </tr>
+          <tr>
+            <td>Meat &amp; Vegetable Porridge</td>
+            <td style="color:var(--text-dm);font-size:12px">Found in Hernand Castle kitchen during Ch.1</td>
+            <td style="color:var(--grn-lt);font-weight:600">+200</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--blu-lt);font-size:12px">+18</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.2</td>
+          </tr>
+          <tr>
+            <td>Clear Soup</td>
+            <td style="color:var(--text-dm);font-size:12px">1 Meat + 1 Grain + 1 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+180</td>
+            <td style="color:var(--grn-lt);font-weight:600">+420</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Ice Res Lv.2 (5 min)</td>
+          </tr>
+          <tr>
+            <td>Bird Soup</td>
+            <td style="color:var(--text-dm);font-size:12px">2 Bird Meat + 2 Veg + 1 Wild Ginseng + 1 Salt + 3 Water</td>
+            <td style="color:var(--grn-lt);font-weight:600">+200</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--blu-lt);font-size:12px">varies</td>
+            <td style="color:var(--text-dm);font-size:12px">HP + Spirit + Stamina (best all-rounder mid-game)</td>
+          </tr>
+          <tr>
+            <td>Chewy Rice Cakes</td>
+            <td style="color:var(--text-dm);font-size:12px">4 Grain + 2 Fruit + 2 Eggs + 3 Cooking Oil · Griddle station</td>
+            <td style="color:var(--grn-lt);font-weight:600">+180</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--blu-lt);font-size:12px">+15</td>
+            <td style="color:var(--text-dm);font-size:12px">HP + Spirit fill</td>
+          </tr>
+          <tr>
+            <td>Fishball Soup (standard base)</td>
+            <td style="color:var(--text-dm);font-size:12px">Near Hernand Constabulary — on a table by the stone building</td>
+            <td style="color:var(--grn-lt);font-weight:600">+340</td>
+            <td style="color:var(--text-dm);font-size:12px">~680</td>
+            <td style="color:var(--text-dm);font-size:12px">—</td>
+            <td style="color:var(--text-dm);font-size:12px">Rapidly restores health</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Spirit &amp; Stamina restorers</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Recipe</th><th>Ingredients</th><th>Effect</th><th>Station</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Special Meal</strong> (Feast)</td><td style="color:var(--text-dm);font-size:12px">2 Fruit + 3 Grain + 3 Meat &amp; Fish Skewers + 2 Boiled Meat</td><td style="color:var(--blu-lt);font-size:12px">Spirit +75% — overfills Spirit beyond max</td><td style="color:var(--text-dm);font-size:12px">Feast station</td></tr>
+          <tr><td>Herby Special Meal</td><td style="color:var(--text-dm);font-size:12px">Special Meal + 2 Coffee Cherry</td><td style="color:var(--blu-lt);font-size:12px">Spirit +75%</td><td style="color:var(--text-dm);font-size:12px">Feast station</td></tr>
+          <tr><td>Grilled Fruit</td><td style="color:var(--text-dm);font-size:12px">3 Fruit (any)</td><td style="color:var(--blu-lt);font-size:12px">Spirit restore</td><td style="color:var(--text-dm);font-size:12px">Bonfire — known from start</td></tr>
+          <tr><td>Wine</td><td style="color:var(--text-dm);font-size:12px">2 Fruit + 1 Sugar + 2 Water · Recipe in a Hernand house</td><td style="color:var(--text-dm);font-size:12px">+64 Stamina + Ice Res Lv.2 (30 sec)</td><td style="color:var(--text-dm);font-size:12px">Cauldron</td></tr>
+          <tr><td>Oakwood Mushroom Tea</td><td style="color:var(--text-dm);font-size:12px">2 Oakwood Mushrooms + 2 Water</td><td style="color:var(--text-dm);font-size:12px">+160 Stamina + Ice Res Lv.5 (10 min)</td><td style="color:var(--text-dm);font-size:12px">Cauldron</td></tr>
+          <tr><td>Vegetable Juice</td><td style="color:var(--text-dm);font-size:12px">Recipe in Pororin Forest Village (after Trembling Woods quest)</td><td style="color:var(--text-dm);font-size:12px">Stamina restore</td><td style="color:var(--text-dm);font-size:12px">Cauldron</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Beverages (wine, tea) do <strong>not</strong> come in quality tiers — no Hearty version exists. They restore Stamina only, not HP or Spirit. Brew at a Cauldron in the apothecary (Hernand), Witch's House (Witchwoods), or your Greymane Camp once Ch. 3 unlocks it.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Where to find all recipes</div>
+    <div class="tbl-wrap" style="margin-bottom:1rem">
+      <table>
+        <thead><tr><th>Recipe</th><th>How to get</th><th>Location</th></tr></thead>
+        <tbody>
+          <tr><td>Grilled Meat / Grilled Fruit</td><td style="color:var(--text-dm);font-size:12px">Known from the start</td><td style="color:var(--text-dm);font-size:12px">—</td></tr>
+          <tr><td>Fish Porridge</td><td style="color:var(--text-dm);font-size:12px">Complete Renee's Request (side quest)</td><td style="color:var(--text-dm);font-size:12px">Hernand butcher — also rewards Medium Bag</td></tr>
+          <tr><td>Fishball Soup</td><td style="color:var(--text-dm);font-size:12px">On a table near the Hernand Constabulary</td><td style="color:var(--text-dm);font-size:12px">Pickup — stone building near first bounty board</td></tr>
+          <tr><td>Meat &amp; Vegetable Porridge</td><td style="color:var(--text-dm);font-size:12px">Pickup during main quest The First Encounter</td><td style="color:var(--text-dm);font-size:12px">Hernand Castle kitchen — turn right after entering</td></tr>
+          <tr><td>Chewy Rice Cakes</td><td style="color:var(--text-dm);font-size:12px">Pickup — no key required</td><td style="color:var(--text-dm);font-size:12px">Building behind the grocery shop in Hernand</td></tr>
+          <tr><td>Pickled Vegetables / Braised Fish / Pan-Fried Rice Cakes</td><td style="color:var(--text-dm);font-size:12px">Purchase from Dahlia's Inn Hernand</td><td style="color:var(--text-dm);font-size:12px">~1–2 silver each</td></tr>
+          <tr><td>Battered Meat / Battered Fish</td><td style="color:var(--text-dm);font-size:12px">Behind the Hernand innkeeper</td><td style="color:var(--text-dm);font-size:12px">Hernand — check the back of the inn building</td></tr>
+          <tr><td>Meat Skewers</td><td style="color:var(--text-dm);font-size:12px">Found on a table during story mission to Calphade (Ch. 6 area)</td><td style="color:var(--text-dm);font-size:12px">Calphade — explore tables during the quest</td></tr>
+          <tr><td>Braised Ribs</td><td style="color:var(--text-dm);font-size:12px">Enemy drop — loot bodies after the Kearush boss fight</td><td style="color:var(--text-dm);font-size:12px">Hernand Castle, during Kearush encounter</td></tr>
+          <tr><td>Pan-Fried Marinated Meat</td><td style="color:var(--text-dm);font-size:12px">Purchase from Matilda at the Calphade Inn</td><td style="color:var(--text-dm);font-size:12px">Calphade Inn</td></tr>
+          <tr><td>Steamed Fish</td><td style="color:var(--text-dm);font-size:12px">Pickup — upstairs in locked building near fishing pond</td><td style="color:var(--text-dm);font-size:12px">Reventine Winery, west Demeniss (key required)</td></tr>
+          <tr><td>Vegetable &amp; Seafood Porridge / Meat &amp; Veg Porridge / Steamed Fish</td><td style="color:var(--text-dm);font-size:12px">Recruit Ronnie as camp cook</td><td style="color:var(--text-dm);font-size:12px">Upgrade Greymane Camp — Ronnie joins via Ch. 3 Commissions</td></tr>
+          <tr><td>Vegetable Juice</td><td style="color:var(--text-dm);font-size:12px">Pickup in Pororin Forest Village</td><td style="color:var(--text-dm);font-size:12px">Accessible after The Trembling Woods faction quest</td></tr>
+          <tr><td>Wine</td><td style="color:var(--text-dm);font-size:12px">Pickup in a house in Hernand</td><td style="color:var(--text-dm);font-size:12px">No key required — explore Hernand buildings</td></tr>
+          <tr><td>Special Meal (Feast)</td><td style="color:var(--text-dm);font-size:12px">Castle kitchen — keys required</td><td style="color:var(--text-dm);font-size:12px">Special pot station in Hernand Castle</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>When you find a recipe scroll: equip it → shine your Lantern on the pages → it auto-registers in your Knowledge menu. You can then <strong>sell the scroll immediately</strong> — they're worth good copper and the recipe is saved permanently.</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Boss prep — optimal food loadout</div>
+    <div class="grid2">
+      <div class="card ag">
+        <span class="bdg b-grn">Early game bosses (Ch. 1–4)</span>
+        <h3>50+ Grilled Meat + 5 Palmar Pills</h3>
+        <small>Grilled Meat at 80 HP × 50 = 4,000 total HP reserve. More than enough for any early boss. Buy meat from the Hernand butcher daily — stock restores at midnight.</small>
+      </div>
+      <div class="card al">
+        <span class="bdg b-gold">Mid-game bosses (Ch. 5–8)</span>
+        <h3>30 Meat Skewers + 30 Fishball Soup + 10 Palmar Pills</h3>
+        <small>Meat Skewers for dual HP+Spirit during combat. Fishball Soup for big HP bursts. Hold Palmar Pills for the final phase only. Aim for 3,000+ HP in reserve before any boss door.</small>
+      </div>
+      <div class="card ar">
+        <span class="bdg b-red">Late game / final bosses</span>
+        <h3>50 Fishball Soup + Braised Ribs + 20+ Palmar Pills</h3>
+        <small>Final chapter is 3 consecutive bosses. The first has 3 phases. Stock 50+ of your best food, 20+ Palmar Pills. Consider Meliara's Elixir (+150 max HP for 10 min) from alchemy to raise your ceiling further.</small>
+      </div>
+      <div class="card ab">
+        <span class="bdg b-blue">Spirit management</span>
+        <h3>Carry Grilled Fruit + Special Meal</h3>
+        <small>Spirit is your offensive ability resource. Running out mid-boss limits your damage options. Keep Grilled Fruit in a dedicated slot for Spirit emergencies. Save Special Meals (Spirit +75%) for major encounters only.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Alchemy — combat potions</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Alchemy is crafted at Cauldrons. Reagents (plants/mushrooms/insects) determine the effect. Catalysts (ores, hides) determine quality. Always bring an empty bottle. Cauldrons: Hernand apothecary, Witch's House in Witchwoods, Shadow's Whisper Cave, Greymane Camp (Ch. 3+).</div></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Potion</th><th>Ingredients</th><th>Effect</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Palmar Pill</strong> ⭐</td><td style="color:var(--text-dm);font-size:12px">15 Medicinal Herbs (any — Pine Mushroom, Rosemary, Lavender, etc.) + 2 Water. Recipe: Shadow's Whisper Cave north of Hernand.</td><td style="color:var(--grn-lt);font-size:12px">Auto-revive at 30% HP on death. Hold until final boss phase.</td><td><span class="bdg b-red" style="margin:0">Craft unlimited ASAP</span></td></tr>
+          <tr><td>Refined Palmar Pill</td><td style="color:var(--text-dm);font-size:12px">1 Quality Herb + 1 Leaf + 1 Palmar Beetle + 1 Water</td><td style="color:var(--grn-lt);font-size:12px">Revive at 100% HP (full health)</td><td><span class="bdg b-gold" style="margin:0">Save for hardest fights</span></td></tr>
+          <tr><td>Attack Speed Elixir ⭐</td><td style="color:var(--text-dm);font-size:12px">3 Speed reagents + 2 Catalysts + 1 Bottle</td><td style="color:var(--grn-lt);font-size:12px">+30% attack speed for 60 seconds. Transforms boss fights.</td><td><span class="bdg b-gold" style="margin:0">Boss fights</span></td></tr>
+          <tr><td>Meliara's Elixir</td><td style="color:var(--text-dm);font-size:12px">3 Health reagents + 2 Catalysts + 1 Bottle</td><td style="color:var(--grn-lt);font-size:12px">+150 max HP + Attack Speed Lv.2 for 10 minutes</td><td><span class="bdg b-gold" style="margin:0">Late game bosses</span></td></tr>
+          <tr><td>Haiden's Elixir</td><td style="color:var(--text-dm);font-size:12px">3 Spirit reagents + 2 Catalysts + 1 Bottle</td><td style="color:var(--grn-lt);font-size:12px">No Spirit cost for 8 seconds — free ability spam window</td><td><span class="bdg b-blue" style="margin:0">Opener rotation</span></td></tr>
+          <tr><td>Haiden's Lesser Elixir</td><td style="color:var(--text-dm);font-size:12px">2 Spirit reagents + 1 Lesser Catalyst + 1 Bottle</td><td style="color:var(--grn-lt);font-size:12px">No Spirit cost for 4 seconds</td><td><span class="bdg b-blue" style="margin:0">Cheaper version</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Palmar Pill crafting is unlimited — use horns from deer/goats as herbs, and buy water from grocers (stock restores daily). Build a stockpile of 50–70 before mid-game bosses. You will never regret having too many.</div></div>
+  </div>
+
+</div><!-- /panel-cooking -->
+
 <!-- ════ CRAFTING ════ -->
 <div id="panel-crafting" class="panel">
   <div class="sec">
@@ -1665,7 +2001,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
     <div class="grid2">
       <div class="card al"><span class="bdg b-gold">Duplicate weapon trick</span><h3>Sacrifice a copy instead of materials</h3><small>If you have two identical weapons (common from enemy drops), you can sacrifice the duplicate to pay the refinement cost instead of raw materials. Always check if you have a duplicate before mining.</small></div>
-      <div class="card aa"><span class="bdg b-amb">Refinement Tokens (Patch 1.01)</span><h3>Free upgrades to Lv. 4</h3><small>Added in Patch 1.01.00. Bypasses all material costs for refinements up to Stage 4. Obtained from Hernand quests and as login rewards. Check your inventory after updating — many players received tokens retroactively for completed quests.</small></div>
+      <div class="card aa"><span class="bdg b-grn">Refinement Tokens (Patch 1.01)</span><h3>Free upgrades to Lv. 4</h3><small>Added in Patch 1.01.00. Bypasses all material costs for refinements up to Stage 4. Obtained from Hernand quests and as login rewards. Check your inventory after updating — many players received tokens retroactively for completed quests.</small></div>
       <div class="card ag"><span class="bdg b-grn">Grindstone &amp; Anvil buffs</span><h3>Free temporary power spike before bosses</h3><small>Grindstones temporarily boost weapon attack. Anvils temporarily boost armor defense. Found in bandit camps (Trial After Trial has both). Use them immediately before entering a boss arena — free advantage that stacks with your refinement level.</small></div>
       <div class="card ab"><span class="bdg b-blue">Preview before you invest</span><h3>Inspect → Refinement Information</h3><small>Select any gear in your inventory → Inspect → Refinement Information to see every stat gain across all 10 levels before spending a single material. Accessories don't preview by default — push them to Lv. 3 first to see what secondary and tertiary stats unlock.</small></div>
     </div>
@@ -1771,8 +2107,9 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         Reach 100 Trust to claim the animal as a permanent companion. Unlock pet taming further via Naira's faction quest chain at Greymane Camp.
       </small>
     </div>
-    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Poison arrows one-shot almost any animal for hunting — single arrow takes down deer, goats, anything. Far faster than chasing with a sword. Standard practice for meat and hide farming once you have arrows.</div></div>
+    <div class="tip tip-g"><span class="tip-ico">✓</span><div>Poison arrows one-shot almost any animal for hunting — single arrow takes down deer, goats, anything. Far faster than chasing with a sword. Standard practice for meat and hide farming once you have arrows.</div>
   </div>
+
 </div><!-- /panel-mounts -->
 
 <!-- ════ CHARACTERS ════ -->
@@ -1991,9 +2328,9 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <div class="acc-chev">▼</div>
       </div>
       <div class="acc-body">
-        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Abyss Cressets are glowing collectible points scattered across Pywel. Each one gives: 1 Abyss Artifact (skill point) + a new fast travel point. Some require aerial Force Palm, Gliding, or Triple Aerial Focus Palm to reach elevated positions.</div></div><span class="itag t-k">Collect all</span></div>
+        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Abyss Cressets are glowing collectible points scattered across Pywel. Each one gives: 1 Abyss Artifact (skill point) + a new fast travel point. Some require aerial Force Palm, Gliding, or Triple Aerial Focus Palm to reach elevated positions.</div></div><span class="itag t-abyss">Collect all</span></div>
         <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint — use Blinding Flash / Guiding Light to spot them. Challenge progress only counts AFTER pickup (not retroactively). Collecting them all gives the Pilgrim of Wonders trophy and meaningful skill point rewards.</div></div><span class="itag t-k">Grab early</span></div>
-        <div class="itm"><div><div class="iname">Abyss Nexus fast travel</div><div class="inote">47 Nexus points across all 5 regions. Activate by stepping on pressure plates. Crimson Desert region has 13 (most of any region). Ring the 8 Bell Towers first to clear fog of war — then hunt Nexus points on the revealed map.</div></div><span class="itag t-k">Unlock ASAP</span></div>
+        <div class="itm"><div><div class="iname">Abyss Nexus fast travel</div><div class="inote">47 Nexus points across all 5 regions. Activate by stepping on pressure plates. Crimson Desert region has 13 (most of any region). Ring the 8 Bell Towers first to clear fog of war — then hunt Nexus points on the revealed map.</div></div><span class="itag t-abyss">Unlock ASAP</span></div>
       </div>
     </div>
 
@@ -2052,22 +2389,278 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 
   </div>
 
+  </div>
+
   <div class="sec">
-    <div class="sec-label">Hidden weapon locations</div>
+    <div class="sec-label">Hidden weapons — exact locations</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div><strong>The rule:</strong> every waterfall in Crimson Desert hides something. Stab through (RB+Y / R1+△). Small stone cairns in front of cliffs = secret passage. Illusory walls light up under the Lantern — walk into them directly.</div></div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Early</div>
+        <div class="chap-title">Hollow Visage Katana</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">14 ATK · Best early 1H</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Waterfall cave south of the map, near the Reed Devil boss area. Look for a stone cairn in front of the waterfall — stab through it to enter the cave. Chest inside.</div></div><div class="quest-tag qt-key">Waterfall</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">14 ATK, Speed Lv. 2 — pre-loaded Abyss Gears: Critical Rate + Attack Speed. Strongest early one-handed weapon. Use from Ch. 2 through Ch. 6.</div></div><div class="quest-tag qt-bag">S-tier early</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">How to access</div><div class="quest-note">Use Stab (RB+Y / R1+△) to push through the waterfall. Chest is in the cave at the end of the short tunnel.</div></div><div class="quest-tag qt-side">Method</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Hollow+Visage%22+Crimson+Desert+location')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Early</div>
+        <div class="chap-title">Dual Axes — free from the prologue</div>
+        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">12 ATK each · Free</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Underbridge area — one axe stuck in a tree stump, one resting on a nearby rock. Accessible immediately after the prologue, no combat required.</div></div><div class="quest-tag qt-bag">Free loot</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">12 ATK each. Dual-wielding gives fast AoE swings without farming or buying anything. Best free early option before you reach better gear.</div></div><div class="quest-tag qt-side">Info</div></div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Early</div>
+        <div class="chap-title">Hwando (Katana)</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Strong early 2H · Abyss Gears</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Crêtelion Manor / Lioncrest Manor — northwest of Hernand. Inside the manor during exploration (same building where you can steal the gold bar).</div></div><div class="quest-tag qt-key">Hernand</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">Strong early two-handed katana with Abyss Gears already embedded. Significant power spike for Ch. 1–2.</div></div><div class="quest-tag qt-side">Info</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-wiki" onclick="openLink('https://www.powerpyx.com/crimson-desert-all-refinement-upgrade-material-locations/')">Wiki ↗</button>
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Hwando%22+Crimson+Desert+location')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 2–3</div>
+        <div class="chap-title">Frozen Anguish</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">17 ATK · 3 Abyss Gears</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Dawn Cave — behind a waterfall in the Mountain of Lost Souls. West of Hernand, at the end of the great river near a teleportation point. Multi-level waterfall — look for a stone cairn at the right level. Stab through to enter.</div></div><div class="quest-tag qt-key">Waterfall cave</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">17 ATK, Speed Lv. 2 — Insight I + Gale I + Destruction I pre-loaded. One of the strongest pre-Ch.5 weapons available through exploration alone. Also contains a Refined Palmar Pill and healing gloves with care-efficiency Abyss Cores.</div></div><div class="quest-tag qt-bag">Excellent haul</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Frozen+Anguish%22+Crimson+Desert+location')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 3–4</div>
+        <div class="chap-title">Darkbringer</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">21 ATK · Monster weapon</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Death's Grip Cave — northwest of Lake Kharonso, behind a waterfall. Same waterfall stab technique to enter. Chest inside the cave.</div></div><div class="quest-tag qt-key">Waterfall cave</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">21 ATK — 3 Abyss Gears pre-loaded including Abyss Wound of Darkness. One of the most powerful weapons findable through exploration before the story hands you unique drops.</div></div><div class="quest-tag qt-bag">S-tier mid</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Darkbringer%22+Crimson+Desert+location')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Ch. 3+</div>
+        <div class="chap-title">Icemoor Castle Ruins — full loot cache</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Weapon + Armor set</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Tommaso Guard's Dagger-Tipped Spear</div><div class="quest-note">From the center of Icemoor Castle Ruins → up two sets of stairs → small room → turn 180° → bundle of spears embedded in the wall. The spear is in there.</div></div><div class="quest-tag qt-side">Weapon</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Second weapon (wall embed)</div><div class="quest-note">Just to the left of the Dagger-Tipped Spear, in the same wall.</div></div><div class="quest-tag qt-side">Weapon</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Leather Cloak of the Fallen Kingdom</div><div class="quest-note">Behind Staglord's throne → north → up stairs → right across bridge → follow path to dead end → wall with a hole at the bottom. Crawl through → treasure chest with cloak inside.</div></div><div class="quest-tag qt-bag">Armor</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Fallen Kingdom's Rapier</div><div class="quest-note">Same room as the Leather Cloak chest — behind the chest, leaning on the barrel on the left. If missing, it may have fallen over — check the floor around the barrel.</div></div><div class="quest-tag qt-side">Weapon</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-wiki" onclick="openLink('https://gamerant.com/crimson-desert-icemoor-castle-ruins-loot-locations/')">Wiki ↗</button>
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Icemoor+Castle+Ruins+loot+Crimson+Desert')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Hidden armor — treasure map rewards</div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Treasure Map Pieces are parchments found on tables, in tents, and from specific bosses. Each shows a hand-drawn sketch — no text, no markers. Find the terrain match, then solve the environmental obstacle (waterfall, rotating wall, false floor). The chest is almost never near where you found the map.</div></div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #1</div>
+        <div class="chap-title">Scorchflame Plate Cloak</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Pailune · Force Palm wall</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Kalin Quarries north of Hernand. Enter the Marni's Excavatron boss arena — stand with back to exit, look right. Wooden wall conceals the chest. Break lower planks to enter.</div></div><div class="quest-tag qt-side">Find map here</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Pailune — upper right of a wall reveals a secret passage. Climb up, use Axiom Power to stick to the wall, break through with Force Palm → hidden chest inside.</div></div><div class="quest-tag qt-key">Method: Force Palm</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Scorchflame Plate Cloak + Refined Palmar Pill</div></div><div class="quest-tag qt-bag">Armor + item</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+1+Scorchflame+location')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #2</div>
+        <div class="chap-title">Scorchflame Plate Armor</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Demeniss · Stealth gate</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Leave Pailune through the north gate, head north to river, cross and follow road to two abandoned houses on left. Inside the large barn — map on a wooden crate near barrels.</div></div><div class="quest-tag qt-side">Find map here</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Demeniss capital → leave by western road → nearest major intersection → turn right → past farmlands → stands on left. Stand between 2nd and 3rd stand, look at gate → switch to stealth → go under gate → chest inside.</div></div><div class="quest-tag qt-key">Method: Stealth</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Scorchflame Plate Armor (full Scorchflame armor set piece)</div></div><div class="quest-tag qt-bag">Armor</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+2+Scorchflame+armor+Demeniss')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #3</div>
+        <div class="chap-title">Cold Heart Plate Armor</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Delesyia · Force Palm wall</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Delesyia Castle — look at the wall to the left of the bridge, find two yellow flags. Climb to center (level with banners) → Axiom Power → Force Palm the wall → chest inside.</div></div><div class="quest-tag qt-key">Method: Force Palm</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Cold Heart Plate Armor</div></div><div class="quest-tag qt-bag">Armor</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+3+Cold+Heart+Plate+Armor')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #4</div>
+        <div class="chap-title">Autumn Banquet Leather Boots</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Demeniss · Waterfall cave</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Northwest of Demeniss — crescent-shaped island lake. Head to Golden Exchange stands (map #2 area) → go north to the lake → stone altar holds the map.</div></div><div class="quest-tag qt-side">Find map here</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">North of the lake → waterfalls area. Chest is in a cave behind the far left waterfall. Use Thrust/Stab attack (R2+△ / RT+Y) to slip under the water and enter.</div></div><div class="quest-tag qt-key">Method: Waterfall</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Autumn Banquet Leather Boots + 2× Improved Palmar Pill</div></div><div class="quest-tag qt-bag">Boots + items</div></div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #5</div>
+        <div class="chap-title">Scorchflame Plate Cloak (Pailune secret)</div>
+        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Pailune north gate</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Leave Pailune through north gate → follow road north → two abandoned houses → large barn → map on wooden crate near barrels.</div></div><div class="quest-tag qt-side">Find map here</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+5+Scorchflame+Pailune')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-block">
+      <div class="chap-head" onclick="togChap(this)">
+        <div class="chap-num">Map #6</div>
+        <div class="chap-title">Wanderer of Faith Leather Armor (Damiane)</div>
+        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Damiane armor · Rotating wall</span></div>
+        <div class="chap-chev">▼</div>
+      </div>
+      <div class="chap-body">
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Defeat Marni's Excavatron boss to get Map Piece 6. Boss is at Kalin Quarries north of Hernand.</div></div><div class="quest-tag qt-key">Boss drop</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Hernand Region — NW of Rocca's Hill → Silver Moon Tradehouse. Circle left side of the tower → look for an out-of-place wall section → hang on wall → Resist + Force Palm → wall rotates → enter secret room → chest inside.</div></div><div class="quest-tag qt-key">Method: Rotating wall</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Wanderer of Faith Leather Armor (Damiane set piece) + Improved Palmar Pill</div></div><div class="quest-tag qt-bag">Damiane armor</div></div>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+6+Wanderer+of+Faith+armor')">Google ↗</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec">
+    <div class="sec-label">Other notable hidden loot</div>
+
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Weapon</th><th>Location</th><th>Stats</th></tr></thead>
+        <thead><tr><th>Item / Loot</th><th>Location</th><th>Method</th><th>Why it matters</th></tr></thead>
         <tbody>
-          <tr><td>Hollow Visage Katana</td><td style="color:var(--text-dm);font-size:12px">Waterfall cave south of map, near Reed Devil boss area — chest behind waterfall</td><td style="color:var(--grn-lt);font-size:12px">14 ATK, Critical Rate + Attack Speed Abyss Gears pre-loaded. Best early one-hander.</td></tr>
-          <tr><td>Frozen Anguish</td><td style="color:var(--text-dm);font-size:12px">Dawn Cave behind a waterfall in Mountain of Lost Souls</td><td style="color:var(--grn-lt);font-size:12px">17 ATK, Insight I + Gale I + Destruction I. Excellent early exploration reward.</td></tr>
-          <tr><td>Darkbringer</td><td style="color:var(--text-dm);font-size:12px">Death's Grip Cave, NW of Lake Kharonso — behind a waterfall</td><td style="color:var(--grn-lt);font-size:12px">21 ATK. Monster hidden weapon — 3 Abyss Gears pre-loaded.</td></tr>
-          <tr><td>Dual Axes (free)</td><td style="color:var(--text-dm);font-size:12px">Underbridge area — one in a tree stump, one on a nearby rock. Post-prologue.</td><td style="color:var(--grn-lt);font-size:12px">12 ATK each. Free AoE option available from the very start.</td></tr>
-          <tr><td>Hwando (katana)</td><td style="color:var(--text-dm);font-size:12px">Lioncrest Manor / Crêtelion Manor northwest of Hernand</td><td style="color:var(--grn-lt);font-size:12px">Strong early two-hander with Abyss Gears already embedded.</td></tr>
+          <tr>
+            <td>Dark Fog Lantern</td>
+            <td style="color:var(--text-dm);font-size:12px">Alfonso House faction quest — "Transcendent Structure" (after "Weight of Legacy")</td>
+            <td style="color:var(--text-dm);font-size:12px">Complete questline</td>
+            <td style="color:var(--grn-lt);font-size:12px">Enhanced lantern that reveals memory fragments, hidden clues, sealed Abyss Artifacts, ghost holograms. Game-changer for secret hunting.</td>
+          </tr>
+          <tr>
+            <td>Loot Goblin (Chest Goblin)</td>
+            <td style="color:var(--text-dm);font-size:12px">Random spawn on roads across Pywel — goblin with a chest on its back</td>
+            <td style="color:var(--text-dm);font-size:12px">Chase and kill before it escapes</td>
+            <td style="color:var(--grn-lt);font-size:12px">Drops a gold ingot exchangeable at any bank for 500 silver. Fast on foot — charge immediately when spotted.</td>
+          </tr>
+          <tr>
+            <td>Lioncrest Manor — full haul</td>
+            <td style="color:var(--text-dm);font-size:12px">Lioncrest Manor near Hernand Castle — no key required to enter</td>
+            <td style="color:var(--text-dm);font-size:12px">Enter and steal</td>
+            <td style="color:var(--grn-lt);font-size:12px">Gold bar (→ 500 silver at bank), Brass Wardens Plate, Rhonid Large Shield, Hwando. Best single-building early haul.</td>
+          </tr>
+          <tr>
+            <td>Waterfall healing gloves</td>
+            <td style="color:var(--text-dm);font-size:12px">West of Hernand — multi-level waterfall near teleport point. Stone cairn at the right level.</td>
+            <td style="color:var(--text-dm);font-size:12px">Stab through waterfall</td>
+            <td style="color:var(--grn-lt);font-size:12px">Gloves with Abyss Cores that increase healing efficiency + regenerative effect. Unbeatable early. Also contains Frozen Anguish and Refined Palmar Pill.</td>
+          </tr>
+          <tr>
+            <td>Free boots (climbing speed)</td>
+            <td style="color:var(--text-dm);font-size:12px">West of Hernand — just above the first N in "Hernand" on map, near a small river. Waterfall with a cairn.</td>
+            <td style="color:var(--text-dm);font-size:12px">Stab through waterfall</td>
+            <td style="color:var(--grn-lt);font-size:12px">Boots that boost stamina recovery and climbing speed. Free. Also contains a Refined Palmar Pill.</td>
+          </tr>
+          <tr>
+            <td>High-tier Mercenary Armor</td>
+            <td style="color:var(--text-dm);font-size:12px">Hidden dungeons with vertical platforming — avoid spike traps when stamina is low</td>
+            <td style="color:var(--text-dm);font-size:12px">Dungeon exploration</td>
+            <td style="color:var(--grn-lt);font-size:12px">High-tier armor + Ancient Pywelian Coins. Brazier puzzle dungeons: light braziers in order shown on murals using Fire Alchemy.</td>
+          </tr>
+          <tr>
+            <td>Akapen Fortress Vault</td>
+            <td style="color:var(--text-dm);font-size:12px">Akapen Fortress — collect three scattered vault keys to open the heavily guarded vault</td>
+            <td style="color:var(--text-dm);font-size:12px">Three-key puzzle</td>
+            <td style="color:var(--grn-lt);font-size:12px">High-tier loot cache. Keys are scattered — use the interactive map (PywelMap.com) to locate all three.</td>
+          </tr>
+          <tr>
+            <td>Salvatore Easter Egg Boss</td>
+            <td style="color:var(--text-dm);font-size:12px">Hernand — lamppost bounty poster for "Salvatore" (Elden Ring Let Me Solo Her tribute). Chase to Sunset Valley.</td>
+            <td style="color:var(--text-dm);font-size:12px">Bounty quest</td>
+            <td style="color:var(--grn-lt);font-size:12px">Hidden boss with good loot. One of the game's easter eggs — the character design is a clear tribute.</td>
+          </tr>
         </tbody>
       </table>
     </div>
-    <div class="tip tip-o"><span class="tip-ico">◈</span><div>The rule: <strong>every waterfall in Crimson Desert has something behind it.</strong> Stab through any waterfall you find (RB+Y / R1+△). Stacked rock piles in front of cliff faces also mark secret passages. Check behind both every time.</div></div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>For the full chest and loot map with exact coordinates, use <button onclick="openLink('https://pywelmap.com/')" style="background:none;border:none;color:var(--gold-lt);cursor:pointer;font-size:12px;padding:0;font-family:'DM Sans',sans-serif;text-decoration:underline">PywelMap.com ↗</button> — filter to Treasure Chests. It has 2,000+ markers including hidden chest locations the community is still discovering.</div>
   </div>
+
 </div><!-- /panel-secrets -->
 
 
@@ -2092,7 +2685,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <small style="font-size:13px;color:var(--text)">Dodge combos, attack in the recovery window after a miss. Target weak spots. Watch for Observation Learning prompts — hold observe to bank a free technique.</small>
       </div>
     </div>
-    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Broken pillars in boss arenas deal 25–50% of a boss's HP when thrown. If a boss breaks one, use <strong>Nature's Grasp</strong> to pick it up and throw it. Most bosses are also vulnerable to Lariat attacks which stagger them easily.</div></div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Broken pillars in boss arenas deal 25–50% of a boss's HP when thrown. If a boss breaks one, use <strong>Nature's Grasp</strong> to pick it up and throw it. Most bosses are also vulnerable to Lariat attacks which stagger them easily.</div></div>
     <div class="tip tip-w"><span class="tip-ico">⚠</span><div>The final chapter is 3 bosses back-to-back — the first has 3 phases. Bring 50+ Palmar Pills and max food before entering. Hold pills until the final phase so you don't restart the encounter.</div></div>
   </div>
 
@@ -2242,7 +2835,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       </div>
       <div class="acc-body">
         <div class="itm"><div><div class="iname">Mechanic</div><div class="inote">Colossal beast — ground attacks are ineffective. You must climb her shell and destroy silver weak-point patches. She constantly bucks and rears to throw Kliff off.</div></div><span class="itag t-s">Unique</span></div>
-        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Use Fist of Flame (Burn) to stall her rearing animation while you climb. Target weak points in sequence from tail to head. Standing in her saliva pools applies poison — avoid them.</div></div><span class="itag t-c">Patience needed</span></div>
+        <div class="itm"><div><div class="iname">Strategy</div><div class="inote">Use Fist of Flame (Burn) to stall her rearing animation while you climb. Target weak points in sequence from tail to head. Standing in her saliva pools applies poison — avoid them.</div></div><span class="itag t-t">Patience needed</span></div>
         <div class="itm"><div><div class="iname">Rewards</div><div class="inote">Excellent crafting material drops. One of the most unique fight designs in the game.</div></div><span class="itag t-k">Crafting mats</span></div>
       </div>
     </div>
@@ -2257,7 +2850,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       <div class="acc-body">
         <div class="itm"><div><div class="iname">Type</div><div class="inote">Mechanical fire tank · 1 HP bar · Aeronautical Research Base fortress</div></div><span class="itag t-c">Mech</span></div>
         <div class="itm"><div><div class="iname">Strategy A — aggressive</div><div class="inote">Damage the top turret to stun it and blow off its lid, exposing a weak spot. Climb on top and hit the weak spot for massive damage.</div></div><span class="itag t-k">Climb &amp; stab</span></div>
-        <div class="itm"><div><div class="iname">Strategy B — cheese</div><div class="inote">Find the stairs on the left-hand side of the area. Homing missiles hit the floor there. Dip in and out to bait missiles, then use Focused Shot + rapid-fire arrows from that safe spot.</div></div><span class="itag t-c">Cheese spot</span></div>
+        <div class="itm"><div><div class="iname">Strategy B — cheese</div><div class="inote">Find the stairs on the left-hand side of the area. Homing missiles hit the floor there. Dip in and out to bait missiles, then use Focused Shot + rapid-fire arrows from that safe spot.</div></div><span class="itag t-t">Cheese spot</span></div>
         <div class="itm"><div><div class="iname">Up close</div><div class="inote">Ramming attack at close range can one-shot Kliff. At range, fires homing fire projectiles — block with Nature's Snare.</div></div><span class="itag t-s">One-shot risk</span></div>
       </div>
     </div>
@@ -2289,8 +2882,8 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <h3>Know when to interrupt</h3>
         <small>Bosses have Super Armor on specific attacks — standard strikes won't interrupt these. You need Super Armor Break from Turning Slash Mastery or Stab Mastery to interrupt them. Watch for the Super Armor animation and back off rather than trading hits.</small>
       </div>
-      <div class="card aa">
-        <span class="bdg b-amb">Difficulty was patched</span>
+      <div class="card ab">
+        <span class="bdg b-blue">Difficulty was patched</span>
         <h3>Post-patch 1.00.03 changes</h3>
         <small>Pearl Abyss reduced HP and attack of several bosses. Stamina consumption for blocking reduced. Stun gauge now accumulates faster on successful parries. Boss weakness effects display without needing prior knowledge. Game is more forgiving than at launch.</small>
       </div>
@@ -2347,7 +2940,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         </tbody>
       </table>
     </div>
-    <div class="tip tip-i"><span class="tip-ico">◈</span><div>You can extract Abyss Gears from any weapon at the Witch and re-socket into other equipment with zero penalty. A weak weapon with a great Abyss Gear is still worth picking up — grab the gear, not the weapon.</div></div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>You can extract Abyss Gears from any weapon at the Witch and re-socket into other equipment with zero penalty. A weak weapon with a great Abyss Gear is still worth picking up — grab the gear, not the weapon.</div></div>
   </div>
 
   <div class="sec">
@@ -2372,7 +2965,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       </div>
     </div>
 
-    <div class="section-title" style="font-size:10px;margin-bottom:.75rem">Priority skill unlocks</div>
+    <div class="sec-label" style="font-size:10px;margin-bottom:.75rem">Priority skill unlocks</div>
     <div class="tbl-wrap">
       <table>
         <thead><tr><th>Skill</th><th>Tree</th><th>Why it's priority</th></tr></thead>
@@ -2588,7 +3181,7 @@ const REGIONS = {
       { name: 'House Roberts · Estate in Dismay', tag: 'Priority', color: '#e8b86a' },
       { name: 'Palmar Pill recipe — Shadow\'s Whisper Cave', tag: 'Get early', color: '#6db86d' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/hernand',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/Hernand',
     mapUrl: 'https://game8.co/games/Crimson-Desert/archives/585760',
   },
   pailune: {
@@ -2604,7 +3197,7 @@ const REGIONS = {
       { name: 'Pailune Militia — 27 faction quests', tag: 'Faction', color: '#5a90c0' },
       { name: 'Antumbra Order — Cloister of Ruination (Abyss Artifact)', tag: '🔑 Key', color: '#e8b86a' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/pailune',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/Pailune',
     mapUrl: 'https://pywelmap.com/',
   },
   demeniss: {
@@ -2619,7 +3212,7 @@ const REGIONS = {
       { name: 'Demeniss\'s Politics — 5 faction quests', tag: 'Faction', color: '#5a90c0' },
       { name: 'Most faction quests gate-locked — push story first', tag: '⚠ Note', color: '#d4904a' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/demeniss',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/Demeniss',
     mapUrl: 'https://pywelmap.com/',
   },
   delesyia: {
@@ -2634,7 +3227,7 @@ const REGIONS = {
       { name: 'Cloud Castle Orbian — penultimate boss sequence', tag: '⚔ Boss', color: '#e06060' },
       { name: 'Golden Star — mechanical dragon boss', tag: '⚔ Boss', color: '#e06060' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/delesyia',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/Delesyia',
     mapUrl: 'https://gamerant.com/map/crimson-desert-complete-delesyia-full-interactive-map/',
   },
   crimson: {
@@ -2650,7 +3243,7 @@ const REGIONS = {
       { name: 'Black Witch — chapter climax boss', tag: '⚔ Boss', color: '#e06060' },
       { name: 'Most lawless region — prep consumables before entering', tag: '⚠ Note', color: '#d4904a' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/crimson-desert-region',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/Crimson+Desert',
     mapUrl: 'https://pywelmap.com/',
   },
   abyss: {
@@ -2666,7 +3259,7 @@ const REGIONS = {
       { name: '47 Abyss Nexus fast travel points across Pywel', tag: 'Explore', color: '#5a90c0' },
       { name: '141 Sealed Abyss Artifacts — collect for challenges', tag: 'Collect', color: '#6db86d' },
     ],
-    wikiUrl: 'https://thegameswiki.com/crimson-desert/wiki/the-abyss',
+    wikiUrl: 'https://crimsondesert.wiki.fextralife.com/The+Abyss',
     mapUrl: 'https://pywelmap.com/',
   },
 };
@@ -2814,9 +3407,104 @@ function togChap(head) {
 }
 
 // ── CHECKLIST ──
+// ── CHECKLIST PERSISTENCE (localStorage) ──
+const STORE_KEY = 'cd_guide_v1';
+
+function saveState() {
+  try {
+    // Checklist: collect index of all .done items
+    const doneIndexes = [];
+    document.querySelectorAll('.priority-item').forEach((el, i) => {
+      if (el.classList.contains('done')) doneIndexes.push(i);
+    });
+    // Active tab
+    const activeBtn = document.querySelector('.tab-grid-btn.active');
+    const activeTab = activeBtn ? activeBtn.id.replace('tgb-', '') : 'inventory';
+    const state = { checklist: doneIndexes, tab: activeTab, ts: Date.now() };
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+
+    // Restore checklist ticks
+    if (Array.isArray(state.checklist) && state.checklist.length) {
+      const items = document.querySelectorAll('.priority-item');
+      state.checklist.forEach(i => { if (items[i]) items[i].classList.add('done'); });
+    }
+
+    // Restore active tab — ONLY switch if the saved panel actually exists
+    if (state.tab) {
+      const panel = document.getElementById('panel-' + state.tab);
+      if (panel) {
+        const labels = {
+          inventory:'Inventory', items:'Items Guide', trading:'Trading',
+          quests:'Quests', bosses:'Bosses', builds:'Builds & Weapons',
+          camp:'Camp', crafting:'Crafting', cooking:'Cooking',
+          mounts:'Mounts & Pets', characters:'Characters',
+          secrets:'Secrets', early:'Early Game'
+        };
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-grid-btn').forEach(b => b.classList.remove('active'));
+        panel.classList.add('active');
+        const btn = document.getElementById('tgb-' + state.tab);
+        if (btn) btn.classList.add('active');
+        const nameEl = document.getElementById('active-tab-name');
+        if (nameEl) nameEl.textContent = labels[state.tab] || state.tab;
+      }
+      // If panel not found, leave inventory (default HTML active class) untouched
+    }
+
+    // Toast if checklist had saved data
+    if (state.checklist && state.checklist.length > 0)
+      showToast(`✓ Progress restored — ${state.checklist.length} item${state.checklist.length > 1 ? 's' : ''} saved`);
+  } catch(e) {
+    // Corrupted state — clear it and let the page load fresh
+    try { localStorage.removeItem(STORE_KEY); } catch(_) {}
+  }
+}
+
+function clearState() {
+  try { localStorage.removeItem(STORE_KEY); } catch(e) {}
+  document.querySelectorAll('.priority-item').forEach(el => el.classList.remove('done'));
+  showToast('Checklist cleared');
+}
+
 function togglePI(el) {
   el.classList.toggle('done');
+  saveState();
 }
+
+// Override pickTab to also save state
+// patch: save after each tab switch
+
+function showToast(msg) {
+  let t = document.getElementById('cd-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'cd-toast';
+    t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#201e19;border:1px solid #c9963e;border-radius:6px;padding:9px 18px;font-size:12px;color:#e8b86a;font-family:"DM Sans",sans-serif;z-index:9999;transition:opacity .3s;pointer-events:none;white-space:nowrap';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.style.opacity = '0', 2800);
+}
+
+// Patch pickTab so every tab switch also persists state
+(function() {
+  const orig = window.pickTab;
+  if (!orig) return; // safety guard
+  window.pickTab = function(id, label, btn) {
+    orig(id, label, btn);
+    saveState();
+  };
+})();
 
 // ── SEARCH ──
 const ITEMS = [
@@ -2890,62 +3578,65 @@ document.addEventListener('click', e => {
 });
 
 // ── QUEST LINK INJECTION ──
-// Converts quest names to slugs for thegameswiki.com and adds link icons
+// Converts quest names to slugs for fextralife.com wiki and adds link icons
 function toSlug(text) {
+  // Fextralife wiki uses Title+Case+With+Plus e.g. "Unfamiliar+Lands"
   return text
-    .toLowerCase()
-    .replace(/['']/g, '')        // remove apostrophes
-    .replace(/[^a-z0-9\s-]/g, '') // strip special chars
+    .replace(/['']/g, '')          // remove apostrophes
+    .replace(/[^a-zA-Z0-9\s]/g, '') // strip special chars
     .trim()
-    .replace(/\s+/g, '-');       // spaces → hyphens
+    .split(/\s+/)
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join('+');
 }
 
-const WIKI_BASE = 'https://thegameswiki.com/crimson-desert/wiki/';
+const WIKI_BASE = 'https://crimsondesert.wiki.fextralife.com/';
 const GOOGLE_BASE = 'https://www.google.com/search?q=Crimson+Desert+';
 
 // Known overrides where the slug doesn't match the display name
+// Fextralife format: Title+Case+With+Plus
 const SLUG_OVERRIDES = {
-  "memory fragment":           "memory-fragments",
-  "the iron pot's usage":      "the-iron-pots-usage",
-  "abyss without balance":     "abyss-without-balance",
-  "woman in white":            "woman-in-white",
-  "kailok the hornsplitter":   "kailok-the-hornsplitter",
-  "trial after trial":         "trial-after-trial",
-  "for honor":                 "for-honor",
-  "shadow cast over the river":"shadow-cast-over-the-river",
-  "where misery gathers":      "where-misery-gathers",
-  "the man trapped in the mire":"the-man-trapped-in-the-mire",
-  "missing companion":         "missing-companion",
-  "secrets hidden in the dark":"secrets-hidden-in-the-dark",
-  "the dark veil":             "the-dark-veil",
-  "the flames of greed":       "the-flames-of-greed",
-  "kidnapped healer":          "kidnapped-healer",
-  "rebellion or revolution":   "rebellion-or-revolution",
-  "cheers echoing from the edge":"cheers-echoing-from-the-edge",
-  "first step to rebuilding":  "first-step-to-rebuilding",
-  "a fresh start":             "a-fresh-start",
-  "reward for their sweat":    "reward-for-their-sweat",
-  "return of the comrade":     "return-of-the-comrade",
-  "familiar curses":           "familiar-curses",
-  "traces in the manor":       "traces-in-the-manor",
-  "seed of unease":            "seed-of-unease",
-  "dance with the devil":      "dance-with-the-devil",
-  "hope after the draught":    "hope-after-the-draught",
-  "scattered comrades":        "scattered-comrades",
-  "rumors from the sawmill":   "rumors-from-the-sawmill",
-  "a gentle touch":            "a-gentle-touch",
-  "bustling hill":             "bustling-hill",
-  "greymanes reunited":        "greymanes-reunited",
-  "kilnden workshop":          "kilnden-workshop",
-  "kiln repair at the kilnden workshop": "kiln-repair-at-the-kilnden-workshop",
-  "the mysterious pot":        "the-mysterious-pot",
-  "disturbance at the arena":  "disturbance-at-the-arena",
-  "skilled in archery":        "skilled-in-archery",
-  "the words of alustin":      "the-words-of-alustin",
-  "estate in dismay":          "estate-in-dismay",
-  "the trembling woods":       "the-trembling-woods",
-  "uninvited guest":           "uninvited-guest",
-  "black and white":           "black-and-white",
+  "memory fragment":           "Memory+Fragments",
+  "the iron pot's usage":      "The+Iron+Pots+Usage",
+  "abyss without balance":     "Abyss+Without+Balance",
+  "woman in white":            "Woman+in+White",
+  "kailok the hornsplitter":   "Kailok+the+Hornsplitter",
+  "trial after trial":         "Trial+After+Trial",
+  "for honor":                 "For+Honor",
+  "shadow cast over the river":"Shadow+Cast+Over+the+River",
+  "where misery gathers":      "Where+Misery+Gathers",
+  "the man trapped in the mire":"The+Man+Trapped+in+the+Mire",
+  "missing companion":         "Missing+Companion",
+  "secrets hidden in the dark":"Secrets+Hidden+in+the+Dark",
+  "the dark veil":             "The+Dark+Veil",
+  "the flames of greed":       "The+Flames+of+Greed",
+  "kidnapped healer":          "Kidnapped+Healer",
+  "rebellion or revolution":   "Rebellion+or+Revolution",
+  "cheers echoing from the edge":"Cheers+Echoing+from+the+Edge",
+  "first step to rebuilding":  "First+Step+to+Rebuilding",
+  "a fresh start":             "A+Fresh+Start",
+  "reward for their sweat":    "Reward+for+Their+Sweat",
+  "return of the comrade":     "Return+of+the+Comrade",
+  "familiar curses":           "Familiar+Curses",
+  "traces in the manor":       "Traces+in+the+Manor",
+  "seed of unease":            "Seed+of+Unease",
+  "dance with the devil":      "Dance+with+the+Devil",
+  "hope after the draught":    "Hope+After+the+Draught",
+  "scattered comrades":        "Scattered+Comrades",
+  "rumors from the sawmill":   "Rumors+from+the+Sawmill",
+  "a gentle touch":            "A+Gentle+Touch",
+  "bustling hill":             "Bustling+Hill",
+  "greymanes reunited":        "Greymanes+Reunited",
+  "kilnden workshop":          "Kilnden+Workshop",
+  "kiln repair at the kilnden workshop": "Kiln+Repair+at+the+Kilnden+Workshop",
+  "the mysterious pot":        "The+Mysterious+Pot",
+  "disturbance at the arena":  "Disturbance+at+the+Arena",
+  "skilled in archery":        "Skilled+in+Archery",
+  "the words of alustin":      "The+Words+of+Alustin",
+  "estate in dismay":          "Estate+in+Dismay",
+  "the trembling woods":       "The+Trembling+Woods",
+  "uninvited guest":           "Uninvited+Guest",
+  "black and white":           "Black+and+White",
 };
 
 // Quests that span multiple items or are meta-descriptions (skip linking)
@@ -3078,6 +3769,9 @@ document.addEventListener('click', e => {
   const head = e.target.closest('.acc-head, .chap-head');
   if (head) setTimeout(injectQuestLinks, 50);
 });
+
+// Load saved state on page ready
+loadState();
 </script>
 </body>
 </html>
