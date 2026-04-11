@@ -83,7 +83,7 @@ h1 span{color:var(--gold)}
 /* ── PANEL CONTAINER ── */
 .panel-wrap{max-width:860px;margin:0 auto;padding:2rem 2rem 4rem}
 .panel{display:none}
-.panel.active{display:block}
+.panel.active{display:block!important}
 
 /* ── SECTION WITHIN PANEL ── */
 .sec{margin-bottom:2.5rem}
@@ -309,18 +309,17 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 /* ── ANIMS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .hero-inner{animation:fadeUp .45s ease both}
-/* Children of active panels get a subtle slide-in — opacity starts at 1 so content
-   is never hidden if the animation is blocked or skipped */
+/* Panel children slide in without opacity change — content always visible */
 .panel.active > .sec,
 .panel.active > .priority-list,
 .panel.active > .chapter-block,
-.panel.active > .acc-item{animation:fadeUp .25s ease both}
+.panel.active > 
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Crimson Desert</div>
+  <div class="logo">Crimson Desert <span style="font-size:9px;opacity:.5;font-family:monospace">v3.1</span></div>
   <div class="active-tab-label">Currently viewing: <span id="active-tab-name">Inventory</span></div>
   <button class="menu-btn" id="menu-toggle" onclick="toggleMenu()">
     <span id="menu-icon">≡</span> Sections
@@ -1108,15 +1107,29 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
-        <p style="font-size:13px;color:var(--text);margin-bottom:12px">War erupts on the frontlines in Pailune (icy north). Kliff joins the defense — siege sequences, large-scale counterattacks, fire support missions. Concludes with a decisive victory and an internal betrayal.</p>
-        <div class="qgroup-label">Blazing Beacon — 3 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Blazing Beacon arc quests (3) — Pailune region opening</div><div class="quest-tag qt-main">Main</div></div>
-        <div class="qgroup-label">Under the Banner Pike Again — 3 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Under the Banner Pike Again arc quests (3) — rallying forces</div><div class="quest-tag qt-main">Main</div></div>
-        <div class="qgroup-label">Turning Tides — 4 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Turning Tides arc quests (4) — siege defense waves</div><div class="quest-tag qt-main">Main</div></div>
-        <div class="qgroup-label">The Undying Shields — 5 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">The Undying Shields arc quests (5) — betrayal, chapter close</div><div class="quest-tag qt-main">Main</div></div>
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">War erupts in the Calphadean Territory of Hernand. Kliff hears a Greymane comrade is fighting with Calphade forces against the Black Bears — he joins the campaign. Four main quests, each with sub-objectives, culminating in a boss fight and a betrayal. Reward: Shield of Betrayal.</p>
+
+        <div class="qgroup-label">Arc: Blazing Beacon — 1 quest · 7 steps</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Blazing Beacon</div><div class="quest-note">Speak with the soldier at camp · Meet Marquis Serkis · Follow guide to the Beacon · Investigate the attack scene · Move to Calphade Gate · Speak with Marshal Middler · Raise the Calphadean Banner Pike</div></div><div class="quest-tag qt-main">Main</div></div>
+
+        <div class="qgroup-label">Arc: Below the Banners — 3 sub-quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Cradle of Defense</div><div class="quest-note">Raise Banner Pike at Siege Armory · Raise at Gunpowder Mill · Raise at Thalwynd</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Hand of Deliverance</div><div class="quest-note">Speak with soldier at Southern Guard Post · Find and rescue the injured soldier</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Fire on the Frontlines</div><div class="quest-note">Destroy the enemy's supply wagons — clear guards first, wagons are heavily defended</div></div><div class="quest-tag qt-main">Main</div></div>
+
+        <div class="qgroup-label">Arc: Turning Tides — 4 sub-quests · Reward: 10× Whistling Arrow</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Fire Support</div><div class="quest-note">Speak with soldier at the Gunsite · Destroy the Black Bears' watchtowers</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">In Ashes</div><div class="quest-note">Speak with soldier at outskirts base · Infiltrate the Black Bears' base (use cover, approach flanks) · Rescue the captives</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Hidden Fangs</div><div class="quest-note">Destroy the Black Bears' battle weapons — do this before Reclamation to remove their artillery support</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Reclamation</div><div class="quest-note">Defeat the enemies surrounding the Outer Bailey</div></div><div class="quest-tag qt-main">Main</div></div>
+
+        <div class="qgroup-label">Arc: The Unyielding Shields — 5 sub-quests · Boss: Cassius Morten · Reward: Shield of Betrayal</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">A Thousand Troops</div><div class="quest-note">Advance to Calphade Castle · Support Stefan Lanford</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Traitor</div><div class="quest-note">Defeat Cassius Morten — watch for heavy attack wind-ups to dodge and punish. Phase 2 increases attack speed — don't trade hits.</div></div><div class="quest-tag qt-key">⚔ Cassius Morten</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">All Quiet on the Front</div><div class="quest-note">Tell Marquis Lanford the news</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">News of Victory</div><div class="quest-note">Follow the soldier and light the beacon</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Return Home</div><div class="quest-note">Speak with your comrades — chapter close. Shield of Betrayal received.</div></div><div class="quest-tag qt-bag">Shield of Betrayal</div></div>
+
         <div class="tip tip-o" style="margin:10px 0 0"><span class="tip-ico">◈</span><div>53 faction quests in Pailune across 4 groups. Antumbra Order: Cloister of Ruination rewards Abyss Artifact ×1. Pailune's Politics (8 quests) affects vendor availability later — do not skip. Some NPCs only appear at certain in-game day times.</div></div>
       </div>
     </div>
@@ -1130,15 +1143,34 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
         <div class="chap-chev">▼</div>
       </div>
       <div class="chap-body">
-        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Second largest chapter. Kliff returns to find treachery among the Greymanes' allies. Restore trust, drive enemies from Pailune, lead the Battle at Silverwolf Mountain, pursue Ludvig, and reckon with past betrayals. Oongka joins the party.</p>
-        <div class="qgroup-label">Dawn Mist — 5 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Dawn Mist arc quests (5) — return to Pailune</div><div class="quest-tag qt-main">Main</div></div>
-        <div class="qgroup-label">Dawnrise — 6 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Dawnrise arc quests (6) — driving enemies out</div><div class="quest-tag qt-main">Main</div></div>
-        <div class="qgroup-label">Decisive Battle — 6 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div class="quest-name">Decisive Battle arc quests (6) — Battle at Silverwolf Mountain</div><div class="quest-tag qt-key">⚔ Silverwolf Mountain</div></div>
-        <div class="qgroup-label">Twisted Fate — 2 quests</div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Twisted Fate arc quests (2)</div><div class="quest-note">Pursuit of Ludvig · Oongka joins → Large Bag reward</div></div><div class="quest-tag qt-bag">+Large Bag · Oongka</div></div>
+        <p style="font-size:13px;color:var(--text);margin-bottom:12px">Longest chapter in the game — 19 quests across 4 arcs. Kliff returns to Pailune to reclaim Greymane homeland. Works with Torstein and Blue Fangs resistance. Spans infiltration missions, full-scale siege, the Myurdin boss at Silverwolf Mountain, and Oongka's first playable appearance. Final rewards: Ignir spear + Solas Plate Armor + Solas Plate Boots.</p>
+
+        <div class="qgroup-label">Arc: Dawn Mist — 6 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Ashes of Treachery</div><div class="quest-note">Follow comrade on horseback to burned house · Defeat attacking Black Bears · Find hidden letter at dragon head statue · Read Beighen Situation Report · Head northwest to Beighen</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Trust Lost</div><div class="quest-note">Navigate the strained welcome in Beighen — locals distrust the Greymanes despite them arriving to help</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Bared Fang</div><div class="quest-note">Establish position and begin the counter-offensive against Black Bear forces</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Rekindled Hope</div><div class="quest-note">Restore momentum for the Greymane push — turns the tide in Pailune's early liberation</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Podium of Resolve</div><div class="quest-note">Rally the forces — major story beat before launching the full Pailune campaign</div></div><div class="quest-tag qt-main">Main</div></div>
+
+        <div class="qgroup-label">Arc: Dawnrise (Shadows Over Pailune) — 7 quests</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Shadows Over Pailune</div><div class="quest-note">Assess the Black Bear occupation of Pailune — opening sweep of the arc</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Driving Out the Shadows</div><div class="quest-note">Begin systematic pushback against Black Bear positions across Pailune</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Lurking Wolves</div><div class="quest-note">Hunt Black Bear guerrilla units — tougher enemy variants than standard soldiers</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Reclamation</div><div class="quest-note">Major push to clear Black Bear control from key Pailune territories</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Lonely Jackals</div><div class="quest-note">Confront Ludvig — first proper boss encounter. His escape is scripted: Duane loses focus and Ludvig gets away. Do not expect closure here.</div></div><div class="quest-tag qt-key">⚔ Ludvig (1st)</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Resolution</div><div class="quest-note">Close out the Dawnrise arc · Ring the Pailune Belltower after completing this quest to clear fog of war</div></div><div class="quest-tag qt-bag">🔔 Ring Belltower</div></div>
+
+        <div class="qgroup-label">Arc: Decisive Battle — 6 quests · Boss: Myurdin</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Counterattack</div><div class="quest-note">Join comrades · Wait for the right moment · Join the counterattack launch</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Unleashed Fury</div><div class="quest-note">Full offensive push — larger scale combat against Black Bear main forces</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">The Final Bridge</div><div class="quest-note">Regroup with the Greymanes at a specific bridge position</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Broken Claws</div><div class="quest-note">Liberate Ashclaw Slave Camp — tightly grouped enemies, use AoE skills</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Battle at Silverwolf Mountain</div><div class="quest-note">Chapter centerpiece fight. Fight Myurdin — you are expected to lose: at 0 HP a cutscene plays where Kliff is saved by an arrow and pushed into the river. Watch-and-learn prompts trigger automatically during the fight.</div></div><div class="quest-tag qt-key">⚔ Myurdin (scripted loss)</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Incomplete Victory</div><div class="quest-note">Speak with Oongka after the battle — reframes the chapter's stakes and sets up Twisted Fate</div></div><div class="quest-tag qt-main">Main</div></div>
+
+        <div class="qgroup-label">Arc: Twisted Fate — 2 quests · Boss: One-Armed Ludvig · Rewards: Ignir + Solas Plate</div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Ludvig's Whereabouts</div><div class="quest-note">Meet Duane and Shane in Demeniss · Investigate last Jackal sighting · Track Ludvig through the area · Punish the wounded Jackal (mini-boss, more HP than standard enemy) · Return to comrades</div></div><div class="quest-tag qt-main">Main</div></div>
+        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Time to Face Justice</div><div class="quest-note">Final confrontation with One-Armed Ludvig — new moves vs first fight: counter-attack on blocked hits, extended combo string in final phase. Oongka joins as playable character after this quest.</div></div><div class="quest-tag qt-bag">⚔ Ludvig (final) · Oongka joins</div></div>
         <div class="tip tip-w" style="margin:10px 0 0"><span class="tip-ico">⚠</span><div>Oongka joins at the end of this chapter. Same rule as Damiane — don't invest Abyss Artifacts into Oongka until Kliff's build is set.</div></div>
       </div>
     </div>
@@ -2037,7 +2069,7 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
           <tr><td>Horse</td><td style="color:var(--text-dm);font-size:12px">Exploration, mounted combat (bow/sword from saddle), racing</td><td style="color:var(--text-dm);font-size:12px">Back-kick is horse's only attack. Can swim across water when upgraded.</td><td style="color:var(--grn-lt);font-size:12px">Yes</td></tr>
           <tr><td>Bear</td><td style="color:var(--text-dm);font-size:12px">Ground combat, enemy camps</td><td style="color:var(--text-dm);font-size:12px">Massive HP, devastating AoE swipes, fights on its own near you. Mounting unlocks hidden movesets (long slashes, bite attacks).</td><td style="color:var(--red-lt);font-size:12px">Temporary wild</td></tr>
           <tr><td>Raptor</td><td style="color:var(--text-dm);font-size:12px">Speed &amp; agility</td><td style="color:var(--text-dm);font-size:12px">High speed, swift turns without losing speed. Good for escaping enemies. Delesyian Swift is a standout variant.</td><td style="color:var(--red-lt);font-size:12px">Temporary wild</td></tr>
-          <tr><td>Wyvern / Dragon</td><td style="color:var(--text-dm);font-size:12px">Flight, aerial combat, fire breath</td><td style="color:var(--text-dm);font-size:12px">Mid-to-endgame. Can burn entire battlefields. Used in the Golden Star boss fight.</td><td style="color:var(--grn-lt);font-size:12px">Yes (late game)</td></div></tr>
+          <tr><td>Wyvern / Dragon</td><td style="color:var(--text-dm);font-size:12px">Flight, aerial combat, fire breath</td><td style="color:var(--text-dm);font-size:12px">Mid-to-endgame. Can burn entire battlefields. Used in the Golden Star boss fight.</td><td style="color:var(--grn-lt);font-size:12px">Yes (late game)</td></tr>
           <tr><td>Dinosaur</td><td style="color:var(--text-dm);font-size:12px">Tanky vantage-point riding</td><td style="color:var(--text-dm);font-size:12px">High vantage + great stamina. Low speed. Heavily armored, good combat.</td><td style="color:var(--text-dm);font-size:12px">Varies</td></tr>
           <tr><td>ATAG Mech</td><td style="color:var(--text-dm);font-size:12px">Explosive area damage</td><td style="color:var(--text-dm);font-size:12px">Mobile artillery for short windows. Temporary.</td><td style="color:var(--red-lt);font-size:12px">Temporary</td></tr>
           <tr><td>Blackstar Dragon</td><td style="color:var(--text-dm);font-size:12px">Prestige, flight, combat</td><td style="color:var(--text-dm);font-size:12px">15-minute flight limit then 50-minute real-time cooldown. Late game unlock.</td><td style="color:var(--grn-lt);font-size:12px">Yes</td></tr>
@@ -2108,6 +2140,8 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
       </small>
     </div>
     <div class="tip tip-g"><span class="tip-ico">✓</span><div>Poison arrows one-shot almost any animal for hunting — single arrow takes down deer, goats, anything. Far faster than chasing with a sword. Standard practice for meat and hide farming once you have arrows.</div>
+  </div>
+
   </div>
 
 </div><!-- /panel-mounts -->
@@ -2210,455 +2244,163 @@ small{font-size:12px;color:var(--text-dm);line-height:1.5;display:block;margin-t
 </div><!-- /panel-characters -->
 
 <!-- ════ SECRETS ════ -->
-<div id="panel-secrets" class="panel">
-  <div class="sec">
-    <div class="sec-label">Hidden mechanics the game never explains</div>
+<div id="panel-secrets" class="panel" style="background:#0e0d0b;color:#bfb9aa">
 
-    <div class="tip tip-o"><span class="tip-ico">◈</span><div>This tab covers things Pearl Abyss never puts in a tutorial. Most players discover these 20–50 hours in. Knowing them from the start saves enormous time.</div></div>
+  <div class="sec" style="margin-bottom:2.5rem;color:#bfb9aa">
+    <div class="sec-label">Hidden mechanics — the game never explains these</div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>Things Pearl Abyss buried with zero tutorial. Most players find these 20–50 hours in. Knowing them early saves enormous time.</div></div>
 
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-gold">🧱</div>
-        <div class="acc-label">Illusory walls — walk into highlighted walls</div>
-        <div class="acc-verdict v-keep">Exploration</div>
-        <div class="acc-chev">▼</div>
+    <div class="grid2" style="margin-bottom:1rem">
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">🧱 Illusory walls</span>
+        <h3>Walk into Lantern-highlighted walls</h3>
+        <small>In caves and ruins, some walls are fake. If your Lantern (L1/LB) highlights a wall but nothing happens when you press interact — walk directly into it. It dissolves. Zero tutorial. Activate your Lantern in every cave systematically. Some of the best weapons in the game are behind illusory walls.</small>
       </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">The mechanic</div><div class="inote">Some walls in caves and ruins are illusory. If your Lantern (L1/LB) highlights a wall but nothing happens when you press interact — walk directly into it. The wall dissolves and reveals a hidden passage or secret room. Zero tutorial, zero indication.</div></div><span class="itag t-k">Key</span></div>
-        <div class="itm"><div><div class="iname">How to find them</div><div class="inote">Activate your Lantern in every cave and ruin systematically. If a marker appears on a wall without an interaction prompt, walk into it. Check everywhere — some of the best unique weapons in the game are behind illusory walls.</div></div><span class="itag t-c">Always try</span></div>
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">💧 Waterfalls always hide something</span>
+        <h3>Stab through to enter — R1+△ / RB+Y</h3>
+        <small>Walking into waterfalls knocks you back. Use Stab (R1+△ / RB+Y / LShift+RMB) to part the water and walk through. Every single waterfall in Pywel has a chest, weapon, or ore behind it. Small stacked rock towers in front of a cliff = secret passage. Check behind both every time.</small>
       </div>
+
+      <div class="card al" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #7a5518;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-gold">🍖 Blinding Flash cooks meat</span>
+        <h3>No campfire needed — drop meat, aim at it</h3>
+        <small>Drop raw meat on the ground (Discard from inventory) then aim Blinding Flash / Guiding Light at it. The sunbeam cooks the meat on the spot. Same mechanic also sets fire to wooden structures, bushes, carts, vines blocking paths, and enemies.</small>
+      </div>
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">🧗 Eat food mid-climb — infinite stamina</span>
+        <h3>Open consumable wheel while hanging on a cliff</h3>
+        <small>Stamina food can be consumed while climbing, swimming, or gliding without stopping. Hold D-Pad Right / F3, eat — bar refills instantly. Effectively unlimited climbing. Also: Force Palm while clinging to a wall (hold Resist) mines cliff-face ore veins that look unreachable.</small>
+      </div>
+
+      <div class="card ab" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #3a6a9a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-blue">✊ Fist combat is a full system</span>
+        <h3>Open radial menu → select fists — unlocks martial arts</h3>
+        <small>Selecting fists activates a completely separate martial arts combo system with its own R1/R2 chains. Includes launchers, grapples, German Suplex, chokeslam. Watch enemies to learn their moves free — zero Artifact cost, persists through respecs. Roll + Circle+Triangle (PS) = tackle/subdue for bounties.</small>
+      </div>
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">📦 L3 bundles identical inventory items</span>
+        <h3>Hold left-stick press to group same-type items</h3>
+        <small>Hover over any item, hold L3 (PS) / left stick press — all identical items bundle into one slot. Doesn't increase slot count but makes the inventory far cleaner. Sell recipe scrolls after reading them — "Knowledge acquired" text means it's saved to your journal.</small>
+      </div>
+
+      <div class="card al" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #7a5518;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-gold">🐴 Steal wagons from the road</span>
+        <h3>Hop on any guarded wagon — sell to Wagon Fences</h3>
+        <small>Any wagon on a road (guarded by bandits or near NPCs) can be stolen — just mount it. Sell to Wagon Fences for coin. Also: disarm humanoid enemies mid-combat to steal their weapon. Useful for sampling weapon types without farming boss drops.</small>
+      </div>
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">🏹 Poison arrows one-shot any animal</span>
+        <h3>Single arrow kills deer, goats, anything instantly</h3>
+        <small>One poison arrow kills almost any animal instantly — no chasing, no stamina drain. You get them from looting enemies. Make this your default hunting method. Mountain Goats are the best early meat target: die fast, drop Fine Meat + hides, found near mountains northwest of Hernand.</small>
+      </div>
+
+      <div class="card al" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #7a5518;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-gold">🌟 Abyss Cressets = free fast travel + skill points</span>
+        <h3>Each one gives 1 Abyss Artifact + a fast travel node</h3>
+        <small>Scattered across all 5 regions. Some require aerial Force Palm, Gliding, or Triple Aerial Force Palm to reach. Hernand focuses on vertical climbs. Crimson Desert region has 13 (most). Collecting all gives the Pilgrim of Wonders trophy. Unlock traversal skills first.</small>
+      </div>
+
+      <div class="card ab" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #3a6a9a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-blue">🏰 Faction shops sell free endgame armor</span>
+        <h3>Spend Contribution Points (reputation) not silver</h3>
+        <small>Hidden shops in each region sell armor rivaling crafted gear — cost is Contribution Points, not silver. Easy to miss entirely. Note: stealing reduces Contribution Points whether caught or not. If farming these shops, moderate your theft in that region.</small>
+      </div>
+
+      <div class="card al" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #7a5518;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-gold">💰 Lioncrest Manor — best early loot haul</span>
+        <h3>No key required — steal everything inside</h3>
+        <small>Near Hernand Castle. Contains: Gold Bar (→ 500 Silver at any bank), Brass Wardens Plate, Rhonid Large Shield, and the Hwando katana. One-time. The gold bar alone is one of the largest single windfalls in early game.</small>
+      </div>
+
+      <div class="card ab" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #3a6a9a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-blue">🌲 Stealth system exists — game never mentions it</span>
+        <h3>Hide in bushes or treetops — screen edges darken when active</h3>
+        <small>Thick bushes, tall grass, and treetops activate stealth. Screen lighting dims at the edges when active. Running out of stamina on walls: use precision jump (aim at a spot above you) instead — the jump distance is surprisingly long and costs far less stamina than hanging.</small>
+      </div>
+
+      <div class="card ag" style="background:#201e19;border:1px solid #2e2b24;border-left:3px solid #4a8a4a;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+        <span class="bdg b-grn">🔔 Notifications menu tracks everything missed</span>
+        <h3>Open from main menu — shows all recent notifications</h3>
+        <small>Lists every notification from the session with links to relevant menu sections. Use whenever a quest counter looks wrong or you think you missed something. Before selling any book or document: check for "Knowledge acquired" grey text — if present, you already have the content; sell it.</small>
+      </div>
+
     </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-gold">💧</div>
-        <div class="acc-label">Waterfalls always hide something — stab to pass through</div>
-        <div class="acc-verdict v-keep">Exploration</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">How to pass waterfalls</div><div class="inote">Waterfalls knock you back if you walk through them. Use Stab (RB+Y / R1+△ / LShift+RMB) right in front — Kliff parts the water with his blade and passes through. Every waterfall in the game has something behind it: treasure chest, unique weapon, or rare ore.</div></div><span class="itag t-k">Always check</span></div>
-        <div class="itm"><div><div class="iname">Stacked rock towers</div><div class="inote">A small tower of stacked rocks in front of a waterfall or cliff face marks a passage or hidden chest. The Hollow Visage Katana (one of the best early weapons) is in a waterfall cave near the Reed Devil boss.</div></div><span class="itag t-k">Tip</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-amb">🍖</div>
-        <div class="acc-label">Blinding Flash cooks meat — no campfire needed</div>
-        <div class="acc-verdict v-keep">Combat / Utility</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">The trick</div><div class="inote">Drop raw meat on the ground (Discard from inventory), then aim your Blinding Flash / Guiding Light at it. The sunbeam reflection cooks the meat on the spot. No campfire, no cooking pot required.</div></div><span class="itag t-k">Useful</span></div>
-        <div class="itm"><div><div class="iname">Also: fire mechanic</div><div class="inote">The same Blinding Flash mechanism sets fire to wooden structures, bushes, carts, vines blocking paths, and even enemies. Aim at flammable environmental objects to burn them. Useful for clearing vine barriers and environmental puzzle elements.</div></div><span class="itag t-c">Multi-use</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-blue">🧗</div>
-        <div class="acc-label">Eat food mid-climb, mid-swim, mid-glide — infinite range</div>
-        <div class="acc-verdict v-keep">Traversal</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">The mechanic</div><div class="inote">Stamina food can be consumed while hanging on a cliff face, mid-swim, or mid-glide without interrupting the action. Open the consumable wheel (hold D-Pad Right / F3) and eat — your stamina bar refills instantly. This effectively gives you unlimited climbing and swimming as long as you have stamina food.</div></div><span class="itag t-k">Essential</span></div>
-        <div class="itm"><div><div class="iname">Cliff ore trick</div><div class="inote">Ore veins on cliff faces look unreachable. Use Force Palm while clinging to the wall (hold Resist button simultaneously) to mine them. Alternatively, use Charged Shot skill to shoot ore from the ground.</div></div><span class="itag t-k">Mining tip</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-blue">✊</div>
-        <div class="acc-label">Fist combat — separate full martial arts system</div>
-        <div class="acc-verdict v-keep">Combat</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">Unlocking it</div><div class="inote">Open the weapon radial menu and select fists. This does NOT give you a basic punch — it activates a completely separate martial arts combo system with its own R1 and R2 attack chains. Includes launchers, grapples, a German Suplex, and a chokeslam.</div></div><span class="itag t-k">Try it</span></div>
-        <div class="itm"><div><div class="iname">Free skills</div><div class="inote">Watch enemies perform special moves — the Observe prompt appears above their head. Hold observe to learn their technique for free. Zero Artifact cost, persist through respecs. Don't skip optional bosses — they teach rare abilities unavailable elsewhere.</div></div><span class="itag t-k">Free XP</span></div>
-        <div class="itm"><div><div class="iname">Tackle (hidden)</div><div class="inote">Roll then press Circle + Triangle simultaneously (PS) to tackle and subdue an enemy on the ground. Standard controls for a standing throw — but works as a grapple during a roll. Key mechanic for capturing bounties alive.</div></div><span class="itag t-c">Hidden move</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-grn">📦</div>
-        <div class="acc-label">Item grouping — L3 bundles identical items</div>
-        <div class="acc-verdict v-keep">Inventory</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">How it works</div><div class="inote">Hover over any item in your inventory and hold L3 (PlayStation) / left stick press — all identical items of the same type bundle into a single inventory slot and move to the left side of the screen. Doesn't increase slot count but makes the inventory significantly cleaner to read.</div></div><span class="itag t-k">QoL</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-gold">🐴</div>
-        <div class="acc-label">You can steal enemy wagons — then sell them</div>
-        <div class="acc-verdict v-keep">Economy</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">Wagon theft</div><div class="inote">Wagons parked on roads (guarded by bandits, parked near NPCs, or being driven) can simply be stolen. Just hop on. They don't become your permanent property, but you can sell them to Wagon Fences for decent coin.</div></div><span class="itag t-t">Easy silver</span></div>
-        <div class="itm"><div><div class="iname">Disarming enemies</div><div class="inote">You can disarm humanoid enemies and steal their weapons mid-combat. The disarmed weapon is then yours to use or sell. Useful for getting weapon samples without farming boss drops.</div></div><span class="itag t-t">Steal gear</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-grn">🏹</div>
-        <div class="acc-label">Poison arrows one-shot any animal — fastest meat farming</div>
-        <div class="acc-verdict v-keep">Gathering</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">The trick</div><div class="inote">A single poison arrow kills almost any animal instantly. Deer, goats, pigs — one arrow, instant drop. No chasing, no stamina use, no sword swinging. You get poison arrows from looting enemies. Make this your standard hunting method whenever you have them.</div></div><span class="itag t-k">Standard now</span></div>
-        <div class="itm"><div><div class="iname">Mountain Goats</div><div class="inote">Best early meat source — faster to kill than deer, same Fine Meat drops. Hunt near mountains northwest of Hernand. Combined with poison arrows, one hunting run fills your food supply for a boss fight in minutes.</div></div><span class="itag t-k">Best target</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-blue">🌟</div>
-        <div class="acc-label">Abyss Cressets — free fast travel + Abyss Artifacts</div>
-        <div class="acc-verdict v-keep">Progression</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Abyss Cressets are glowing collectible points scattered across Pywel. Each one gives: 1 Abyss Artifact (skill point) + a new fast travel point. Some require aerial Force Palm, Gliding, or Triple Aerial Focus Palm to reach elevated positions.</div></div><span class="itag t-abyss">Collect all</span></div>
-        <div class="itm"><div><div class="iname">Sealed Abyss Artifacts</div><div class="inote">Found along roads with a blue glint — use Blinding Flash / Guiding Light to spot them. Challenge progress only counts AFTER pickup (not retroactively). Collecting them all gives the Pilgrim of Wonders trophy and meaningful skill point rewards.</div></div><span class="itag t-k">Grab early</span></div>
-        <div class="itm"><div><div class="iname">Abyss Nexus fast travel</div><div class="inote">47 Nexus points across all 5 regions. Activate by stepping on pressure plates. Crimson Desert region has 13 (most of any region). Ring the 8 Bell Towers first to clear fog of war — then hunt Nexus points on the revealed map.</div></div><span class="itag t-abyss">Unlock ASAP</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-gold">🏰</div>
-        <div class="acc-label">Faction contribution shops — free endgame armor</div>
-        <div class="acc-verdict v-keep">Gear</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">What they are</div><div class="inote">Hidden shops in each region sell armor that rivals crafted gear — but instead of silver, they cost Contribution Points (faction reputation). These are completely separate from regular vendors and easy to miss.</div></div><span class="itag t-k">Hidden</span></div>
-        <div class="itm"><div><div class="iname">Important</div><div class="inote">Stealing reduces Contribution Points whether you're caught or not. If you're farming Contribution Points to buy gear from these shops, steal in moderation and avoid crimes in that specific region.</div></div><span class="itag t-s">Watch crime</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-gold">💰</div>
-        <div class="acc-label">Hidden early game loot — Lioncrest Manor &amp; Hernand Bank</div>
-        <div class="acc-verdict v-keep">Economy</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">Lioncrest Manor gold bar</div><div class="inote">Lioncrest Manor (near Hernand Castle) — steal the gold bar inside. Take it to the Hernand Bank and exchange it for 500 Silver. One-time. One of the single largest early-game windfall rewards in the game.</div></div><span class="itag t-t">500 Silver</span></div>
-        <div class="itm"><div><div class="iname">Lioncrest Manor gear</div><div class="inote">The same manor also holds the Brass Wardens Plate and Rhonid Large Shield — steal both for free early armor upgrades.</div></div><span class="itag t-k">Free armor</span></div>
-        <div class="itm"><div><div class="iname">Hernand Bank robbery</div><div class="inote">Need a mask + a key. Yields 40+ Silver (one-time). Both the bank and Lioncrest are exceptions to the "avoid crime" rule — the loot is worth the Contribution Point cost.</div></div><span class="itag t-t">40+ Silver</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-grn">🌲</div>
-        <div class="acc-label">Stealth system — the game never explains this</div>
-        <div class="acc-verdict v-keep">Combat</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">How stealth works</div><div class="inote">Crimson Desert has a fully functional stealth mechanic with zero tutorial. Hide in thick bushes, at the top of a tree, or behind objects that block enemy line of sight. You'll know it's active because the screen lighting dims significantly and the screen edges darken.</div></div><span class="itag t-k">It exists</span></div>
-        <div class="itm"><div><div class="iname">Climbing trick</div><div class="inote">When running out of stamina on a wall, use precision jump (aim at a selectable spot above you) — the jump distance is surprisingly long and doesn't consume much stamina. More efficient than eating food just for wall climbing.</div></div><span class="itag t-k">Traversal</span></div>
-      </div>
-    </div>
-
-    <div class="acc-item">
-      <div class="acc-head" onclick="togAcc(this)">
-        <div class="acc-icon ic-amb">🗺</div>
-        <div class="acc-label">Notifications menu — tracks everything you've missed</div>
-        <div class="acc-verdict v-keep">UI</div>
-        <div class="acc-chev">▼</div>
-      </div>
-      <div class="acc-body">
-        <div class="itm"><div><div class="iname">What it does</div><div class="inote">Open Notifications from the main menu — it lists every notification that's appeared in your session (quest unlocks, knowledge gained, collectible hints) and can redirect you directly to the relevant menu section. Use this whenever you feel like you missed something or a quest counter looks wrong.</div></div><span class="itag t-k">Check often</span></div>
-        <div class="itm"><div><div class="iname">Knowledge acquired check</div><div class="inote">Before selling any book, recipe, or document — open it in your inventory and check for the grey text "Knowledge acquired" in the description. If it's there, the content is already saved to your journal. Sell the item — it has no further value.</div></div><span class="itag t-k">Before selling</span></div>
-      </div>
-    </div>
-
   </div>
 
-  </div>
-
-  <div class="sec">
+  <div class="sec" style="margin-bottom:2.5rem;color:#bfb9aa">
     <div class="sec-label">Hidden weapons — exact locations</div>
-    <div class="tip tip-o"><span class="tip-ico">◈</span><div><strong>The rule:</strong> every waterfall in Crimson Desert hides something. Stab through (RB+Y / R1+△). Small stone cairns in front of cliffs = secret passage. Illusory walls light up under the Lantern — walk into them directly.</div></div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div><strong>Rule:</strong> every waterfall hides something. Stab through (R1+△ / RB+Y). Stone cairns in front of cliffs = secret passage. Illusory walls glow under the Lantern — walk into them.</div></div>
 
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Early</div>
-        <div class="chap-title">Hollow Visage Katana</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">14 ATK · Best early 1H</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Waterfall cave south of the map, near the Reed Devil boss area. Look for a stone cairn in front of the waterfall — stab through it to enter the cave. Chest inside.</div></div><div class="quest-tag qt-key">Waterfall</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">14 ATK, Speed Lv. 2 — pre-loaded Abyss Gears: Critical Rate + Attack Speed. Strongest early one-handed weapon. Use from Ch. 2 through Ch. 6.</div></div><div class="quest-tag qt-bag">S-tier early</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">How to access</div><div class="quest-note">Use Stab (RB+Y / R1+△) to push through the waterfall. Chest is in the cave at the end of the short tunnel.</div></div><div class="quest-tag qt-side">Method</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Hollow+Visage%22+Crimson+Desert+location')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Early</div>
-        <div class="chap-title">Dual Axes — free from the prologue</div>
-        <div class="chap-badges"><span class="bdg b-grn" style="margin:0">12 ATK each · Free</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Underbridge area — one axe stuck in a tree stump, one resting on a nearby rock. Accessible immediately after the prologue, no combat required.</div></div><div class="quest-tag qt-bag">Free loot</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">12 ATK each. Dual-wielding gives fast AoE swings without farming or buying anything. Best free early option before you reach better gear.</div></div><div class="quest-tag qt-side">Info</div></div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Early</div>
-        <div class="chap-title">Hwando (Katana)</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Strong early 2H · Abyss Gears</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Crêtelion Manor / Lioncrest Manor — northwest of Hernand. Inside the manor during exploration (same building where you can steal the gold bar).</div></div><div class="quest-tag qt-key">Hernand</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">Strong early two-handed katana with Abyss Gears already embedded. Significant power spike for Ch. 1–2.</div></div><div class="quest-tag qt-side">Info</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-wiki" onclick="openLink('https://www.powerpyx.com/crimson-desert-all-refinement-upgrade-material-locations/')">Wiki ↗</button>
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Hwando%22+Crimson+Desert+location')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Ch. 2–3</div>
-        <div class="chap-title">Frozen Anguish</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">17 ATK · 3 Abyss Gears</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Dawn Cave — behind a waterfall in the Mountain of Lost Souls. West of Hernand, at the end of the great river near a teleportation point. Multi-level waterfall — look for a stone cairn at the right level. Stab through to enter.</div></div><div class="quest-tag qt-key">Waterfall cave</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">17 ATK, Speed Lv. 2 — Insight I + Gale I + Destruction I pre-loaded. One of the strongest pre-Ch.5 weapons available through exploration alone. Also contains a Refined Palmar Pill and healing gloves with care-efficiency Abyss Cores.</div></div><div class="quest-tag qt-bag">Excellent haul</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Frozen+Anguish%22+Crimson+Desert+location')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Ch. 3–4</div>
-        <div class="chap-title">Darkbringer</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">21 ATK · Monster weapon</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Location</div><div class="quest-note">Death's Grip Cave — northwest of Lake Kharonso, behind a waterfall. Same waterfall stab technique to enter. Chest inside the cave.</div></div><div class="quest-tag qt-key">Waterfall cave</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Stats</div><div class="quest-note">21 ATK — 3 Abyss Gears pre-loaded including Abyss Wound of Darkness. One of the most powerful weapons findable through exploration before the story hands you unique drops.</div></div><div class="quest-tag qt-bag">S-tier mid</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-wiki" onclick="openLink('https://game8.co/games/Crimson-Desert/archives/587175')">Wiki ↗</button>
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=%22Darkbringer%22+Crimson+Desert+location')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Ch. 3+</div>
-        <div class="chap-title">Icemoor Castle Ruins — full loot cache</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Weapon + Armor set</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Tommaso Guard's Dagger-Tipped Spear</div><div class="quest-note">From the center of Icemoor Castle Ruins → up two sets of stairs → small room → turn 180° → bundle of spears embedded in the wall. The spear is in there.</div></div><div class="quest-tag qt-side">Weapon</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Second weapon (wall embed)</div><div class="quest-note">Just to the left of the Dagger-Tipped Spear, in the same wall.</div></div><div class="quest-tag qt-side">Weapon</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Leather Cloak of the Fallen Kingdom</div><div class="quest-note">Behind Staglord's throne → north → up stairs → right across bridge → follow path to dead end → wall with a hole at the bottom. Crawl through → treasure chest with cloak inside.</div></div><div class="quest-tag qt-bag">Armor</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Fallen Kingdom's Rapier</div><div class="quest-note">Same room as the Leather Cloak chest — behind the chest, leaning on the barrel on the left. If missing, it may have fallen over — check the floor around the barrel.</div></div><div class="quest-tag qt-side">Weapon</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-wiki" onclick="openLink('https://gamerant.com/crimson-desert-icemoor-castle-ruins-loot-locations/')">Wiki ↗</button>
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Icemoor+Castle+Ruins+loot+Crimson+Desert')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="sec">
-    <div class="sec-label">Hidden armor — treasure map rewards</div>
-    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Treasure Map Pieces are parchments found on tables, in tents, and from specific bosses. Each shows a hand-drawn sketch — no text, no markers. Find the terrain match, then solve the environmental obstacle (waterfall, rotating wall, false floor). The chest is almost never near where you found the map.</div></div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #1</div>
-        <div class="chap-title">Scorchflame Plate Cloak</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Pailune · Force Palm wall</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Kalin Quarries north of Hernand. Enter the Marni's Excavatron boss arena — stand with back to exit, look right. Wooden wall conceals the chest. Break lower planks to enter.</div></div><div class="quest-tag qt-side">Find map here</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Pailune — upper right of a wall reveals a secret passage. Climb up, use Axiom Power to stick to the wall, break through with Force Palm → hidden chest inside.</div></div><div class="quest-tag qt-key">Method: Force Palm</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Scorchflame Plate Cloak + Refined Palmar Pill</div></div><div class="quest-tag qt-bag">Armor + item</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+1+Scorchflame+location')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #2</div>
-        <div class="chap-title">Scorchflame Plate Armor</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Demeniss · Stealth gate</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Leave Pailune through the north gate, head north to river, cross and follow road to two abandoned houses on left. Inside the large barn — map on a wooden crate near barrels.</div></div><div class="quest-tag qt-side">Find map here</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Demeniss capital → leave by western road → nearest major intersection → turn right → past farmlands → stands on left. Stand between 2nd and 3rd stand, look at gate → switch to stealth → go under gate → chest inside.</div></div><div class="quest-tag qt-key">Method: Stealth</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Scorchflame Plate Armor (full Scorchflame armor set piece)</div></div><div class="quest-tag qt-bag">Armor</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+2+Scorchflame+armor+Demeniss')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #3</div>
-        <div class="chap-title">Cold Heart Plate Armor</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Delesyia · Force Palm wall</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Delesyia Castle — look at the wall to the left of the bridge, find two yellow flags. Climb to center (level with banners) → Axiom Power → Force Palm the wall → chest inside.</div></div><div class="quest-tag qt-key">Method: Force Palm</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Cold Heart Plate Armor</div></div><div class="quest-tag qt-bag">Armor</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+3+Cold+Heart+Plate+Armor')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #4</div>
-        <div class="chap-title">Autumn Banquet Leather Boots</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Demeniss · Waterfall cave</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Northwest of Demeniss — crescent-shaped island lake. Head to Golden Exchange stands (map #2 area) → go north to the lake → stone altar holds the map.</div></div><div class="quest-tag qt-side">Find map here</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">North of the lake → waterfalls area. Chest is in a cave behind the far left waterfall. Use Thrust/Stab attack (R2+△ / RT+Y) to slip under the water and enter.</div></div><div class="quest-tag qt-key">Method: Waterfall</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Autumn Banquet Leather Boots + 2× Improved Palmar Pill</div></div><div class="quest-tag qt-bag">Boots + items</div></div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #5</div>
-        <div class="chap-title">Scorchflame Plate Cloak (Pailune secret)</div>
-        <div class="chap-badges"><span class="bdg b-blue" style="margin:0">Pailune north gate</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Leave Pailune through north gate → follow road north → two abandoned houses → large barn → map on wooden crate near barrels.</div></div><div class="quest-tag qt-side">Find map here</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+5+Scorchflame+Pailune')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="chapter-block">
-      <div class="chap-head" onclick="togChap(this)">
-        <div class="chap-num">Map #6</div>
-        <div class="chap-title">Wanderer of Faith Leather Armor (Damiane)</div>
-        <div class="chap-badges"><span class="bdg b-gold" style="margin:0">Damiane armor · Rotating wall</span></div>
-        <div class="chap-chev">▼</div>
-      </div>
-      <div class="chap-body">
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Map location</div><div class="quest-note">Defeat Marni's Excavatron boss to get Map Piece 6. Boss is at Kalin Quarries north of Hernand.</div></div><div class="quest-tag qt-key">Boss drop</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Treasure location</div><div class="quest-note">Hernand Region — NW of Rocca's Hill → Silver Moon Tradehouse. Circle left side of the tower → look for an out-of-place wall section → hang on wall → Resist + Force Palm → wall rotates → enter secret room → chest inside.</div></div><div class="quest-tag qt-key">Method: Rotating wall</div></div>
-        <div class="quest-row"><div class="quest-dot"></div><div><div class="quest-name">Loot</div><div class="quest-note">Wanderer of Faith Leather Armor (Damiane set piece) + Improved Palmar Pill</div></div><div class="quest-tag qt-bag">Damiane armor</div></div>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="ql-google" onclick="openLink('https://www.google.com/search?q=Crimson+Desert+treasure+map+piece+6+Wanderer+of+Faith+armor')">Google ↗</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="sec">
-    <div class="sec-label">Other notable hidden loot</div>
-
-    <div class="tbl-wrap">
+    <div class="tbl-wrap" style="overflow-x:auto;border-radius:6px;border:1px solid #2e2b24;margin-bottom:1rem;background:#201e19">
       <table>
-        <thead><tr><th>Item / Loot</th><th>Location</th><th>Method</th><th>Why it matters</th></tr></thead>
+        <thead><tr><th>Weapon</th><th>Chapter</th><th>Location</th><th>Stats / Why get it</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Dark Fog Lantern</td>
-            <td style="color:var(--text-dm);font-size:12px">Alfonso House faction quest — "Transcendent Structure" (after "Weight of Legacy")</td>
-            <td style="color:var(--text-dm);font-size:12px">Complete questline</td>
-            <td style="color:var(--grn-lt);font-size:12px">Enhanced lantern that reveals memory fragments, hidden clues, sealed Abyss Artifacts, ghost holograms. Game-changer for secret hunting.</td>
-          </tr>
-          <tr>
-            <td>Loot Goblin (Chest Goblin)</td>
-            <td style="color:var(--text-dm);font-size:12px">Random spawn on roads across Pywel — goblin with a chest on its back</td>
-            <td style="color:var(--text-dm);font-size:12px">Chase and kill before it escapes</td>
-            <td style="color:var(--grn-lt);font-size:12px">Drops a gold ingot exchangeable at any bank for 500 silver. Fast on foot — charge immediately when spotted.</td>
-          </tr>
-          <tr>
-            <td>Lioncrest Manor — full haul</td>
-            <td style="color:var(--text-dm);font-size:12px">Lioncrest Manor near Hernand Castle — no key required to enter</td>
-            <td style="color:var(--text-dm);font-size:12px">Enter and steal</td>
-            <td style="color:var(--grn-lt);font-size:12px">Gold bar (→ 500 silver at bank), Brass Wardens Plate, Rhonid Large Shield, Hwando. Best single-building early haul.</td>
-          </tr>
-          <tr>
-            <td>Waterfall healing gloves</td>
-            <td style="color:var(--text-dm);font-size:12px">West of Hernand — multi-level waterfall near teleport point. Stone cairn at the right level.</td>
-            <td style="color:var(--text-dm);font-size:12px">Stab through waterfall</td>
-            <td style="color:var(--grn-lt);font-size:12px">Gloves with Abyss Cores that increase healing efficiency + regenerative effect. Unbeatable early. Also contains Frozen Anguish and Refined Palmar Pill.</td>
-          </tr>
-          <tr>
-            <td>Free boots (climbing speed)</td>
-            <td style="color:var(--text-dm);font-size:12px">West of Hernand — just above the first N in "Hernand" on map, near a small river. Waterfall with a cairn.</td>
-            <td style="color:var(--text-dm);font-size:12px">Stab through waterfall</td>
-            <td style="color:var(--grn-lt);font-size:12px">Boots that boost stamina recovery and climbing speed. Free. Also contains a Refined Palmar Pill.</td>
-          </tr>
-          <tr>
-            <td>High-tier Mercenary Armor</td>
-            <td style="color:var(--text-dm);font-size:12px">Hidden dungeons with vertical platforming — avoid spike traps when stamina is low</td>
-            <td style="color:var(--text-dm);font-size:12px">Dungeon exploration</td>
-            <td style="color:var(--grn-lt);font-size:12px">High-tier armor + Ancient Pywelian Coins. Brazier puzzle dungeons: light braziers in order shown on murals using Fire Alchemy.</td>
-          </tr>
-          <tr>
-            <td>Akapen Fortress Vault</td>
-            <td style="color:var(--text-dm);font-size:12px">Akapen Fortress — collect three scattered vault keys to open the heavily guarded vault</td>
-            <td style="color:var(--text-dm);font-size:12px">Three-key puzzle</td>
-            <td style="color:var(--grn-lt);font-size:12px">High-tier loot cache. Keys are scattered — use the interactive map (PywelMap.com) to locate all three.</td>
-          </tr>
-          <tr>
-            <td>Salvatore Easter Egg Boss</td>
-            <td style="color:var(--text-dm);font-size:12px">Hernand — lamppost bounty poster for "Salvatore" (Elden Ring Let Me Solo Her tribute). Chase to Sunset Valley.</td>
-            <td style="color:var(--text-dm);font-size:12px">Bounty quest</td>
-            <td style="color:var(--grn-lt);font-size:12px">Hidden boss with good loot. One of the game's easter eggs — the character design is a clear tribute.</td>
-          </tr>
+          <tr><td>Hollow Visage Katana</td><td style="color:#6e6860">Ch. 2–3</td><td style="color:#6e6860;font-size:12px">Waterfall cave south of map, near Reed Devil boss area. Stone cairn marks the entry. Stab through.</td><td style="color:#6db86d;font-size:12px">14 ATK · Critical Rate + Attack Speed Abyss Gears. Best early one-hander.</td></tr>
+          <tr><td>Dual Axes (free)</td><td style="color:#6e6860">Prologue</td><td style="color:#6e6860;font-size:12px">Underbridge area — one in a tree stump, one on a nearby rock. No combat needed.</td><td style="color:#6db86d;font-size:12px">12 ATK each. Free AoE option from the very start.</td></tr>
+          <tr><td>Hwando (katana)</td><td style="color:#6e6860">Ch. 1–2</td><td style="color:#6e6860;font-size:12px">Crêtelion / Lioncrest Manor NW of Hernand — inside manor during exploration.</td><td style="color:#6db86d;font-size:12px">Strong early two-hander with Abyss Gears embedded.</td></tr>
+          <tr><td>Frozen Anguish</td><td style="color:#6e6860">Ch. 2–3</td><td style="color:#6e6860;font-size:12px">Dawn Cave — behind waterfall in Mountain of Lost Souls. West of Hernand at end of great river, multi-level waterfall. Look for cairn.</td><td style="color:#6db86d;font-size:12px">17 ATK · Insight I + Gale I + Destruction I. Cave also has healing gloves + Refined Palmar Pill.</td></tr>
+          <tr><td>Darkbringer</td><td style="color:#6e6860">Ch. 3–4</td><td style="color:#6e6860;font-size:12px">Death's Grip Cave — NW of Lake Kharonso, behind a waterfall. Same stab technique.</td><td style="color:#6db86d;font-size:12px">21 ATK · 3 Abyss Gears including Abyss Wound of Darkness. Monster mid-game weapon.</td></tr>
+          <tr><td>Free climbing boots</td><td style="color:#6e6860">Ch. 1+</td><td style="color:#6e6860;font-size:12px">West of Hernand, just above first N in "Hernand" on map, small river. Waterfall with a cairn. Stab through.</td><td style="color:#6db86d;font-size:12px">Boots: +stamina recovery + climbing speed. Also contains a Refined Palmar Pill.</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="tip tip-o"><span class="tip-ico">◈</span><div>For the full chest and loot map with exact coordinates, use <button onclick="openLink('https://pywelmap.com/')" style="background:none;border:none;color:var(--gold-lt);cursor:pointer;font-size:12px;padding:0;font-family:'DM Sans',sans-serif;text-decoration:underline">PywelMap.com ↗</button> — filter to Treasure Chests. It has 2,000+ markers including hidden chest locations the community is still discovering.</div>
+  </div>
+
+  <div class="sec" style="margin-bottom:2.5rem;color:#bfb9aa">
+    <div class="sec-label">Hidden armor — treasure map pieces</div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Treasure Map Pieces are parchments on tables, in tents, from bosses. Each shows a hand-drawn sketch — no text, no markers. The treasure is almost never near where you found the map. Force Palm opens most hidden rooms; waterfalls require Stab.</div></div>
+
+    <div class="tbl-wrap" style="overflow-x:auto;border-radius:6px;border:1px solid #2e2b24;margin-bottom:1rem;background:#201e19">
+      <table>
+        <thead><tr><th>Map #</th><th>Map location</th><th>Treasure location</th><th>Method</th><th>Loot</th></tr></thead>
+        <tbody>
+          <tr><td>Map 1</td><td style="color:#6e6860;font-size:12px">Kalin Quarries N of Hernand — Marni's Excavatron boss arena, wooden wall on right. Break lower planks.</td><td style="color:#6e6860;font-size:12px">Pailune — upper right of a wall. Climb up, Axiom Power, Force Palm the wall.</td><td style="color:#6e6860;font-size:12px">Force Palm wall</td><td style="color:#6db86d;font-size:12px">Scorchflame Plate Cloak + Refined Palmar Pill</td></tr>
+          <tr><td>Map 2</td><td style="color:#6e6860;font-size:12px">Leave Pailune N gate → road → two abandoned houses on left → barn → crate near barrels.</td><td style="color:#6e6860;font-size:12px">Demeniss capital → W road → intersection → farmlands → stands. Between 2nd and 3rd stand. Stealth under the gate.</td><td style="color:#6e6860;font-size:12px">Stealth gate</td><td style="color:#6db86d;font-size:12px">Scorchflame Plate Armor</td></tr>
+          <tr><td>Map 3</td><td style="color:#6e6860;font-size:12px">(found near Map 2 area)</td><td style="color:#6e6860;font-size:12px">Delesyia Castle — left of bridge, two yellow flags. Climb to banner level, Axiom Power, Force Palm wall.</td><td style="color:#6e6860;font-size:12px">Force Palm wall</td><td style="color:#6db86d;font-size:12px">Cold Heart Plate Armor</td></tr>
+          <tr><td>Map 4</td><td style="color:#6e6860;font-size:12px">NW Demeniss — crescent lake. Head to Golden Exchange stands → N to lake → stone altar.</td><td style="color:#6e6860;font-size:12px">North of lake → waterfalls → far left waterfall. Stab (RT+Y / R1+△) to slip under water.</td><td style="color:#6e6860;font-size:12px">Waterfall</td><td style="color:#6db86d;font-size:12px">Autumn Banquet Leather Boots + 2× Improved Palmar Pill</td></tr>
+          <tr><td>Map 6</td><td style="color:#6e6860;font-size:12px">Drop from Marni's Excavatron boss (Kalin Quarries, N Hernand).</td><td style="color:#6e6860;font-size:12px">Hernand NW of Rocca's Hill → Silver Moon Tradehouse → left side of tower → out-of-place wall → hang + Resist + Force Palm → wall rotates.</td><td style="color:#6e6860;font-size:12px">Rotating wall</td><td style="color:#6db86d;font-size:12px">Wanderer of Faith Leather Armor (Damiane set) + Improved Palmar Pill</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-bottom:2.5rem;color:#bfb9aa">
+    <div class="sec-label">Icemoor Castle Ruins — full loot cache</div>
+    <div class="tip tip-i"><span class="tip-ico">◈</span><div>Four separate items hidden in the castle after defeating the Staglord. None are marked on the map.</div></div>
+    <div class="tbl-wrap" style="overflow-x:auto;border-radius:6px;border:1px solid #2e2b24;margin-bottom:1rem;background:#201e19">
+      <table>
+        <thead><tr><th>Item</th><th>Exact location</th></tr></thead>
+        <tbody>
+          <tr><td>Tommaso Guard's Dagger-Tipped Spear</td><td style="color:#6e6860;font-size:12px">Center of ruins → up 2 sets of stairs → small room → turn 180° → bundle of spears in wall. The spear is embedded in there.</td></tr>
+          <tr><td>Second weapon (wall embed)</td><td style="color:#6e6860;font-size:12px">Same wall as the Dagger-Tipped Spear, just to the left.</td></tr>
+          <tr><td>Leather Cloak of the Fallen Kingdom</td><td style="color:#6e6860;font-size:12px">Behind Staglord's throne → north → up stairs → right across bridge → follow path to dead end → wall with a hole at the bottom. Crawl through → chest inside.</td></tr>
+          <tr><td>Fallen Kingdom's Rapier</td><td style="color:#6e6860;font-size:12px">Same room as the cloak chest — behind the chest, leaning on the barrel on the left. If missing, it may have fallen over — check the floor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-bottom:2.5rem;color:#bfb9aa">
+    <div class="sec-label">Other notable hidden loot</div>
+    <div class="tbl-wrap" style="overflow-x:auto;border-radius:6px;border:1px solid #2e2b24;margin-bottom:1rem;background:#201e19">
+      <table>
+        <thead><tr><th>Item</th><th>Location / Method</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Dark Fog Lantern</td><td style="color:#6e6860;font-size:12px">Alfonso House faction quest — "Transcendent Structure" (after "Weight of Legacy")</td><td style="color:#6db86d;font-size:12px">Enhanced lantern reveals memory fragments, hidden clues, sealed Abyss Artifacts, ghost holograms. Game-changer for secret hunting.</td></tr>
+          <tr><td>Loot Goblin (500 Silver)</td><td style="color:#6e6860;font-size:12px">Random spawn on roads — goblin with a chest on its back. Chase and kill before it escapes.</td><td style="color:#6db86d;font-size:12px">Drops gold ingot → 500 Silver at any bank. Best early windfall outside of Lioncrest.</td></tr>
+          <tr><td>Waterfall healing gloves</td><td style="color:#6e6860;font-size:12px">West Hernand multi-level waterfall — cairn marks the right level. Stab through.</td><td style="color:#6db86d;font-size:12px">Abyss Cores: increased healing efficiency + regen effect. Unbeatable early.</td></tr>
+          <tr><td>Akapen Fortress Vault</td><td style="color:#6e6860;font-size:12px">Collect 3 scattered vault keys to open the guarded vault inside Akapen Fortress.</td><td style="color:#6db86d;font-size:12px">High-tier loot cache. Use PywelMap.com to locate all 3 keys.</td></tr>
+          <tr><td>Salvatore (Easter egg boss)</td><td style="color:#6e6860;font-size:12px">Hernand lamppost bounty poster → Sunset Valley. Elden Ring "Let Me Solo Her" tribute.</td><td style="color:#6db86d;font-size:12px">Hidden boss with good loot. One of the game's Easter eggs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-o"><span class="tip-ico">◈</span><div>For the full map with 2,000+ chest locations: <button onclick="openLink('https://pywelmap.com/')" style="background:none;border:none;color:#e8b86a;cursor:pointer;font-size:12px;padding:0;font-family:'DM Sans',sans-serif;text-decoration:underline">PywelMap.com ↗</button> — filter to Treasure Chests.</div></div>
   </div>
 
 </div><!-- /panel-secrets -->
@@ -3344,61 +3086,82 @@ function switchQTab(id, btn) {
 }
 
 // ── MENU TOGGLE ──
+// ── MENU TOGGLE ──
 function toggleMenu() {
-  const dd = document.getElementById('tab-dropdown');
-  const ov = document.getElementById('tab-overlay');
-  const btn = document.getElementById('menu-toggle');
+  const dd   = document.getElementById('tab-dropdown');
+  const ov   = document.getElementById('tab-overlay');
+  const btn  = document.getElementById('menu-toggle');
   const icon = document.getElementById('menu-icon');
+  if (!dd) return;
   const isOpen = dd.classList.contains('open');
   dd.classList.toggle('open', !isOpen);
-  ov.classList.toggle('open', !isOpen);
-  btn.classList.toggle('open', !isOpen);
-  icon.textContent = isOpen ? '≡' : '✕';
+  if (ov)   ov.classList.toggle('open', !isOpen);
+  if (btn)  btn.classList.toggle('open', !isOpen);
+  if (icon) icon.textContent = isOpen ? '≡' : '✕';
 }
 
 function closeMenu() {
-  document.getElementById('tab-dropdown').classList.remove('open');
-  document.getElementById('tab-overlay').classList.remove('open');
-  document.getElementById('menu-toggle').classList.remove('open');
-  document.getElementById('menu-icon').textContent = '≡';
+  const dd   = document.getElementById('tab-dropdown');
+  const ov   = document.getElementById('tab-overlay');
+  const btn  = document.getElementById('menu-toggle');
+  const icon = document.getElementById('menu-icon');
+  if (dd)   dd.classList.remove('open');
+  if (ov)   ov.classList.remove('open');
+  if (btn)  btn.classList.remove('open');
+  if (icon) icon.textContent = '≡';
 }
 
 // ── TAB SWITCHING ──
+const TAB_LABELS = {
+  inventory:'Inventory', items:'Items Guide', trading:'Trading',
+  quests:'Quests', bosses:'Bosses', builds:'Builds & Weapons',
+  camp:'Camp', crafting:'Crafting', cooking:'Cooking',
+  mounts:'Mounts & Pets', characters:'Characters',
+  secrets:'Secrets', early:'Early Game'
+};
+
 function pickTab(id, label, gridBtn) {
-  // Hide all panels
+  // Guard: panel must exist
+  const panel = document.getElementById('panel-' + id);
+  if (!panel) return;
+
+  // Deactivate all panels and buttons
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  // Deactivate all grid buttons
   document.querySelectorAll('.tab-grid-btn').forEach(b => b.classList.remove('active'));
-  // Show target panel
-  document.getElementById('panel-' + id).classList.add('active');
-  // Mark grid button active
-  if (gridBtn) gridBtn.classList.add('active');
-  else {
-    const btn = document.getElementById('tgb-' + id);
-    if (btn) btn.classList.add('active');
+
+  // Activate target
+  panel.classList.add('active');
+  if (gridBtn) {
+    gridBtn.classList.add('active');
+  } else {
+    const tgb = document.getElementById('tgb-' + id);
+    if (tgb) tgb.classList.add('active');
   }
+
   // Update breadcrumb
-  document.getElementById('active-tab-name').textContent = label;
-  // Close menu and scroll to top
+  const nameEl = document.getElementById('active-tab-name');
+  if (nameEl) nameEl.textContent = label || TAB_LABELS[id] || id;
+
+  // Close menu + scroll
   closeMenu();
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Persist state
+  _saveState(id);
 }
 
-// Legacy alias so any old switchTab() calls still work
+// Legacy alias
 function switchTab(id, _btn) {
-  const labels = {inventory:'Inventory',items:'Items Guide',trading:'Trading',quests:'Quests',bosses:'Bosses',builds:'Builds & Weapons',camp:'Camp',crafting:'Crafting',mounts:'Mounts & Pets',characters:'Characters',secrets:'Secrets',early:'Early Game'};
-  pickTab(id, labels[id] || id, null);
+  pickTab(id, TAB_LABELS[id] || id, null);
 }
 
-// ── ACCORDION ──
+// ── ACCORDIONS ──
 function togAcc(head) {
   const body = head.nextElementSibling;
   const open = body.classList.contains('open');
   body.classList.toggle('open', !open);
   head.classList.toggle('exp', !open);
 }
-
-// ── CHAPTER ACCORDION ──
 function togChap(head) {
   const body = head.nextElementSibling;
   const open = body.classList.contains('open');
@@ -3406,24 +3169,27 @@ function togChap(head) {
   head.classList.toggle('exp', !open);
 }
 
-// ── CHECKLIST ──
-// ── CHECKLIST PERSISTENCE (localStorage) ──
-const STORE_KEY = 'cd_guide_v1';
+// ── CHECKLIST + LOCALSTORAGE ──
+const STORE_KEY = 'cd_guide_v3';
 
-function saveState() {
+function _saveState(activeTabId) {
   try {
-    // Checklist: collect index of all .done items
     const doneIndexes = [];
     document.querySelectorAll('.priority-item').forEach((el, i) => {
       if (el.classList.contains('done')) doneIndexes.push(i);
     });
-    // Active tab
-    const activeBtn = document.querySelector('.tab-grid-btn.active');
-    const activeTab = activeBtn ? activeBtn.id.replace('tgb-', '') : 'inventory';
-    const state = { checklist: doneIndexes, tab: activeTab, ts: Date.now() };
-    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    // Determine active tab
+    let tab = activeTabId;
+    if (!tab) {
+      const activeBtn = document.querySelector('.tab-grid-btn.active');
+      tab = activeBtn ? activeBtn.id.replace('tgb-', '') : 'inventory';
+    }
+    localStorage.setItem(STORE_KEY, JSON.stringify({ checklist: doneIndexes, tab, ts: Date.now() }));
   } catch(e) {}
 }
+
+// Public alias for backward compat
+function saveState() { _saveState(null); }
 
 function loadState() {
   try {
@@ -3437,33 +3203,26 @@ function loadState() {
       state.checklist.forEach(i => { if (items[i]) items[i].classList.add('done'); });
     }
 
-    // Restore active tab — ONLY switch if the saved panel actually exists
-    if (state.tab) {
+    // Restore active tab only if that panel exists
+    if (state.tab && TAB_LABELS[state.tab]) {
       const panel = document.getElementById('panel-' + state.tab);
       if (panel) {
-        const labels = {
-          inventory:'Inventory', items:'Items Guide', trading:'Trading',
-          quests:'Quests', bosses:'Bosses', builds:'Builds & Weapons',
-          camp:'Camp', crafting:'Crafting', cooking:'Cooking',
-          mounts:'Mounts & Pets', characters:'Characters',
-          secrets:'Secrets', early:'Early Game'
-        };
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-grid-btn').forEach(b => b.classList.remove('active'));
         panel.classList.add('active');
-        const btn = document.getElementById('tgb-' + state.tab);
-        if (btn) btn.classList.add('active');
+        const tgb = document.getElementById('tgb-' + state.tab);
+        if (tgb) tgb.classList.add('active');
         const nameEl = document.getElementById('active-tab-name');
-        if (nameEl) nameEl.textContent = labels[state.tab] || state.tab;
+        if (nameEl) nameEl.textContent = TAB_LABELS[state.tab];
       }
-      // If panel not found, leave inventory (default HTML active class) untouched
     }
 
-    // Toast if checklist had saved data
+    // Toast only if checklist has data
     if (state.checklist && state.checklist.length > 0)
-      showToast(`✓ Progress restored — ${state.checklist.length} item${state.checklist.length > 1 ? 's' : ''} saved`);
+      showToast('✓ Progress restored — ' + state.checklist.length + ' item' + (state.checklist.length > 1 ? 's' : '') + ' saved');
+
   } catch(e) {
-    // Corrupted state — clear it and let the page load fresh
+    // Corrupted — wipe and let page load clean
     try { localStorage.removeItem(STORE_KEY); } catch(_) {}
   }
 }
@@ -3476,11 +3235,8 @@ function clearState() {
 
 function togglePI(el) {
   el.classList.toggle('done');
-  saveState();
+  _saveState(null);
 }
-
-// Override pickTab to also save state
-// patch: save after each tab switch
 
 function showToast(msg) {
   let t = document.getElementById('cd-toast');
@@ -3493,18 +3249,8 @@ function showToast(msg) {
   t.textContent = msg;
   t.style.opacity = '1';
   clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.style.opacity = '0', 2800);
+  t._timer = setTimeout(function() { t.style.opacity = '0'; }, 2800);
 }
-
-// Patch pickTab so every tab switch also persists state
-(function() {
-  const orig = window.pickTab;
-  if (!orig) return; // safety guard
-  window.pickTab = function(id, label, btn) {
-    orig(id, label, btn);
-    saveState();
-  };
-})();
 
 // ── SEARCH ──
 const ITEMS = [
@@ -3552,6 +3298,7 @@ const ITEMS = [
 const srch = document.getElementById('srch');
 const drop = document.getElementById('srch-drop');
 
+if (srch && drop) {
 srch.addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
   drop.innerHTML = '';
@@ -3574,8 +3321,9 @@ srch.addEventListener('input', function() {
 });
 
 document.addEventListener('click', e => {
-  if (!srch.contains(e.target) && !drop.contains(e.target)) drop.style.display = 'none';
+  if (srch && drop && !srch.contains(e.target) && !drop.contains(e.target)) drop.style.display = 'none';
 });
+} // end if (srch && drop)
 
 // ── QUEST LINK INJECTION ──
 // Converts quest names to slugs for fextralife.com wiki and adds link icons
@@ -3771,6 +3519,19 @@ document.addEventListener('click', e => {
 });
 
 // Load saved state on page ready
+// Version bump — clear any stale data from previous broken builds
+(function() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      const s = JSON.parse(raw);
+      // If no ts (old format) or ts before this build, wipe it
+      if (!s.ts || s.ts < 1744329600000) {
+        localStorage.removeItem(STORE_KEY);
+      }
+    }
+  } catch(e) { try { localStorage.removeItem(STORE_KEY); } catch(_) {} }
+})();
 loadState();
 </script>
 </body>
